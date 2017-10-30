@@ -23,6 +23,8 @@ class Download extends Admin
                 \Lib\Data\Download::TYPE_REPORT,
                 ''
             );
+        } else {
+            $this->ensurePermission('download.' . $download->getType() . '.view');
         }
 
         return [

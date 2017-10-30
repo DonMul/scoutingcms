@@ -20,12 +20,20 @@
                 <textarea class="form-control js-wysiwyg" id="description" name="description" rows="25">{{ context.speltak.description }}</textarea>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <button type="submit" class="btn btn-success">
-                    {{ t('common.save') }}
-                </button>
+        {% set canEdit = false %}
+        {% for permission in permissions %}
+            {% if permission matches '{group.' ~ context.speltak.name ~ '.edit}' %}
+                {% set canEdit = true %}
+            {% endif %}
+        {% endfor %}
+        {% if canEdit == true %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success">
+                        {{ t('common.save') }}
+                    </button>
+                </div>
             </div>
-        </div>
+        {% endif %}
     </form>
 {% endblock %}

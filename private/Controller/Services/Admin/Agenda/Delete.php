@@ -18,6 +18,8 @@ class Delete extends \Controller\Services\Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('calender.edit');
+
         $itemId = $this->getPostValue('itemId');
         $item = Agenda::getById($itemId);
 

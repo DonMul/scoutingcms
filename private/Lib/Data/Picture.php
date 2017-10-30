@@ -190,4 +190,31 @@ final class Picture
         $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `flg_picture`");
         return Util::arrayGet($result, 'cnt', 0);
     }
+
+    /**
+     * @param int $id
+     * @return Picture
+     */
+    public static function getById($id)
+    {
+        $data = \Lib\Core\Database::getInstance()->fetchOne(
+            "SELECT * FROM `flg_picture` WHERE id = ?",
+            [$id],
+            'i'
+        );
+
+        if ($data) {
+            return self::bindSqlResult($data);
+        }
+
+        return null;
+    }
+
+    /**
+     *
+     */
+    public function delete()
+    {
+        Database::getInstance()->query("DELETE FROM `flg_picture` WHERE id = ?", [$this->getId()], 'i');
+    }
 }

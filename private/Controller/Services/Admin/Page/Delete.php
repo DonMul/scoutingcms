@@ -17,6 +17,8 @@ class Delete extends \Controller\Services\Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('pages.edit');
+
         $pageId = $this->getPostValue('pageId');
         $page = Page::getById($pageId);
         if (!($page instanceof Page)) {

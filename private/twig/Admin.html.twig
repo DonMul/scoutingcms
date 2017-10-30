@@ -6,7 +6,7 @@
     {{ macros.wysiwyg() }}
     <div class="row admin__container">
         <div class="col-sm-2">
-            {{ macros.adminSidebar() }}
+            {{ macros.adminSidebar(permissions) }}
         </div>
         <div class="col-sm-10">
             {{ block('adminTemplate') }}

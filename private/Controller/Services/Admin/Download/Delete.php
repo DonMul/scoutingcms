@@ -25,6 +25,8 @@ class Delete extends \Controller\Services\Admin
             throw new \Exception(Translation::getInstance()->translate("error.download.notFound", ['id' => $downloadId]));
         }
 
+        $this->ensurePermission('download.' . $download->getType() . '.edit');
+
         $download->delete();
 
         return [

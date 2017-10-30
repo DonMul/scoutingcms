@@ -16,6 +16,8 @@ class Overview extends Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('user.edit');
+
         return [
             'users' => User::getAll(),
         ];

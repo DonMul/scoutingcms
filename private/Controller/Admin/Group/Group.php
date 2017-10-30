@@ -13,8 +13,11 @@ class Group extends \Controller\Admin
      */
     public function getArray()
     {
+        $group = \Lib\Data\Speltak::getById($_GET['id']);
+        $this->ensurePermission('group.' . $group->getName() . '.view');
+
         return [
-            'speltak' => \Lib\Data\Speltak::getById($_GET['id'])
+            'speltak' => $group,
         ];
     }
 }

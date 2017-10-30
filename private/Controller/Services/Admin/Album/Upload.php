@@ -18,20 +18,22 @@ class Upload extends \Controller\Services\Admin
      */
     public function getArray()
     {
-        $album = Album::getById($this->getPostValue('albumId'));
+        $album = Album::getById($_GET['id']);
         if (!$album) {
             return [];
         }
 
+        $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.edit');
+
         $category = AlbumCategory::getById($album->getCategory());
-        $targetDir = ROOT . "../public/upload/" . $category->getName() . "/" . md5($album->getName()) . '/';
+        $targetDir = ROOT . "../public/upload/" . $category->getName() . "/" . md5($album->getId()) . '/';
 
         if (!is_dir(ROOT . "../public/upload/" . $category->getName())) {
             mkdir(ROOT . "../public/upload/" . $category->getName());
         }
 
-        if (!is_dir(ROOT . "../public/upload/" . $category->getName() . "/" . md5($album->getName()))) {
-            mkdir(ROOT . "../public/upload/" . $category->getName() . "/" . md5($album->getName()));
+        if (!is_dir(ROOT . "../public/upload/" . $category->getName() . "/" . md5($album->getId()))) {
+            mkdir(ROOT . "../public/upload/" . $category->getName() . "/" . md5($album->getId()));
         }
 
         $targetFile = $targetDir . basename($_FILES["file"]["name"]);

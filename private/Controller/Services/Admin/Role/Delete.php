@@ -17,6 +17,8 @@ class Delete extends \Controller\Services\Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('role.edit');
+
         $roleId = $this->getPostValue('roleId');
         $role = Role::getById($roleId);
         if (!($role instanceof Role)) {

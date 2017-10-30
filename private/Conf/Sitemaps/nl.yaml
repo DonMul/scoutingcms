@@ -145,7 +145,7 @@
   controller: \Controller\Services\Admin\Album\Delete
   hash: serviceAlbumDelete
 
-/services/admin/album/upload:
+/services/admin/album/upload/{id}:
   controller: \Controller\Services\Admin\Album\Upload
   hash: serviceAlbumUpload
 
@@ -188,3 +188,7 @@
 /services/admin/role/delete:
   controller: \Controller\Services\Admin\Role\Delete
   hash: serviceRoleDelete
+
+/services/admin/picture/delete:
+  controller: \Controller\Services\Admin\Picture\Delete
+  hash: servicePictureDelete

@@ -2,6 +2,8 @@
 
 namespace Lib\Core;
 
+use Lib\Data\Permission;
+
 /**
  * Class BaseController
  * @package Lib\Core
@@ -140,6 +142,7 @@ abstract class BaseController
 
         if (\Lib\Core\Session::getInstance()->isLoggedIn()) {
             $array['user'] = \Lib\Data\User::getById(\Lib\Core\Session::getInstance()->getKey());
+            $array['permissions'] = $this->getPermissions();
         }
 
         $array = $this->sanitizeContext($array);
@@ -155,6 +158,32 @@ abstract class BaseController
 
         // Render the template
         echo $template->render($array);
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getPermissions()
+    {
+        if (\Lib\Core\Session::getInstance()->isLoggedIn() == false) {
+            return [];
+        }
+
+        if (!isset($_SESSION['permissions'])) {
+            $user = \Lib\Data\User::getById(\Lib\Core\Session::getInstance()->getKey());
+            $_SESSION['permissions'] = $user->getPermissions();
+        }
+
+        return $_SESSION['permissions'];
+    }
+
+    /**
+     * @param string $permissionName
+     * @return bool
+     */
+    protected function hasPermission($permissionName)
+    {
+        return in_array($permissionName, $this->getPermissions());
     }
 
     /**

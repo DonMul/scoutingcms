@@ -2,16 +2,15 @@
 
 namespace Controller\Admin\Album;
 
-use Lib\Core\BaseController;
-use Lib\Core\Settings;
+use Controller\Admin;
 use Lib\Data\AlbumCategory;
 use Lib\Data\Picture;
 
 /**
- * Class Pictures
+ * Class Album
  * @package Controller\Admin
  */
-class Album extends BaseController
+class Album extends Admin
 {
     /**
      * @return array
@@ -21,12 +20,15 @@ class Album extends BaseController
         $album = \Lib\Data\Album::getById($_GET['id']);
         if (!$album) {
             $album = new \Lib\Data\Album(null, "New Album", '', '', '', '');
+        } else {
+            $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.view');
         }
 
         return [
             'album' => $album,
             'pictures' => Picture::findByAlbumId($_GET['id']),
-            'categories' => AlbumCategory::getAll()
+            'categories' => AlbumCategory::getAll(),
+            'albumHash' => md5($album->getId())
         ];
     }
 }

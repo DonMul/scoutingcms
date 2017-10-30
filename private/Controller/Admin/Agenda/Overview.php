@@ -13,6 +13,8 @@ class Overview extends \Controller\Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('calender.edit');
+
         $items = \Lib\Data\Agenda::findBetweenDates(
             date('Y-m-d H:i:s', strtotime('-1 year')),
             date('Y-m-d H:i:s', strtotime('+1 year')),

@@ -15,6 +15,8 @@ class Overview extends Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('pages.edit');
+
         return [
             'pages' => \Lib\Data\Page::getAll(),
         ];

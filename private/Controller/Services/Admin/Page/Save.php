@@ -17,6 +17,8 @@ class Save extends \Controller\Services\Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('pages.edit');
+
         $pageId = $this->getPostValue('pageId');
         $page = \Lib\Data\Page::getById($pageId);
         if (!($page instanceof Page) && intval($pageId) > 0) {

@@ -1,6 +1,7 @@
 <?php
 
 namespace Controller\Admin\Group;
+use Controller\FourOFour;
 
 /**
  * Class Admin
@@ -15,8 +16,27 @@ class Overview extends \Controller\Admin
      */
     public function getArray()
     {
+        $groups = \Lib\Data\Speltak::getAll();
+        $allowed = false;
+        foreach ($groups as $key => $group) {
+            if ($this->hasPermission('group.' . $group->getName() . '.view')) {
+                $allowed = true;
+            } else {
+                unset($groups[$key]);
+            }
+        }
+
+        if (!$allowed) {
+            header("HTTP/1.1 404 Not Found");
+            $controller = new FourOFour();
+            $controller->execute();
+            exit;
+        }
+
+        $this->ensurePermission('news.edit');
+
         return [
-            'speltakken' => \Lib\Data\Speltak::getAll()
+            'speltakken' => $groups
         ];
     }
 }

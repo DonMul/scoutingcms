@@ -4,13 +4,21 @@
 
 {% block adminTemplate %}
     <h2>{{ t('download.admin') }}</h2>
-    <a href="{{ tl('adminDownload', {'id': 0}) }}" class="button__no">
-        <i class="fa fa-plus button__add">
-            <span class="button__inner">
-                {{ t('download.new') }}
-            </span>
-        </i>
-    </a>
+    {% set canEdit = false %}
+    {% for permission in permissions %}
+        {% if permission matches '{download.\.[a-zA-Z0-9]+\.edit}' %}
+            {% set canEdit = true %}
+        {% endif %}
+    {% endfor %}
+    {% if canEdit == true %}
+        <a href="{{ tl('adminDownload', {'id': 0}) }}" class="button__no">
+            <i class="fa fa-plus button__add">
+                <span class="button__inner">
+                    {{ t('download.new') }}
+                </span>
+            </i>
+        </a>
+    {% endif %}
     <table class="table table-striped">
         <thead>
         <tr>
@@ -35,12 +43,14 @@
                     </a>
                 </td>
                 <td>
-                    <form method="post" action="{{ tl('serviceDownloadDelete') }}">
-                        <input type="hidden" name="itemId" value="{{ download.id }}"/>
-                        <button type="submit" class="button__no">
-                            <i class="fa fa-times button__remove"></i>
-                        </button>
-                    </form>
+                    {% if 'download.' ~ download.type ~ '.edit' in permissions %}
+                        <form method="post" action="{{ tl('serviceDownloadDelete') }}">
+                            <input type="hidden" name="itemId" value="{{ download.id }}"/>
+                            <button type="submit" class="button__no">
+                                <i class="fa fa-times button__remove"></i>
+                            </button>
+                        </form>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

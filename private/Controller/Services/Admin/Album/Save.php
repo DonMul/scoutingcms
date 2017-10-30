@@ -25,6 +25,8 @@ class Save extends \Controller\Services\Admin
             throw new \Exception(Translation::getInstance()->translate("error.album.notFound", ['id' => $albumId]));
         }
 
+        $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.edit');
+
         if ($album) {
             $album->setName($this->getPostValue('name'));
             $album->setDescription($this->getPostValue('description'));

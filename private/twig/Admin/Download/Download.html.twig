@@ -24,21 +24,33 @@
             <div class="col-xs-12">
                 <label for="type">{{ t('download.type') }}</label>
                 <select id="type" name="type" class="form-control">
-                    <option value="report" {{ context.download.type == 'report' ? 'selected="selected"' }}>
-                        {{ t('download.type.report') }}
-                    </option>
-                    <option value="newsletter" {{ context.download.type == 'newsletter' ? 'selected="selected"' }}>
-                        {{ t('download.type.newsletter') }}
-                    </option>
+                    {% if 'download.report.edit' in permissions %}
+                        <option value="report" {{ context.download.type == 'report' ? 'selected="selected"' }}>
+                            {{ t('download.type.report') }}
+                        </option>
+                    {% endif %}
+                    {% if 'download.newsletter.edit' in permissions %}
+                        <option value="newsletter" {{ context.download.type == 'newsletter' ? 'selected="selected"' }}>
+                            {{ t('download.type.newsletter') }}
+                        </option>
+                    {% endif %}
                 </select>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <button type="submit" class="btn btn-success">
-                    {{ t('common.save') }}
-                </button>
+        {% set canEdit = false %}
+        {% for permission in permissions %}
+            {% if permission matches '{download.\.[a-zA-Z0-9]+\.edit}' %}
+                {% set canEdit = true %}
+            {% endif %}
+        {% endfor %}
+        {% if canEdit == true %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success">
+                        {{ t('common.save') }}
+                    </button>
+                </div>
             </div>
-        </div>
+        {% endif %}
     </form>
 {% endblock %}

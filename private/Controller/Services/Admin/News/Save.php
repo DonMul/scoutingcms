@@ -16,6 +16,8 @@ class Save extends \Controller\Services\Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('news.edit');
+
         $newsId = $this->getPostValue('newsId');
         $news = News::getById($newsId);
         if (!($news instanceof News) && intval($newsId) > 0) {

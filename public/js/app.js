@@ -96,4 +96,82 @@ $('document').ready(function(){
             'height': 300
         });
     }
+
+    $('.customDropzone').each(function(){
+        var prefix = $(this).attr('data-prefix');
+        var myDropZone = new Dropzone(document.body, {
+            'url': $(this).attr('data-url'),
+            'clickable': '.customDropzone',
+            'autoQueue': true
+        });
+
+        myDropZone.on("addedfile", function(file){
+            var body = $('tbody', $('#fileTable'));
+            $(body).append("<tr><td><img src='" + prefix + file.name + "' style=\"max-width: 32px\"/></td><td>" + file.name + "</td><td></tr>");
+        });
+    });
+
+    var listenerSet = false;
+    var selected = null;
+    $('.js-modal').click(function(event){
+        selected = $(this);
+        if (!listenerSet) {
+            $(document).keydown(function(event) {
+                if (event.which == 39) {
+                    var next = $('img', $(selected.parent().parent()).next());
+                    var nextButton = $('.js-btn-next');
+                    if (nextButton.css('display') == 'none') {
+                        return
+                    }
+
+                    $(next).attr('lock', 1);
+                    $(next).click();
+                    $(next).attr('lock', 0);
+                } else if (event.which == 37) {
+                    var previous = $('img', $(selected.parent().parent()).prev());
+                    var previousButton = $('.js-btn-previous');
+                    if (previousButton.css('display') == 'none') {
+                        return
+                    }
+
+                    $(previous).attr('lock', 1);
+                    $(previous).click();
+                    $(previous).attr('lock', 0);
+                }
+            });
+            listenerSet = true;
+        }
+
+        if ($(this).attr('lock') == '1') {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        $('#modalImage').attr('src', $(this).attr('src'));
+        var previous = $('img', $(this.parentNode.parentNode).prev());
+        var next = $('img', $(this.parentNode.parentNode).next());
+
+        if (previous.length == 0) {
+            $('.js-btn-previous').hide();
+        } else {
+            $('.js-btn-previous').show();
+            $('.js-btn-previous').click(function(){
+                $(previous).attr('lock', 1);
+                $(previous).click();
+                $(previous).attr('lock', 0);
+            });
+        }
+
+        if (next.length == 0) {
+            $('.js-btn-next').hide();
+        } else {
+            $('.js-btn-next').show();
+            $('.js-btn-next').click(function(){
+                $(next).attr('lock', 1);
+                $(next).click();
+                $(next).attr('lock', 0);
+            });
+        }
+
+    });
 });

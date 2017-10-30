@@ -19,6 +19,8 @@ class Save extends \Controller\Services\Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('user.edit');
+
         $userId = $this->getPostValue('userId');
         $user = \Lib\Data\User::getById($userId);
         if (!($user instanceof User) && intval($userId) > 0) {

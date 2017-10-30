@@ -48,10 +48,41 @@
     </form>
 
     {% if context.album.id > 0 %}
-        <form action="{{ tl('serviceAlbumUpload') }}"
-              class="dropzone"
-              id="my-awesome-dropzone">
-            <input type="hidden" name="albumId" value="{{ context.album.id }}"/>
-        </form>
+        {% set categoryName = '' %}
+        {% for category in context.categories %}
+            {% if category.id == context.album.category %}
+                {% set categoryName = category.name %}
+            {% endif %}
+        {% endfor %}
+        <button class="btn btn-success customDropzone" data-url="{{ tl('serviceAlbumUpload', {'id': context.album.id}) }}/" data-prefix="/upload/{{ categoryName }}/{{ context.albumHash }}/">Add file</button>
+        <table id="fileTable" class="table">
+            <thead>
+            <tr>
+                <th>{{ t('picture.thumb') }}</th>
+                <th>{{ t('picture.name') }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for picture in context.pictures %}
+                <tr>
+                    <td>
+                        <img src="/upload/{{ categoryName }}/{{ context.albumHash }}/{{ picture.location }}" style="max-width: 32px"/>
+                    </td>
+                    <td>
+                        {{ picture.location }}
+                    </td>
+                    <td>
+                        <form method="post" action="{{ tl('servicePictureDelete') }}">
+                            <input type="hidden" name="pictureId" value="{{ picture.id }}"/>
+                            <button type="submit" class="button__no">
+                                <i class="fa fa-times button__remove"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     {% endif %}
 {% endblock %}

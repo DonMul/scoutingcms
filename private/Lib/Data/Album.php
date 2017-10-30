@@ -292,4 +292,12 @@ final class Album
         $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `flg_album`");
         return Util::arrayGet($result, 'cnt', 0);
     }
+
+    /**
+     * @return AlbumCategory
+     */
+    public function getCategoryObject()
+    {
+        return AlbumCategory::getById($this->getCategory());
+    }
 }

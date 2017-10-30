@@ -125,53 +125,88 @@
     </nav>
 {% endmacro %}
 
-{% macro adminSidebar() %}
+{% macro adminSidebar(permissions) %}
         <div class="adminmenu">
             <h2 class="adminmenu__brand">
                 <a href="{{ tl('admin') }}" class="adminmenu__brand-link">FLG Admin</a>
             </h2>
             <i class="fa fa-bars adminmenu__toggle" data-toggle="collapse" data-target="#menu-content"></i>
             <ul class="adminmenu__list collapse out" id="menu-content">
-                <li class="adminmenu__list-item">
-                    <a href="{{ tl('adminUsers') }}" class="adminmenu__list-item-link">
-                        Gebruikers
-                    </a>
-                </li>
-                <li class="adminmenu__list-item">
-                    <a href="{{ tl('adminRoles') }}" class="adminmenu__list-item-link">
-                        Rollen
-                    </a>
-                </li>
-                <li class="adminmenu__list-item">
-                    <a href="{{ tl('adminNews') }}" class="adminmenu__list-item-link">
-                        Nieuws
-                    </a>
-                </li>
-                <li class="adminmenu__list-item">
-                    <a href="{{ tl('adminGroups') }}" class="adminmenu__list-item-link">
-                        Speltakken
-                    </a>
-                </li>
-                <li class="adminmenu__list-item">
-                    <a href="{{ tl('adminCalender') }}" class="adminmenu__list-item-link">
-                        Agenda
-                    </a>
-                </li>
-                <li class="adminmenu__list-item">
-                    <a href="{{ tl('adminAlbums') }}" class="adminmenu__list-item-link">
-                        Foto's
-                    </a>
-                </li>
-                <li class="adminmenu__list-item">
-                    <a href="{{ tl('adminDownloads') }}" class="adminmenu__list-item-link">
-                        Downloads
-                    </a>
-                </li>
-                <li class="adminmenu__list-item">
-                    <a href="{{ tl('adminPages') }}" class="adminmenu__list-item-link">
-                        Paginas
-                    </a>
-                </li>
+                {% if 'user.edit' in permissions %}
+                    <li class="adminmenu__list-item">
+                        <a href="{{ tl('adminUsers') }}" class="adminmenu__list-item-link">
+                            {{ t('admin.nav.users') }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if 'role.edit' in permissions %}
+                    <li class="adminmenu__list-item">
+                        <a href="{{ tl('adminRoles') }}" class="adminmenu__list-item-link">
+                            {{ t('admin.nav.roles') }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if 'news.edit' in permissions %}
+                    <li class="adminmenu__list-item">
+                        <a href="{{ tl('adminNews') }}" class="adminmenu__list-item-link">
+                            {{ t('admin.nav.news') }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% set hasGroupPermission = false %}
+                {% for permission in permissions %}
+                    {% if permission matches '{group\.[a-zA-Z0-9]+\.view}' %}
+                        {% set hasGroupPermission = true %}
+                    {% endif %}
+                {% endfor %}
+                {% if hasGroupPermission == true %}
+                    <li class="adminmenu__list-item">
+                        <a href="{{ tl('adminGroups') }}" class="adminmenu__list-item-link">
+                            {{ t('admin.nav.groups') }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if 'calender.edit' in permissions %}
+                    <li class="adminmenu__list-item">
+                        <a href="{{ tl('adminCalender') }}" class="adminmenu__list-item-link">
+                            {{ t('admin.nav.calender') }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% set hasAlbumPermission = false %}
+                {% for permission in permissions %}
+                    {% if permission matches '{album\.[a-zA-Z0-9]+\.view}' %}
+                        {% set hasAlbumPermission = true %}
+                    {% endif %}
+                {% endfor %}
+                {% if hasAlbumPermission == true %}
+                    <li class="adminmenu__list-item">
+                        <a href="{{ tl('adminAlbums') }}" class="adminmenu__list-item-link">
+                            {{ t('admin.nav.albums') }}
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% set hasDownloadPermission = false %}
+                {% for permission in permissions %}
+                    {% if permission matches '{download\.[a-zA-Z0-9]+\.view}' %}
+                        {% set hasDownloadPermission = true %}
+                    {% endif %}
+                {% endfor %}
+                {% if hasDownloadPermission == true %}
+                    <li class="adminmenu__list-item">
+                        <a href="{{ tl('adminDownloads') }}" class="adminmenu__list-item-link">
+                            {{ t('admin.nav.downloads') }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if 'pages.edit' in permissions %}
+                    <li class="adminmenu__list-item">
+                        <a href="{{ tl('adminPages') }}" class="adminmenu__list-item-link">
+                            {{ t('admin.nav.pages') }}
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
 {% endmacro %}

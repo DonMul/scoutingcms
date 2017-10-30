@@ -13,8 +13,14 @@ use Lib\Data\Role;
  */
 class Save extends Admin
 {
+    /**
+     * @return array
+     * @throws \Exception
+     */
     public function getArray()
     {
+        $this->ensurePermission('role.edit');
+
         $roleId = $this->getPostValue('roleId');
         $role = \Lib\Data\Role::getById($roleId);
         if (!($role instanceof Role) && intval($roleId) > 0) {
@@ -45,6 +51,7 @@ class Save extends Admin
             $role->addPermission($permission);
         }
 
+        $_SESSION['permissions'] = null;
         return [
             'redirect' => Translation::getInstance()->translateLink('adminRoles')
         ];

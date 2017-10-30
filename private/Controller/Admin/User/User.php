@@ -16,6 +16,8 @@ class User extends Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('user.edit');
+
         $user = \Lib\Data\User::getById($_GET['id']);
         if (!$user) {
             $user = new \Lib\Data\User(

@@ -16,7 +16,7 @@ class Album extends \Lib\Core\BaseController
         return [
             'pictures' => $pictures,
             'album' => $album,
-            'albumHash' => md5($album->getName()),
+            'albumHash' => md5($album->getId()),
             'category' => AlbumCategory::getById($album->getCategory())
         ];
     }

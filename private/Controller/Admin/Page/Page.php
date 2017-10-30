@@ -15,6 +15,8 @@ class Page extends Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('pages.edit');
+
         $page = \Lib\Data\Page::getById($_GET['id']);
         if (!$page) {
             $page = new \Lib\Data\Page(null, "New Page", "", "", "", false);

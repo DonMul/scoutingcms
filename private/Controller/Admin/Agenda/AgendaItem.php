@@ -15,6 +15,7 @@ class AgendaItem extends \Controller\Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('calender.edit');
         $item = \Lib\Data\Agenda::getById($_GET['id']);
         if ($item === null) {
             $item = new \Lib\Data\Agenda(

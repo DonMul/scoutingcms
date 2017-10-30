@@ -4,13 +4,21 @@
 
 {% block adminTemplate %}
     <h2>{{ t('album.admin') }}</h2>
-    <a href="{{ tl('adminAlbum', {'id': 0}) }}" class="button__no">
-        <i class="fa fa-plus button__add">
-            <span class="button__inner">
-                {{ t('album.new') }}
-            </span>
-        </i>
-    </a>
+    {% set canEdit = false %}
+    {% for permission in permissions %}
+        {% if permission matches '{album.\.[a-zA-Z0-9]+\.edit}' %}
+            {% set canEdit = true %}
+        {% endif %}
+    {% endfor %}
+    {% if canEdit == true %}
+        <a href="{{ tl('adminAlbum', {'id': 0}) }}" class="button__no">
+            <i class="fa fa-plus button__add">
+                <span class="button__inner">
+                    {{ t('album.new') }}
+                </span>
+            </i>
+        </a>
+    {% endif %}
     <table class="table table-striped">
         <thead>
         <tr>
@@ -27,7 +35,13 @@
                     {{ album.name|capitalize }}
                 </td>
                 <td>
-                    {{ album.category }}
+                    {% set category = '' %}
+                    {% for albumCategory in context.categories %}
+                        {% if albumCategory.id ==  album.category %}
+                            {{ albumCategory.name }}
+                            {% set category = albumCategory.name %}
+                        {% endif %}
+                    {% endfor %}
                 </td>
                 <td>
                     <a class="admin_speltak-link" href="{{ tl('adminAlbum', {'id': album.id}) }}">
@@ -35,12 +49,14 @@
                     </a>
                 </td>
                 <td>
-                    <form method="post" action="{{ tl('serviceAlbumDelete') }}">
-                        <input type="hidden" name="albumId" value="{{ album.id }}"/>
-                        <button type="submit" class="button__no">
-                            <i class="fa fa-times button__remove"></i>
-                        </button>
-                    </form>
+                    {% if 'album.' ~ category ~ '.edit' in permissions %}
+                        <form method="post" action="{{ tl('serviceAlbumDelete') }}">
+                            <input type="hidden" name="albumId" value="{{ album.id }}"/>
+                            <button type="submit" class="button__no">
+                                <i class="fa fa-times button__remove"></i>
+                            </button>
+                        </form>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

@@ -302,4 +302,24 @@ final class User
             'ii'
         );
     }
+
+    /**
+     * @return array
+     */
+    public function getPermissions()
+    {
+        $permissions = [];
+        $roles = $this->getRoles();
+        foreach ($roles as $role) {
+            $permissions = array_merge($permissions, Permission::findForRole($role));
+        }
+
+        $permissionNames = [];
+        foreach ($permissions as $permission) {
+            $permissionNames[] = $permission->getName();
+        }
+
+        $permissionNames = array_unique($permissionNames);
+        return $permissionNames;
+    }
 }

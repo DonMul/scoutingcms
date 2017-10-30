@@ -38,6 +38,9 @@ album.thumbnail: Afbeelding
 album.admin: Albums
 album.noItems: Er zijn nog geen albums aangemaakt!
 
+picture.name: Naam
+picture.thumb: Afbeelding
+
 download.new: Nieuwe download aanmaken
 download.name: Naam
 download.type: Type
@@ -119,7 +122,18 @@ error.news.notFound: Nieuwsartikel bestaat niet
 error.page.notFound: Pagina bestaat niet
 error.group.notFound: Speltak bestaat niet
 error.user.notFound: Gebruiker bestaat niet
-error.role.notFound: Rol niet gevonden
+error.role.notFound: Rol bestaat niet
+error.picture.notFound: Afbeelding bestaat niet
+error.noPermssion: Geen toegang
+
+admin.nav.users: Gebruikers
+admin.nav.roles: Rollen
+admin.nav.news: Nieuws
+admin.nav.groups: Speltakken
+admin.nav.calender: Agenda
+admin.nav.albums: Foto's
+admin.nav.downloads: Downloads
+admin.nav.pages: Pagina's
 
 common.login: Login
 common.save: Opslaan

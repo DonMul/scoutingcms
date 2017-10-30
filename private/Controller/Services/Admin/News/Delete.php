@@ -16,6 +16,8 @@ class Delete extends \Controller\Services\Admin
      */
     public function getArray()
     {
+        $this->ensurePermission('news.edit');
+
         $newsId = $this->getPostValue('itemId');
         $news = News::getById($newsId);
         if (!($news instanceof News)) {

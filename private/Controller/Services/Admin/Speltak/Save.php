@@ -23,6 +23,8 @@ class Save extends \Controller\Services\Admin
             throw new \Exception(Translation::getInstance()->translate('error.group.notFound'));
         }
 
+        $this->ensurePermission('group.' . $speltak->getName() . '.edit');
+
         $speltak->setDescription($this->getPostValue('description'));
 
         if (!empty($_FILES['picture']['name'])) {

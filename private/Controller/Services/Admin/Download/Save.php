@@ -25,6 +25,8 @@ class Save extends \Controller\Services\Admin
             throw new \Exception(Translation::getInstance()->translate("error.download.notFound", ['id' => $downloadId]));
         }
 
+        $this->ensurePermission('download.' . $download->getType() . '.edit');
+
         if ($download) {
             $download->setName($this->getPostValue('name'));
             $download->setType($this->getPostValue('type'));

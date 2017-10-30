@@ -37,4 +37,17 @@ class Admin extends \Lib\Core\BaseController
             ],
         ];
     }
+
+    /**
+     * @param string $permissionName
+     */
+    protected function ensurePermission($permissionName)
+    {
+        if (!$this->hasPermission($permissionName)) {
+            header("HTTP/1.1 404 Not Found");
+            $controller = new FourOFour();
+            $controller->execute();
+            exit;
+        }
+    }
 }
