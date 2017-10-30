@@ -2,7 +2,7 @@
 
 namespace Controller\Admin\Agenda;
 
-use Lib\Core\Settings;
+use Lib\Data\AgendaCategory;
 
 /**
  * Class AgendaItem
@@ -30,7 +30,7 @@ class AgendaItem extends \Controller\Admin
 
         return [
             'item' => $item,
-            'categories' => Settings::getInstance()->get(['agenda', 'categories'])
+            'categories' => AgendaCategory::getAll()
         ];
     }
 }

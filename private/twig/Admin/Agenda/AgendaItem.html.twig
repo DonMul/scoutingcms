@@ -35,8 +35,8 @@
                 <label for="category">{{ t('agenda.category') }}</label>
                 <select id="category" name="category" class="form-control">
                     {% for category in context.categories %}
-                        <option value="{{ category }}" {{ context.item.category == category ? 'selected="selected"' : '' }}>
-                            {{ category|capitalize }}
+                        <option value="{{ category.id }}" {{ context.item.category == category.id ? 'selected="selected"' : '' }}>
+                            {{ category.name }}
                         </option>
                     {% endfor %}
                 </select>

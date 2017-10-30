@@ -3,6 +3,7 @@
 namespace Controller\Agenda;
 
 use Lib\Data\Agenda;
+use Lib\Data\AgendaCategory;
 
 class Item extends \Lib\Core\BaseController
 {
@@ -12,6 +13,7 @@ class Item extends \Lib\Core\BaseController
 
         return [
             'item' => $item,
+            'category' => AgendaCategory::getById($item->getCategory()),
         ];
     }
 }

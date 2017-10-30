@@ -239,6 +239,7 @@ final class Agenda
 
         return null;
     }
+
     /**
      * @param string $slug
      * @return Agenda
