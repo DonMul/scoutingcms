@@ -174,7 +174,7 @@ final class Album
     }
 
     /**
-     * @param $category
+     * @param int $category
      * @return Album[]
      */
     public static function findByCategory($category)
@@ -182,7 +182,7 @@ final class Album
         $data = \Lib\Core\Database::getInstance()->fetchAll(
             "SELECT * FROM `flg_album` WHERE category = ?",
             [$category],
-            's'
+            'i'
         );
 
         $albums = [];

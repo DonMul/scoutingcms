@@ -13,10 +13,16 @@
         <div class="container">
             <div class="row">
                 {% for album in context.albums %}
+                    {% set categoryName = '' %}
+                    {% for category in context.categories %}
+                        {% if category.id == album.category %}
+                            {% set categoryName = category.name %}
+                        {% endif %}
+                    {% endfor %}
                     <div class="col-xs-12 col-sm-4">
-                        <a href="/fotos/{{ album.category }}/{{ album.slug }}" class="album">
+                        <a href="/fotos/{{ categoryName }}/{{ album.slug }}" class="album">
                             <div class="album__thumb">
-                                <img class="album__thumb-image" src="/upload/{{ album.category }}/{{ album.thumbnail }}"/>
+                                <img class="album__thumb-image" src="/upload/{{ categoryName }}/{{ album.thumbnail }}"/>
                             </div>
                             <div class="album__title">
                                 {{ album.name }}

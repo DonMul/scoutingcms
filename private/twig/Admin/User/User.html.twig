@@ -5,7 +5,7 @@
 {% block adminTemplate %}
     <h2>{{ t('user.edit') }}</h2>
     <form method="post" action="{{ tl('serviceUserSave') }}" enctype="multipart/form-data">
-        <input type="hidden" name="newsId" value="{{ context.user.id }}"/>
+        <input type="hidden" name="userId" value="{{ context.user.id }}"/>
         <div class="row">
             <div class="col-xs-12">
                 <label for="username">{{ t('user.username') }}</label>
@@ -30,6 +30,17 @@
                 <input type="email" name="email" value="{{ context.user.email }}" class="form-control" id="nickname"/>
             </div>
         </div>
+        <h3>{{ t('user.roles') }}</h3>
+        {% for role in context.roles %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <label for="role-{{ role.name }}">
+                        <input type="checkbox" name="role[{{ role.id }}]" id="role-{{ role.name }}" {% for userRole in context.userRoles %}{% if userRole.id == role.id %}checked="checked"{% endif %}{% endfor %}/>
+                        {{ role.name }}
+                    </label>
+                </div>
+            </div>
+        {% endfor %}
         <div class="row">
             <div class="col-xs-12">
                 <button type="submit" class="btn btn-success">

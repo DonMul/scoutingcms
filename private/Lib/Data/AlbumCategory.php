@@ -4,10 +4,10 @@ namespace Lib\Data;
 use Lib\Core\Util;
 
 /**
- * Class AgendaCategory
+ * Class AlbumCategory
  * @package Lib\Data
  */
-final class AgendaCategory
+final class AlbumCategory
 {
     /**
      * @var int
@@ -63,30 +63,30 @@ final class AgendaCategory
     }
 
     /**
-     * @return AgendaCategory[]
+     * @return AlbumCategory[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_agendaCategory`"
+            "SELECT * FROM `flg_albumCategory`"
         );
 
-        $agendaCategories = [];
-        foreach ($data as $agendaCategory) {
-            $agendaCategories[] = self::bindSqlResult($agendaCategory);
+        $albumCategories = [];
+        foreach ($data as $albumCategory) {
+            $albumCategories[] = self::bindSqlResult($albumCategory);
         }
 
-        return $agendaCategories;
+        return $albumCategories;
     }
 
     /**
      * @param int $id
-     * @return AgendaCategory
+     * @return AlbumCategory
      */
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_agendaCategory` WHERE id = ?",
+            "SELECT * FROM `flg_albumCategory` WHERE id = ?",
             [$id],
             'i'
         );
@@ -100,12 +100,12 @@ final class AgendaCategory
 
     /**
      * @param string $name
-     * @return AgendaCategory
+     * @return AlbumCategory
      */
     public static function getByName($name)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_agendaCategory` WHERE `name` = ?",
+            "SELECT * FROM `flg_albumCategory` WHERE `name` = ?",
             [$name],
             's'
         );
@@ -119,11 +119,11 @@ final class AgendaCategory
 
     /**
      * @param array $data
-     * @return AgendaCategory
+     * @return AlbumCategory
      */
     private static function bindSqlResult($data)
     {
-        return new AgendaCategory(
+        return new AlbumCategory(
             Util::arrayGet($data, 'id'),
             Util::arrayGet($data, 'name')
         );

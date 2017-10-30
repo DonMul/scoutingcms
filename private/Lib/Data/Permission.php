@@ -4,10 +4,10 @@ namespace Lib\Data;
 use Lib\Core\Util;
 
 /**
- * Class AgendaCategory
+ * Class Permission
  * @package Lib\Data
  */
-final class AgendaCategory
+final class Permission
 {
     /**
      * @var int
@@ -63,30 +63,30 @@ final class AgendaCategory
     }
 
     /**
-     * @return AgendaCategory[]
+     * @return Permission[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_agendaCategory`"
+            "SELECT * FROM `flg_permission`"
         );
 
-        $agendaCategories = [];
-        foreach ($data as $agendaCategory) {
-            $agendaCategories[] = self::bindSqlResult($agendaCategory);
+        $permissions = [];
+        foreach ($data as $permission) {
+            $permissions[] = self::bindSqlResult($permission);
         }
 
-        return $agendaCategories;
+        return $permissions;
     }
 
     /**
      * @param int $id
-     * @return AgendaCategory
+     * @return Permission
      */
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_agendaCategory` WHERE id = ?",
+            "SELECT * FROM `flg_permission` WHERE id = ?",
             [$id],
             'i'
         );
@@ -100,12 +100,12 @@ final class AgendaCategory
 
     /**
      * @param string $name
-     * @return AgendaCategory
+     * @return Permission
      */
     public static function getByName($name)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_agendaCategory` WHERE `name` = ?",
+            "SELECT * FROM `flg_permission` WHERE `name` = ?",
             [$name],
             's'
         );
@@ -118,14 +118,57 @@ final class AgendaCategory
     }
 
     /**
+     * @param Role $role
+     * @return array
+     */
+    public static function findForRole(Role $role)
+    {
+        $data = \Lib\Core\Database::getInstance()->fetchAll(
+            "SELECT * FROM flg_permission WHERE flg_permission.id IN (SELECT permissionId FROM `flg_rolePermission` WHERE roleId = ?)",
+            [$role->getId()],
+            'i'
+        );
+
+        $permissions = [];
+        foreach ($data as $permission) {
+            $permissions[] = self::bindSqlResult($permission);
+        }
+
+        return $permissions;
+    }
+
+    /**
      * @param array $data
-     * @return AgendaCategory
+     * @return Permission
      */
     private static function bindSqlResult($data)
     {
-        return new AgendaCategory(
+        return new Permission(
             Util::arrayGet($data, 'id'),
             Util::arrayGet($data, 'name')
         );
+    }
+
+    /**
+     *
+     */
+    public function save()
+    {
+        $db = \Lib\Core\Database::getInstance();
+        $params = [
+            $this->getName()
+        ];
+
+        $types = 's';
+        if ($this->getId() === null || $this->getId() === 0) {
+            $sql = "INSERT INTO `flg_permission` (`name`) VALUES ( ? )";
+        } else {
+            $sql = "UPDATE `flg_permission` SET `name` = ? WHERE `id` = ?";
+            $params[] = $this->getId();
+            $types .= 'i';
+        }
+
+        $result = $db->query($sql, $params, $types);
+        $this->setId($result->insert_id);
     }
 }

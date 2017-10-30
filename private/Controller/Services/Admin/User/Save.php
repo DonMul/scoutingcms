@@ -4,6 +4,7 @@ namespace Controller\Services\Admin\User;
 use Lib\Core\Translation;
 use Lib\Core\Util;
 use Lib\Data\Page;
+use Lib\Data\Role;
 use Lib\Data\User;
 
 /**
@@ -44,6 +45,11 @@ class Save extends \Controller\Services\Admin
         }
 
         $user->save();
+        $user->clearRoles();
+        foreach ($this->getPostValue(['role']) as $roleId => $enabled) {
+            $role = Role::getById($roleId);
+            $user->addRole($role);
+        }
 
         return [
             'redirect' => Translation::getInstance()->translateLink("adminUsers")

@@ -85,6 +85,31 @@ user.admin: Gebruikers
 user.noItems: Er zijn nog geen gebruikers aangemaakt!
 user.edit: Gebruiker aanpassen
 user.new: Nieuwe gebruiker aanmaken
+user.role: Rollen
+
+role.admin: Rollen
+role.new: Nieuwe Rol
+role.name: Naam
+role.noItems: Er zijn nog geen rollen aangemaakt!
+role.edit: Rol aanpassen
+role.isAdmin: Is administrator
+role.permissions: Rechten
+role.permission: Recht
+role.permission.general: Algemeen
+role.permission.albums: Albums
+role.permission.album.category: Categorie
+role.permission.groups: Speltakken
+role.permission.group.category: Speltak
+role.permission.downloads: Downloads
+role.permission.download.category: category
+role.permission.view: Bekijken
+role.permission.edit: Wijzigen
+role.permission.delete: Verwijderen
+role.permission.editUsers: Gebruikers wijzigen
+role.permission.editRoles: Rollen wijzigen
+role.permission.editCalender: Agenda aanpassen
+role.permission.editPages: Pagina's wijzigen
+role.permission.editNews: Nieuwsartikelen wijzigen
 
 error.user.invalidUsernameOrPassword: Gebruikersnaam of wachtwoord is incorrect
 error.item.notFound: Agendapunt bestaat niet
@@ -94,6 +119,7 @@ error.news.notFound: Nieuwsartikel bestaat niet
 error.page.notFound: Pagina bestaat niet
 error.group.notFound: Speltak bestaat niet
 error.user.notFound: Gebruiker bestaat niet
+error.role.notFound: Rol niet gevonden
 
 common.login: Login
 common.save: Opslaan

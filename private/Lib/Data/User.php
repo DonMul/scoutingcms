@@ -237,14 +237,14 @@ final class User
         $types = 'ssss';
         if ($this->getId() === null || $this->getId() === 0) {
             $sql = "INSERT INTO `flg_user` (`username`, `password`, `nickname`, `email`) VALUES ( ?, ?, ?, ? )";
+            $result = $db->query($sql, $params, $types);
+            $this->setId($result->insert_id);
         } else {
             $sql = "UPDATE `flg_user` SET `username` = ?, `password` = ?, `nickname` = ?, `email` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
+            $db->query($sql, $params, $types);
         }
-
-        $result = $db->query($sql, $params, $types);
-        $this->setId($result->insert_id);
     }
 
     /**
@@ -271,5 +271,35 @@ final class User
         }
 
         return $users;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles()
+    {
+        return Role::findByUserId($this->getId());
+    }
+
+    /**
+     *
+     */
+    public function clearRoles()
+    {
+        \Lib\Core\Database::getInstance()->query("DELETE FROM `flg_userRole` WHERE userId = ?",
+            [$this->getId()],
+            'i'
+        );
+    }
+
+    /**
+     * @param Role $role
+     */
+    public function addRole(Role $role)
+    {
+        \Lib\Core\Database::getInstance()->query("INSERT INTO `flg_userRole` (`userId`, `roleId`) VALUES ( ?, ? )",
+            [$this->getId(), $role->getId()],
+            'ii'
+        );
     }
 }

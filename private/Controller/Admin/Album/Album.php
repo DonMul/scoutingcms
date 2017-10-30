@@ -4,6 +4,7 @@ namespace Controller\Admin\Album;
 
 use Lib\Core\BaseController;
 use Lib\Core\Settings;
+use Lib\Data\AlbumCategory;
 use Lib\Data\Picture;
 
 /**
@@ -25,7 +26,7 @@ class Album extends BaseController
         return [
             'album' => $album,
             'pictures' => Picture::findByAlbumId($_GET['id']),
-            'categories' => Settings::getInstance()->get(['album', 'categories'])
+            'categories' => AlbumCategory::getAll()
         ];
     }
 }

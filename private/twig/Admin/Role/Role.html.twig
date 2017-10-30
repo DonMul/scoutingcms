@@ -1,0 +1,166 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('role.edit') }}</h2>
+    <form method="post" action="{{ tl('serviceRoleSave') }}">
+        <input type="hidden" name="roleId" value="{{ context.role.id }}"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="name">{{ t('role.name') }}</label>
+                <input type="text" name="name" id="name" value="{{ context.role.name }}" class="form-control"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="isAdmin">
+                    <input type="checkbox" name="isAdmin" id="isAdmin" {{ context.role.isAdmin ? 'checked="checked"' }}/>
+                    {{ t('role.isAdmin') }}
+                </label>
+            </div>
+        </div>
+        <hr/>
+        <h3>{{ t('role.permissions') }}</h3>
+        <h4>{{ t('role.permission.general') }}</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ t('role.permission') }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ t('role.permission.editUsers') }}</td>
+                <td>
+                    {{ macros.permissionCheckbox('user.edit', context.permissions) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ t('role.permission.editRoles') }}</td>
+                <td>
+                    {{ macros.permissionCheckbox('role.edit', context.permissions) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ t('role.permission.editCalender') }}</td>
+                <td>
+                    {{ macros.permissionCheckbox('calender.edit', context.permissions) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ t('role.permission.editPages') }}</td>
+                <td>
+                    {{ macros.permissionCheckbox('pages.edit', context.permissions) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ t('role.permission.editNews') }}</td>
+                <td>
+                    {{ macros.permissionCheckbox('news.edit', context.permissions) }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <h4>{{ t('role.permission.albums') }}</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ t('role.permission.album.category') }}</th>
+                <th>{{ t('role.permission.view') }}</th>
+                <th>{{ t('role.permission.edit') }}</th>
+                <th>{{ t('role.permission.delete') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in context.albumCategories %}
+                <tr>
+                    <td>
+                        {{ category.name }}
+                    </td>
+                    <td>
+                        {{ macros.permissionCheckbox('album.' ~ category.name ~ '.view', context.permissions) }}
+                    </td>
+                    <td>
+                        {{ macros.permissionCheckbox('album.' ~ category.name ~ '.edit', context.permissions) }}
+                    </td>
+                    <td>
+                        {{ macros.permissionCheckbox('album.' ~ category.name ~ '.delete', context.permissions) }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <h4>{{ t('role.permission.groups') }}</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ t('role.permission.group.category') }}</th>
+                <th>{{ t('role.permission.view') }}</th>
+                <th>{{ t('role.permission.edit') }}</th>
+                <th>{{ t('role.permission.delete') }}</th>
+            </tr>
+            </tr>
+            </thead>
+            <tbody>
+            {% for group in context.groups %}
+                <tr>
+                    <td>
+                        {{ group.name }}
+                    </td>
+                    <td>
+                        {{ macros.permissionCheckbox('group.' ~ group.name ~ '.view', context.permissions) }}
+                    </td>
+                    <td>
+                        {{ macros.permissionCheckbox('group.' ~ group.name ~ '.edit', context.permissions) }}
+                    </td>
+                    <td>
+                        {{ macros.permissionCheckbox('group.' ~ group.name ~ '.delete', context.permissions) }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <h4>{{ t('role.permission.downloads') }}</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ t('role.permission.download.category') }}</th>
+                <th>{{ t('role.permission.view') }}</th>
+                <th>{{ t('role.permission.edit') }}</th>
+                <th>{{ t('role.permission.delete') }}</th>
+            </tr>
+            </tr>
+            </thead>
+            <tbody>
+            {% for type in context.downloads %}
+                <tr>
+                    <td>
+                        {{ type.name }}
+                    </td>
+                    <td>
+                        {{ macros.permissionCheckbox('download.' ~ type.name ~ '.view', context.permissions) }}
+                    </td>
+                    <td>
+                        {{ macros.permissionCheckbox('download.' ~ type.name ~ '.edit', context.permissions) }}
+                    </td>
+                    <td>
+                        {{ macros.permissionCheckbox('download.' ~ group.name ~ '.delete', context.permissions) }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-success">
+                    {{ t('common.save') }}
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

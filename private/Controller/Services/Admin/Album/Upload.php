@@ -4,6 +4,7 @@ namespace Controller\Services\Admin\Album;
 
 use Lib\Core\BaseController;
 use Lib\Data\Album;
+use Lib\Data\AlbumCategory;
 use Lib\Data\Picture;
 
 /**
@@ -22,14 +23,15 @@ class Upload extends \Controller\Services\Admin
             return [];
         }
 
-        $targetDir = ROOT . "../public/upload/" . $album->getCategory() . "/" . md5($album->getName()) . '/';
+        $category = AlbumCategory::getById($album->getCategory());
+        $targetDir = ROOT . "../public/upload/" . $category->getName() . "/" . md5($album->getName()) . '/';
 
-        if (!is_dir(ROOT . "../public/upload/" . $album->getCategory())) {
-            mkdir(ROOT . "../public/upload/" . $album->getCategory());
+        if (!is_dir(ROOT . "../public/upload/" . $category->getName())) {
+            mkdir(ROOT . "../public/upload/" . $category->getName());
         }
 
-        if (!is_dir(ROOT . "../public/upload/" . $album->getCategory() . "/" . md5($album->getName()))) {
-            mkdir(ROOT . "../public/upload/" . $album->getCategory() . "/" . md5($album->getName()));
+        if (!is_dir(ROOT . "../public/upload/" . $category->getName() . "/" . md5($album->getName()))) {
+            mkdir(ROOT . "../public/upload/" . $category->getName() . "/" . md5($album->getName()));
         }
 
         $targetFile = $targetDir . basename($_FILES["file"]["name"]);

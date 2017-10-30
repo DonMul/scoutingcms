@@ -19,7 +19,7 @@ class Save extends \Controller\Services\Admin
      */
     public function getArray()
     {
-        $albumId = $this->getPostValue('itemId');
+        $albumId = $this->getPostValue('albumId');
         $album = Album::getById($albumId);
         if (!($album instanceof Album) && intval($albumId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.album.notFound", ['id' => $albumId]));

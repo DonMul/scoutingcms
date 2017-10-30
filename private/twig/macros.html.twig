@@ -138,6 +138,11 @@
                     </a>
                 </li>
                 <li class="adminmenu__list-item">
+                    <a href="{{ tl('adminRoles') }}" class="adminmenu__list-item-link">
+                        Rollen
+                    </a>
+                </li>
+                <li class="adminmenu__list-item">
                     <a href="{{ tl('adminNews') }}" class="adminmenu__list-item-link">
                         Nieuws
                     </a>
@@ -176,4 +181,8 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+{% endmacro %}
+
+{% macro permissionCheckbox(name, allPermissions) %}
+    <input type="checkbox" name="permission[{{ name }}]" {% for permission in allPermissions %}{% if permission.name == name %}checked="checked"{% endif %}{% endfor %}/>
 {% endmacro %}

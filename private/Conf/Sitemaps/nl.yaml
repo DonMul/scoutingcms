@@ -110,6 +110,13 @@
   controller: \Controller\Admin\User\User
   hash: adminUser
 
+/admin/rollen:
+  controller: \Controller\Admin\Role\Overview
+  hash: adminRoles
+
+/admin/rol/{id}:
+  controller: \Controller\Admin\Role\Role
+  hash: adminRole
 ###
 # SERVICES
 ###
@@ -166,10 +173,18 @@
   controller: \Controller\Services\Admin\Page\Delete
   hash: servicePageDelete
 
-/service/admin/user/save:
+/services/admin/user/save:
   controller: \Controller\Services\Admin\User\Save
   hash: serviceUserSave
 
-/service/admin/user/delete:
+/services/admin/user/delete:
   controller: \Controller\Services\Admin\User\Delete
   hash: serviceUserDelete
+
+/services/admin/role/save:
+  controller: \Controller\Services\Admin\Role\Save
+  hash: serviceRoleSave
+
+/services/admin/role/delete:
+  controller: \Controller\Services\Admin\Role\Delete
+  hash: serviceRoleDelete

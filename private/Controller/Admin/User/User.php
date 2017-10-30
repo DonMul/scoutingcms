@@ -3,6 +3,7 @@
 namespace Controller\Admin\User;
 
 use Controller\Admin;
+use Lib\Data\Role;
 
 /**
  * Class User
@@ -28,6 +29,8 @@ class User extends Admin
 
         return [
             'user' => $user,
+            'roles' => Role::getAll(),
+            'userRoles' => $user->getRoles(),
         ];
     }
 }

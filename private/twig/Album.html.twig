@@ -15,7 +15,7 @@
                 {% for picture in context.pictures %}
                     <div class="col-xs-12 col-sm-4">
                         <div class="albumimage">
-                            <img src="/upload/{{ context.album.category }}/{{ context.albumHash }}/{{ picture.location }}" class="albumimage__image "/>
+                            <img src="/upload/{{ context.category.name }}/{{ context.albumHash }}/{{ picture.location }}" class="albumimage__image "/>
                         </div>
                     </div>
                 {% endfor %}
