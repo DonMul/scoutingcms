@@ -21,6 +21,14 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
+                <label for="private">
+                    <input type="checkbox" name="private" id="private" {{ context.album.private ? 'checked="checked"' }}/>
+                    {{ t('album.private') }}
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
                 <label for="category">{{ t('album.category') }}</label>
                 <select id="category" name="category" class="form-control">
                     {% for category in context.categories %}

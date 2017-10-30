@@ -31,6 +31,7 @@ class Save extends \Controller\Services\Admin
             $album->setName($this->getPostValue('name'));
             $album->setDescription($this->getPostValue('description'));
             $album->setCategory($this->getPostValue('category'));
+            $album->setPrivate(isset($_POST['private']));
         } else {
             $album = new Album(
                 null,
@@ -38,7 +39,8 @@ class Save extends \Controller\Services\Admin
                 Util::slugify($this->getPostValue('name')),
                 $this->getPostValue('description'),
                 $this->getPostValue('category'),
-                ''
+                '',
+                isset($_POST['private'])
             );
         }
 

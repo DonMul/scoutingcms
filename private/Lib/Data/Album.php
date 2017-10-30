@@ -42,6 +42,11 @@ final class Album
     private $thumbnail;
 
     /**
+     * @var bool
+     */
+    private $private;
+
+    /**
      * Album constructor.
      * @param int $id
      * @param string $name
@@ -50,7 +55,7 @@ final class Album
      * @param string $category
      * @param string $thumbnail
      */
-    public function __construct($id, $name, $slug, $description, $category, $thumbnail)
+    public function __construct($id, $name, $slug, $description, $category, $thumbnail, $private)
     {
         $this->setId($id);
         $this->setName($name);
@@ -58,6 +63,23 @@ final class Album
         $this->setDescription($description);
         $this->setCategory($category);
         $this->setThumbnail($thumbnail);
+        $this->setPrivate($private);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPrivate()
+    {
+        return $this->private;
+    }
+
+    /**
+     * @param bool $private
+     */
+    public function setPrivate($private)
+    {
+        $this->private = $private;
     }
 
     /**
@@ -194,6 +216,26 @@ final class Album
     }
 
     /**
+     * @param $category
+     * @return array
+     */
+    public static function findPublicByCategory($category)
+    {
+        $data = \Lib\Core\Database::getInstance()->fetchAll(
+            "SELECT * FROM `flg_album` WHERE category = ? AND private = ?",
+            [$category, 0],
+            'ii'
+        );
+
+        $albums = [];
+        foreach ($data as $album) {
+            $albums[] = self::bindSqlResult($album);
+        }
+
+        return $albums;
+    }
+
+    /**
      * @param int $id
      * @return Album
      */
@@ -244,7 +286,8 @@ final class Album
             Util::arrayGet($data, 'slug'),
             Util::arrayGet($data, 'description'),
             Util::arrayGet($data, 'category'),
-            Util::arrayGet($data, 'thumbnail')
+            Util::arrayGet($data, 'thumbnail'),
+            Util::arrayGet($data, 'private')
         );
     }
 
@@ -259,14 +302,15 @@ final class Album
             $this->getSlug(),
             $this->getDescription(),
             $this->getCategory(),
-            $this->getThumbnail()
+            $this->getThumbnail(),
+            intval($this->isPrivate()),
         ];
 
-        $types = 'sssss';
+        $types = 'sssssi';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_album` (`name`, `slug`, `description`, `category`, `thumbnail`) VALUES ( ?, ?, ?, ?, ? )";
+            $sql = "INSERT INTO `flg_album` (`name`, `slug`, `description`, `category`, `thumbnail`, `private`) VALUES ( ?, ?, ?, ?, ?, ? )";
         } else {
-            $sql = "UPDATE `flg_album` SET `name` = ?, `slug` = ?, `description` = ?, `category` = ?, `thumbnail` = ? WHERE `id` = ?";
+            $sql = "UPDATE `flg_album` SET `name` = ?, `slug` = ?, `description` = ?, `category` = ?, `thumbnail` = ?, `private` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
         }

@@ -13,7 +13,7 @@ class Albums extends \Lib\Core\BaseController
         $category = AlbumCategory::getByName($_GET['category']);
 
         return [
-            'albums' => Album::findByCategory($category->getId()),
+            'albums' => Album::findPublicByCategory($category->getId()),
             'categories' => AlbumCategory::getAll(),
         ];
     }

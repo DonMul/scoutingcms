@@ -37,6 +37,7 @@ album.description: Beschrijving
 album.thumbnail: Afbeelding
 album.admin: Albums
 album.noItems: Er zijn nog geen albums aangemaakt!
+album.private: Privaat album
 
 picture.name: Naam
 picture.thumb: Afbeelding
