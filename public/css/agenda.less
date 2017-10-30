@@ -1,0 +1,43 @@
+.agenda {
+  margin-bottom: 12px;
+  .agenda__month {
+    .agenda__month-header{
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background-color: #cecece;
+      text-align: center;
+    }
+
+    .agenda__month-days {
+      .agenda__month-day {
+        width: 100% / 7;
+        float: left;
+        padding: 6px 0 6px 0;
+        text-align: center;
+        border: 1px solid #cecece;
+
+        &.agenda__month-day--has-items {
+          background-color: rgba(38, 123, 30, 0.5);
+          cursor: pointer;
+        }
+
+        &:hover {
+          .agenda__item {
+            display: block;
+          }
+        }
+
+        .agenda__item {
+          padding: 12px;
+          display: none;
+          position: absolute;
+          z-index: 100;
+          min-width: 250px;
+          background-color: white;
+          border: 1px solid #cecece;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}

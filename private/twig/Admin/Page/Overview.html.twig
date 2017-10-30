@@ -1,0 +1,60 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('page.admin') }}</h2>
+    <a href="{{ tl('adminPage', {'id': 0}) }}" class="button__no">
+        <i class="fa fa-plus button__add">
+            <span class="button__inner">
+                {{ t('page.new') }}
+            </span>
+        </i>
+    </a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ t('page.title') }}</th>
+            <th>{{ t('page.slug') }}</th>
+            <th>{{ t('page.isHomepage') }}</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for page in context.pages %}
+            <tr>
+                <td>
+                    {{ page.title }}
+                </td>
+                <td>
+                    {{ page.slug }}
+                </td>
+                <td>
+                    {{ t(page.isHomepage == 1 ? 'common.yes' : 'common.no') }}
+                </td>
+                <td>
+                    <a class="admin_speltak-link" href="{{ tl('adminPage', {'id': page.id}) }}">
+                        <i class="fa fa-wrench button__edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <form method="post" action="{{ tl('servicePageDelete') }}">
+                        <input type="hidden" name="pageId" value="{{ page.id }}"/>
+                        <button type="submit" class="button__no">
+                            <i class="fa fa-times button__remove"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        {% if context.pages|length <= 0 %}
+            <tr>
+                <td class="text-center" colspan="5">
+                    {{ t('page.noItems') }}
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

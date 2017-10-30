@@ -1,0 +1,37 @@
+{% extends 'global.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block template %}
+    <section class="login">
+        <div class="login__box">
+            <div class="login__container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="text-center">Scouting FLG Login</h1>
+                    </div>
+                </div>
+                <form method="post" action="/services/user/login">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label for="username">{{ t('user.username') }}</label>
+                            <input type="text" name="username" id="username" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label for="password">{{ t('user.password') }}</label>
+                            <input type="password" name="password" id="password" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-success login__button">{{ t('common.login') }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

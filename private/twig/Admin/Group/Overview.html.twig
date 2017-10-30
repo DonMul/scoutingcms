@@ -1,0 +1,36 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('group.admin') }}</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ t('group.name') }}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for speltak in context.speltakken %}
+            <tr>
+                <td>
+                    {{ speltak.name|capitalize }}
+                </td>
+                <td>
+                    <a class="admin_speltak-link" href="{{ tl('adminGroup', {'id': speltak.id}) }}">
+                        <i class="fa fa-wrench button__edit"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        {% if context.speltakken|length <= 0 %}
+            <tr>
+                <td class="text-center" colspan="2">
+                    {{ t('group.noItems') }}
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

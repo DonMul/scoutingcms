@@ -1,0 +1,67 @@
+.mindmap {
+  overflow: hidden;
+  background-color: @flg-green;
+
+  .mindmap__column--maintitle {
+    .mindmap__main-title {
+      color: white;
+      font-size: 24px;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      line-height: 200px;
+    }
+  }
+
+  .mindmap__row {
+    margin: 36px 0;
+
+    .mindmap__column {
+      .mindmap__item {
+        text-align: center;
+        padding: 24px 0;
+        transition: background-color 0.5s ease, border 0.5s ease;
+        border-radius: 25px;
+
+        &:hover {
+          background-color: rgba(0,0,0,0.2);
+          border: 1px solid rgba(0,0,0,0.5);
+          margin: -1px
+        }
+
+        .mindmap__item-link {
+          display: block;
+
+          &:hover {
+            text-decoration: none;
+          }
+          .mindmap__item-image {
+            width: 150px;
+            height: 150px;
+            max-width: 100%;
+            max-height: 100%;
+          }
+
+          .mindmap__item-title {
+            color: white;
+            margin: 0;
+          }
+
+          .mindmap__item-subtext {
+            color: rgba(0,0,0,0.6);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .mindmap {
+    .mindmap__row {
+      .mindmap__column--maintitle {
+        .minmap__main-title {
+          line-height: 26px;
+        }
+      }
+    }
+  }
+}

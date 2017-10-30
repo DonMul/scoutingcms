@@ -1,0 +1,30 @@
+{% extends 'global.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block template %}
+    {{ macros.nav() }}
+    <div class="hero__image hero__image--main">
+        <div class="hero__text">
+            <h1>Franciscus Lodewijk Groep</h1>
+        </div>
+    </div>
+    <section id="info">
+        <div class="container">
+            <div class="row">
+                {% for album in context.albums %}
+                    <div class="col-xs-12 col-sm-4">
+                        <a href="/fotos/{{ album.category }}/{{ album.slug }}" class="album">
+                            <div class="album__thumb">
+                                <img class="album__thumb-image" src="/upload/{{ album.category }}/{{ album.thumbnail }}"/>
+                            </div>
+                            <div class="album__title">
+                                {{ album.name }}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

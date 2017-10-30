@@ -1,0 +1,175 @@
+###
+# MAINSITE LINKS
+###
+
+/:
+  controller: \Controller\Index
+  hash: index
+
+/speltak/{name}:
+  controller: \Controller\Speltak
+  hash: speltak
+
+/agenda:
+  controller: \Controller\Agenda
+  hash: calender
+
+/agenda/{slug}:
+  controller: \Controller\Agenda\Item
+  hash: calenderItem
+
+/{slug}:
+  controller: \Controller\Page
+  hash: page
+
+/fotos/{category}:
+  controller: \Controller\Albums
+  hash: albums
+
+/fotos/{category}/{album}:
+  controller: \Controller\Album
+  hash: album
+
+/news:
+  controller: \Controller\News
+  hash: news
+
+/news/{offset}:
+  controller: \Controller\News
+  hash: newsWithOffset
+
+/news-item/{id}:
+  controller: \Controller\NewsItem
+  hash: newsItem
+
+/download/{type}:
+  controller: \Controller\Download
+  hash: download
+
+###
+# ADMIN LINKS
+###
+
+/admin:
+  controller: \Controller\Admin
+  hash: admin
+
+/admin/agenda:
+  controller: \Controller\Admin\Agenda\Overview
+  hash: adminCalender
+
+/admin/agenda/{id}:
+  controller: \Controller\Admin\Agenda\AgendaItem
+  hash: adminCalenderItem
+
+/admin/albums:
+  controller: \Controller\Admin\Album\Overview
+  hash: adminAlbums
+
+/admin/album/{id}:
+  controller: \Controller\Admin\Album\Album
+  hash: adminAlbum
+
+/admin/downloads:
+  controller: \Controller\Admin\Download\Overview
+  hash: adminDownloads
+
+/admin/download/{id}:
+  controller: \Controller\Admin\Download\Download
+  hash: adminDownload
+
+/admin/speltakken:
+  controller: \Controller\Admin\Group\Overview
+  hash: adminGroups
+
+/admin/speltak/{id}:
+  controller: \Controller\Admin\Group\Group
+  hash: adminGroup
+
+/admin/nieuws:
+  controller: \Controller\Admin\News\Overview
+  hash: adminNews
+
+/admin/nieuws-item/{id}:
+  controller: \Controller\Admin\News\NewsItem
+  hash: adminNewsItem
+
+/admin/paginas:
+  controller: \Controller\Admin\Page\Overview
+  hash: adminPages
+
+/admin/pagina/{id}:
+  controller: \Controller\Admin\Page\Page
+  hash: adminPage
+
+/admin/users:
+  controller: \Controller\Admin\User\Overview
+  hash: adminUsers
+
+/admin/user/{id}:
+  controller: \Controller\Admin\User\User
+  hash: adminUser
+
+###
+# SERVICES
+###
+
+/services/user/login:
+  controller: \Controller\Services\User\Login
+  hash: serviceLogin
+
+/services/admin/speltak/save:
+  controller: \Controller\Services\Admin\Speltak\Save
+  hash: serviceGroupSave
+
+/services/admin/agenda/save:
+  controller: \Controller\Services\Admin\Agenda\Save
+  hash: serviceCalenderSave
+
+/services/admin/agenda/delete:
+  controller: \Controller\Services\Admin\Agenda\Delete
+  hash: serviceCalenderDelete
+
+/services/admin/album/save:
+  controller: \Controller\Services\Admin\Album\Save
+  hash: serviceAlbumSave
+
+/services/admin/album/delete:
+  controller: \Controller\Services\Admin\Album\Delete
+  hash: serviceAlbumDelete
+
+/services/admin/album/upload:
+  controller: \Controller\Services\Admin\Album\Upload
+  hash: serviceAlbumUpload
+
+/services/admin/news/save:
+  controller: \Controller\Services\Admin\News\Save
+  hash: serviceNewsSave
+
+/services/admin/news/delete:
+  controller: \Controller\Services\Admin\News\Delete
+  hash: serviceNewsDelete
+
+/services/admin/download/save:
+  controller: \Controller\Services\Admin\Download\Save
+  hash: serviceDownloadSave
+
+/services/admin/download/delete:
+  controller: \Controller\Services\Admin\Download\Delete
+  hash: serviceDownloadDelete
+
+/services/admin/page/save:
+  controller: \Controller\Services\Admin\Page\Save
+  hash: servicePageSave
+
+/services/admin/page/delete:
+  controller: \Controller\Services\Admin\Page\Delete
+  hash: servicePageDelete
+
+/service/admin/user/save:
+  controller: \Controller\Services\Admin\User\Save
+  hash: serviceUserSave
+
+/service/admin/user/delete:
+  controller: \Controller\Services\Admin\User\Delete
+  hash: serviceUserDelete

@@ -1,0 +1,12 @@
+{% extends 'global.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block template %}
+    {{ macros.nav() }}
+    <div class="hero__image hero__image--main">
+        <div class="hero__text">
+            <h1>{{ t('header.404')|raw }}</h1>
+        </div>
+    </div>
+{% endblock %}

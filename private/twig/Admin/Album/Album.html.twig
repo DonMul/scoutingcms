@@ -1,0 +1,57 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <script src="/js/dropzone.js"></script>
+    <h2>{{ t('album.edit') }}</h2>
+    <form method="post" action="{{ tl('serviceAlbumSave') }}" enctype="multipart/form-data">
+        <input type="hidden" name="albumId" value="{{ context.album.id }}"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="name">{{ t('album.name') }}</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ context.album.name }}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="description">{{ t('album.description') }}</label>
+                <textarea id="description" class="form-control js-wysiwyg" name="description">{{ context.album.description }}</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="category">{{ t('album.category') }}</label>
+                <select id="category" name="category" class="form-control">
+                    {% for category in context.categories %}
+                        <option value="{{ category }}">{{ category }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="thumbnail">
+                    {{ t('album.thumbnail') }}
+                    <input type="file" name="thumbnail" id="thumbnail">
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-success">
+                    {{ t('common.save') }}
+                </button>
+            </div>
+        </div>
+    </form>
+
+    {% if context.album.id > 0 %}
+        <form action="{{ tl('serviceAlbumUpload') }}"
+              class="dropzone"
+              id="my-awesome-dropzone">
+            <input type="hidden" name="albumId" value="{{ context.album.id }}"/>
+        </form>
+    {% endif %}
+{% endblock %}

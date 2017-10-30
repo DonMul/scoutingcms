@@ -1,0 +1,57 @@
+{% extends 'global.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block template %}
+    {{ macros.nav() }}
+    <div class="hero__image hero__image--main">
+        <div class="hero__text">
+            <h1>Franciscus Lodewijk Groep</h1>
+        </div>
+    </div>
+    <section id="info">
+        <div class="container">
+            {% for year,months in context.dates %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="text-center">{{ year }}</h2>
+                        <div class="row">
+                            {% for month,days in months %}
+                                <div class="col-xs-12 col-lg-3 agenda">
+                                    <div class="agenda__month">
+                                        <div class="agenda__month-header">
+                                            {{ t('month.' ~ month) }}
+                                        </div>
+                                        <div class="agenda__month-days">
+                                            {% for i in days %}
+                                            {% set hasItems = false %}
+                                                {% for item in context.items %}
+                                                    {% if item.startDate|date('Y-m-d') <= (year ~ '-' ~ month ~ '-' ~ i)|date('Y-m-d') and item.endDate|date('Y-m-d') >= (year ~ '-' ~ month ~ '-' ~ i)|date('Y-m-d') %}
+                                                        {% set hasItems = true %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                <div class="agenda__month-day {{ hasItems ? 'agenda__month-day--has-items' : '' }}">
+                                                    {{ i }}
+                                                    <div class="agenda__items">
+                                                        {% for item in context.items %}
+                                                            {% if item.startDate|date('Y-m-d') <= (year ~ '-' ~ month ~ '-' ~ i)|date('Y-m-d') and item.endDate|date('Y-m-d') >= (year ~ '-' ~ month ~ '-' ~ i)|date('Y-m-d') %}
+                                                                <a href="/agenda/{{ item.slug }}" class="agenda__item">
+                                                                    <h4 class="agenda__item-title">{{ item.name }}</h4>
+                                                                </a>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

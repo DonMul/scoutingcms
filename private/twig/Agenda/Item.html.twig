@@ -1,0 +1,60 @@
+{% extends 'global.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block template %}
+    <section id="main">
+        <div class="section-contents overlay">
+            <div class="navigation__container">
+                {{ macros.nav() }}
+            </div>
+            <div class="text-center main-header">
+                <h1>
+                    {{ context.item.name }}
+                </h1>
+                <h2>
+                    Franciscus Lodewijkg Groep
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section id="info">
+        <div class="section-contents">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <strong>{{ t('calender.what') }}</strong>:
+                    </div>
+                    <div class="col-xs-6">
+                        {{ context.item.name }}
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <strong>{{ t('calender.when') }}</strong>:
+                    </div>
+                    <div class="col-xs-6">
+                        {{ context.item.startDate }} {{ t('calender.untill') }} {{ context.item.endDate }}
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <strong>{{ t('calender.type') }}</strong>:
+                    </div>
+                    <div class="col-xs-6">
+                        {{ context.item.category }}
+                    </div>
+                </div>
+                <hr/>
+                <h4>{{ t('calender.description') }}</h4>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{ context.item.description|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

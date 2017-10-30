@@ -1,0 +1,56 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('album.admin') }}</h2>
+    <a href="{{ tl('adminAlbum', {'id': 0}) }}" class="button__no">
+        <i class="fa fa-plus button__add">
+            <span class="button__inner">
+                {{ t('album.new') }}
+            </span>
+        </i>
+    </a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ t('album.name') }}</th>
+            <th>{{ t('album.category') }}</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for album in context.albums %}
+            <tr>
+                <td>
+                    {{ album.name|capitalize }}
+                </td>
+                <td>
+                    {{ album.category }}
+                </td>
+                <td>
+                    <a class="admin_speltak-link" href="{{ tl('adminAlbum', {'id': album.id}) }}">
+                        <i class="fa fa-wrench button__edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <form method="post" action="{{ tl('serviceAlbumDelete') }}">
+                        <input type="hidden" name="albumId" value="{{ album.id }}"/>
+                        <button type="submit" class="button__no">
+                            <i class="fa fa-times button__remove"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        {% if context.albums|length <= 0 %}
+            <tr>
+                <td class="text-center" colspan="4">
+                    {{ t('album.noItems') }}
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

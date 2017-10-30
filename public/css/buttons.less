@@ -1,0 +1,46 @@
+.button__no {
+  border: none;
+  background-color: transparent;
+}
+
+.baseButton {
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  background-color: white;
+  padding: 9px 11px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.5s, border-color 0.5s;
+}
+
+.button__remove {
+  .baseButton();
+  color: rgb(214,39,40);
+
+  &:hover {
+    background-color: rgba(214,39,40, 0.2);
+  }
+}
+
+.button__add {
+  .baseButton();
+  color: rgb(44,160,44);
+
+  &:hover {
+    background-color: rgba(44,160,44, 0.2);
+  }
+}
+
+.button__edit {
+  .baseButton();
+  color: rgb(33, 150, 243);
+
+  &:hover {
+    background-color: rgba(33, 150, 243, 0.2)
+  }
+}
+
+.button__inner {
+  padding-left: 12px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

@@ -1,0 +1,60 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('agenda.admin') }}</h2>
+    <a href="{{ tl('adminCalenderItem', {'id': 0}) }}" class="button__no">
+        <i class="fa fa-plus button__add">
+            <span class="button__inner">
+                {{ t('agenda.new') }}
+            </span>
+        </i>
+    </a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ t('agenda.name') }}</th>
+            <th>{{ t('agenda.startDate') }}</th>
+            <th>{{ t('agenda.endDate') }}</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in context.items %}
+            <tr>
+                <td>
+                    {{ item.name }}
+                </td>
+                <td>
+                    {{ item.startDate }}
+                </td>
+                <td>
+                    {{ item.endDate }}
+                </td>
+                <td>
+                    <a class="admin_speltak-link" href="{{ tl('adminCalenderItem', {'id': item.id}) }}">
+                        <i class="fa fa-wrench button__edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <form method="post" action="{{ tl('serviceCalenderDelete') }}">
+                        <input type="hidden" name="itemId" value="{{ item.id }}"/>
+                        <button type="submit" class="button__no">
+                            <i class="fa fa-times button__remove"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        {% if context.items|length <= 0 %}
+            <tr>
+                <td class="text-center" colspan="5">
+                    {{ t('agenda.noItems') }}
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

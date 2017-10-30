@@ -1,0 +1,31 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('group.edit') }}</h2>
+    <form method="post" action="{{ tl('serviceGroupSave') }}" enctype="multipart/form-data">
+        <input type="hidden" name="speltakId" value="{{ context.speltak.id }}"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="picture">
+                    {{ t('group.picture') }}
+                    <input type="file" name="picture" id="picture">
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="description">{{ t('group.description') }}</label>
+                <textarea class="form-control js-wysiwyg" id="description" name="description" rows="25">{{ context.speltak.description }}</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-success">
+                    {{ t('common.save') }}
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

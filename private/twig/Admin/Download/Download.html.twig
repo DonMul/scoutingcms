@@ -1,0 +1,44 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('download.edit') }}</h2>
+    <form method="post" action="{{ tl('serviceDownloadSave') }}" enctype="multipart/form-data">
+        <input type="hidden" name="downloadId" value="{{ context.download.id }}"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="file">
+                    {{ t('download.file') }}
+                    <input type="file" name="file" id="file">
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="name">{{ t('download.name') }}</label>
+                <input type="text" name="name" id="name" class="form-control" value="{{ context.download.name }}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="type">{{ t('download.type') }}</label>
+                <select id="type" name="type" class="form-control">
+                    <option value="report" {{ context.download.type == 'report' ? 'selected="selected"' }}>
+                        {{ t('download.type.report') }}
+                    </option>
+                    <option value="newsletter" {{ context.download.type == 'newsletter' ? 'selected="selected"' }}>
+                        {{ t('download.type.newsletter') }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-success">
+                    {{ t('common.save') }}
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

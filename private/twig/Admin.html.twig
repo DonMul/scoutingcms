@@ -1,0 +1,36 @@
+{% extends 'global.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block template %}
+    {{ macros.wysiwyg() }}
+    <div class="row admin__container">
+        <div class="col-sm-2">
+            {{ macros.adminSidebar() }}
+        </div>
+        <div class="col-sm-10">
+            {{ block('adminTemplate') }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block adminTemplate %}
+    <h1 class="text-center">FLG Admin</h1>
+
+    {% set i = 0 %}
+    {% for name,amount in context.totals %}
+        {% if (i == 0 or i % 4 == 0) %}
+            <div class="row">
+        {% endif %}
+        <div class="col-sm-3">
+            <div class="statsblock statsblock--{{ name }}">
+                <h3 class="statsblock__header">{{ name }}</h3>
+                <div class="statsblock__amount">{{ amount }}</div>
+            </div>
+        </div>
+        {% if (i % 4 == 3) %}
+            </div>
+        {% endif %}
+        {% set i = i + 1 %}
+    {% endfor %}
+{% endblock %}

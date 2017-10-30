@@ -1,0 +1,101 @@
+month.01: Januari
+month.02: Februari
+month.03: Maart
+month.04: April
+month.05: Mei
+month.06: Juni
+month.07: Juli
+month.08: Augustus
+month.09: September
+month.10: Oktober
+month.11: November
+month.12: December
+
+header.404: <strong>Oeps!</strong> Deze pagina is niet gevonden!
+
+calender.what: Wat
+calender.when: Wanneer
+calender.untill: t/m
+calender.type: Soort activiteit
+calender.description: Beschrijving
+
+agenda.admin: Agendapunten
+agenda.name: Naam
+agenda.startDate: Startdatum
+agenda.endDate: Einddatum
+agenda.description: Beschrijving
+agenda.category: Categorie
+agenda.noItems: Er zijn nog geen agendapunten aangemaakt!
+agenda.new: Nieuw agendapunt maken
+agenda.edit: Agendapunt wijzigen
+
+album.edit: Album wijzigen
+album.new: Nieuw album maken
+album.name: Naam
+album.category: Categorie
+album.description: Beschrijving
+album.thumbnail: Afbeelding
+album.admin: Albums
+album.noItems: Er zijn nog geen albums aangemaakt!
+
+download.new: Nieuwe download aanmaken
+download.name: Naam
+download.type: Type
+download.edit: Download aanpassen
+download.file: Bestand
+download.admin: Downloads
+download.noItems: Er zijn nog geen downloads aangemaakt!
+download.type.report: Verslag
+download.type.newsletter: Groene blad
+
+news.admin: Nieuwsberichten
+news.title: Titel
+news.published: Publicatiedatum
+news.status: Status
+news.noItems: Er zijn nog geen nieuwberichten gepubliceerd!
+news.new: Nieuw nieuwsbericht aanmaken
+news.type: Type
+news.content: Inhoud
+news.edit: Nieuwsbericht aanpassen
+news.type.draft: Ongepubliceerd
+news.type.published: Gepubliceerd
+
+page.admin: Pagina's
+page.title: Titel
+page.slug: URL
+page.isHomepage: Is landingspaginga
+page.new: Nieuwe pagina aanmaken
+page.noItems: Er zijn nog geen pagina's aangemaakt!
+page.edit: Pagina bijwerken
+page.content: Inhoud
+page.header: Afbeelding
+
+group.admin: Speltakken
+group.name: Naam
+group.noItems: Er zijn nog geen speltakken aangemaakt!
+group.picture: Afbeelding
+group.description: Beschrijving
+group.edit: Speltak bijwerken
+
+user.username: Gebruikersnaam
+user.password: Wachtwoord
+user.nickname: Echte naam
+user.email: E-mailadres
+user.admin: Gebruikers
+user.noItems: Er zijn nog geen gebruikers aangemaakt!
+user.edit: Gebruiker aanpassen
+user.new: Nieuwe gebruiker aanmaken
+
+error.user.invalidUsernameOrPassword: Gebruikersnaam of wachtwoord is incorrect
+error.item.notFound: Agendapunt bestaat niet
+error.album.notFound: Album bestaat niet
+error.download.notFound: Download bestaat niet
+error.news.notFound: Nieuwsartikel bestaat niet
+error.page.notFound: Pagina bestaat niet
+error.group.notFound: Speltak bestaat niet
+error.user.notFound: Gebruiker bestaat niet
+
+common.login: Login
+common.save: Opslaan
+common.yes: Ja
+common.no: Nee

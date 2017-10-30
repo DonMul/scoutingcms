@@ -1,0 +1,52 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('page.edit') }}</h2>
+    <form method="post" action="{{ tl('servicePageSave') }}" enctype="multipart/form-data">
+        <input type="hidden" name="pageId" value="{{ context.page.id }}"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="title">{{ t('page.title') }}</label>
+                <input type="text" name="title" id="title" value="{{ context.page.title }}" class="form-control"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="slug">{{ t('page.slug') }}</label>
+                <input type="text" name="slug" id="slug" value="{{ context.page.slug }}" class="form-control"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="content">{{ t('page.content') }}</label>
+                <textarea class="form-control js-wysiwyg" id="content" name="content" rows="25">{{ context.page.content }}</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="isHomepage">
+                    <input type="checkbox" name="isHomepage" id="isHomepage" {{ context.page.isHomepage ? 'checked="checked"' }}/>
+                    {{ t('page.isHomepage') }}
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="header">
+                    {{ t('page.header') }}
+                    <input type="file" name="header" id="header">
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-success">
+                    {{ t('common.save') }}
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

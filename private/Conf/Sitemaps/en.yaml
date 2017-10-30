@@ -1,0 +1,7 @@
+###
+# MAINSITE LINKS
+###
+
+/en/:
+  controller: \Controller\Index
+  hash: index

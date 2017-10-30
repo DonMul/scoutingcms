@@ -1,0 +1,42 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('news.edit') }}</h2>
+    <form method="post" action="{{ tl('serviceNewsSave') }}" enctype="multipart/form-data">
+        <input type="hidden" name="newsId" value="{{ context.newsItem.id }}"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="title">{{ t('news.title') }}</label>
+                <input type="text" name="title" value="{{ context.newsItem.title }}" class="form-control" id="title"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="status">{{ t('news.type') }}</label>
+                <select name="status" id="status" class="form-control">
+                    <option value="draft" {{ context.newsItem.status == 'draft' ? 'selected="selected"' }}>
+                        {{ t('news.type.draft') }}
+                    </option>
+                    <option value="published" {{ context.newsItem.status == 'published' ? 'selected="published"' }}>
+                        {{ t('news.type.published') }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="content">{{ t('news.content') }}</label>
+                <textarea id="content" name="content" class="form-control js-wysiwyg">{{ context.newsItem.content }}</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-success">
+                    {{ t('common.save') }}
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

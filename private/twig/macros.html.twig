@@ -1,0 +1,179 @@
+{% macro nav() %}
+    <nav class="navbar transparent navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/" class="navigation__item-link">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Informatie <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/agenda">Agenda</a>
+                        </li>
+                        <li>
+                            <a href="/contact">Contact</a>
+                        </li>
+                        <li>
+                            <a href="/de-vereniging">De vereniging</a>
+                        </li>
+                        <li>
+                            <a href="/lidmaatschap">Lidmaatschap</a>
+                        </li>
+                        <li>
+                            <a href="/de-beheerstichting">De beheerstichting</a>
+                        </li>
+                        <li>
+                            <a href="/handige-websites">Handige Websites</a>
+                        </li>
+                        <li>
+                            <a href="/news">Nieuwsarchief</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Speltakken <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/speltak/bevers">Bevers</a>
+                        </li>
+                        <li>
+                            <a href="/speltak/welpen">Welpen</a>
+                        </li>
+                        <li>
+                            <a href="/speltak/kabouters">Kabouters</a>
+                        </li>
+                        <li>
+                            <a href="/speltak/verkenners">Verkenners</a>
+                        </li>
+                        <li>
+                            <a href="/speltak/padvindsters">Padvindsters</a>
+                        </li>
+                        <li>
+                            <a href="/speltak/explorers">Explorers</a>
+                        </li>
+                        <li>
+                            <a href="/speltak/stam">Stam</a>
+                        </li>
+                        <li>
+                            <a href="/speltak/boomstam">Boomstam</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Foto's <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/fotos/groepsactiviteiten">Groepsactiviteiten</a>
+                        </li>
+                        <li>
+                            <a href="/fotos/bevers">Bevers</a>
+                        </li>
+                        <li>
+                            <a href="/fotos/welpen">Welpen</a>
+                        </li>
+                        <li>
+                            <a href="/fotos/kabouters">Kabouters</a>
+                        </li>
+                        <li>
+                            <a href="/fotos/verkenners">Verkenners</a>
+                        </li>
+                        <li>
+                            <a href="/fotos/padvindsters">Padvindsters</a>
+                        </li>
+                        <li>
+                            <a href="/fotos/explorers">Explorers</a>
+                        </li>
+                        <li>
+                            <a href="/fotos/stam">Stam</a>
+                        </li>
+                        <li>
+                            <a href="/fotos/boomstam">Boomstam</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Downloads <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/download/newsletter">Groene Bladen</a>
+                        </li>
+                        <li>
+                            <a href="/download/report">Jaarverslagen</a>
+                        </li>
+                        <li>
+                            <a href="/downloads/Inschrijfformulier FLG.pdf" target="_blank">Inschrijfformulier</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endmacro %}
+
+{% macro adminSidebar() %}
+        <div class="adminmenu">
+            <h2 class="adminmenu__brand">
+                <a href="{{ tl('admin') }}" class="adminmenu__brand-link">FLG Admin</a>
+            </h2>
+            <i class="fa fa-bars adminmenu__toggle" data-toggle="collapse" data-target="#menu-content"></i>
+            <ul class="adminmenu__list collapse out" id="menu-content">
+                <li class="adminmenu__list-item">
+                    <a href="{{ tl('adminUsers') }}" class="adminmenu__list-item-link">
+                        Gebruikers
+                    </a>
+                </li>
+                <li class="adminmenu__list-item">
+                    <a href="{{ tl('adminNews') }}" class="adminmenu__list-item-link">
+                        Nieuws
+                    </a>
+                </li>
+                <li class="adminmenu__list-item">
+                    <a href="{{ tl('adminGroups') }}" class="adminmenu__list-item-link">
+                        Speltakken
+                    </a>
+                </li>
+                <li class="adminmenu__list-item">
+                    <a href="{{ tl('adminCalender') }}" class="adminmenu__list-item-link">
+                        Agenda
+                    </a>
+                </li>
+                <li class="adminmenu__list-item">
+                    <a href="{{ tl('adminAlbums') }}" class="adminmenu__list-item-link">
+                        Foto's
+                    </a>
+                </li>
+                <li class="adminmenu__list-item">
+                    <a href="{{ tl('adminDownloads') }}" class="adminmenu__list-item-link">
+                        Downloads
+                    </a>
+                </li>
+                <li class="adminmenu__list-item">
+                    <a href="{{ tl('adminPages') }}" class="adminmenu__list-item-link">
+                        Paginas
+                    </a>
+                </li>
+            </ul>
+        </div>
+{% endmacro %}
+
+{% macro wysiwyg() %}
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+{% endmacro %}

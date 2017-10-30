@@ -1,0 +1,52 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('user.admin') }}</h2>
+    <a href="{{ tl('adminUser', {'id': 0}) }}" class="button__no">
+        <i class="fa fa-plus button__add">
+            <span class="button__inner">
+                {{ t('user.new') }}
+            </span>
+        </i>
+    </a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ t('user.username') }}</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in context.users %}
+            <tr>
+                <td>
+                    {{ user.username }}
+                </td>
+                <td>
+                    <a class="admin_speltak-link" href="{{ tl('adminUser', {'id': user.id}) }}">
+                        <i class="fa fa-wrench button__edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <form method="post" action="{{ tl('serviceUserDelete') }}">
+                        <input type="hidden" name="userId" value="{{ user.id }}"/>
+                        <button type="submit" class="button__no">
+                            <i class="fa fa-times button__remove"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        {% if context.users|length <= 0 %}
+            <tr>
+                <td class="text-center" colspan="3">
+                    {{ t('user.noItems') }}
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

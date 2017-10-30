@@ -1,0 +1,60 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('news.admin') }}</h2>
+    <a href="{{ tl('adminNewsItem', {'id': 0}) }}" class="button__no">
+        <i class="fa fa-plus button__add">
+            <span class="button__inner">
+                {{ t('news.new') }}
+            </span>
+        </i>
+    </a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>{{ t('news.title') }}</th>
+            <th>{{ t('news.published') }}</th>
+            <th>{{ t('news.status') }}</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for news in context.news %}
+            <tr>
+                <td>
+                    {{ news.title }}
+                </td>
+                <td>
+                    {{ news.published }}
+                </td>
+                <td>
+                    {{ news.status }}
+                </td>
+                <td>
+                    <a class="admin_speltak-link" href="{{ tl('adminNewsItem', {'id': news.id}) }}">
+                        <i class="fa fa-wrench button__edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <form method="post" action="{{ tl('serviceNewsDelete') }}">
+                        <input type="hidden" name="itemId" value="{{ news.id }}"/>
+                        <button type="submit" class="button__no">
+                            <i class="fa fa-times button__remove"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        {% if context.news|length <= 0 %}
+            <tr>
+                <td class="text-center" colspan="5">
+                    {{ t('news.noItems') }}
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

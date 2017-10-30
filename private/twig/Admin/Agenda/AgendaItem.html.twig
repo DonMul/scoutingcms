@@ -1,0 +1,53 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('agenda.edit') }}</h2>
+    <form method="post" action="{{ tl('serviceCalenderSave') }}" enctype="multipart/form-data">
+        <input type="hidden" name="itemId" value="{{ context.item.id }}"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="name">{{ t('agenda.name') }}</label>
+                <input type="text" name="name" value="{{ context.item.name }}" class="form-control" id="name"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="startDate">{{ t('agenda.startDate') }}</label>
+                <input type="datetime-local" id="startDate" name="startDate" value="{{ context.item.startDate|date("Y-m-d") ~'T' ~ context.item.startDate|date("H:i:s")}}" class="form-control"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="endDate">{{ t('agenda.endDate') }}</label>
+                <input type="datetime-local" id="endDate" name="endDate" value="{{ context.item.endDate|date("Y-m-d") ~'T' ~ context.item.endDate|date("H:i:s")}}" class="form-control"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="description">{{ t('agenda.description') }}</label>
+                <textarea id="description" name="description" class="form-control js-wysiwyg">{{ context.item.description }}</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="category">{{ t('agenda.category') }}</label>
+                <select id="category" name="category" class="form-control">
+                    {% for category in context.categories %}
+                        <option value="{{ category }}" {{ context.item.category == category ? 'selected="selected"' : '' }}>
+                            {{ category|capitalize }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-success">
+                    {{ t('common.save') }}
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
