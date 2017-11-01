@@ -6,10 +6,11 @@
     {{ macros.nav() }}
     <div class="hero__image hero__image--main">
         <div class="hero__text">
-            <h1>Franciscus Lodewijk Groep</h1>
+            <h1>{{ context.album.name }}</h1>
+            <h2>Franciscus Lodewijk Groep</h2>
         </div>
     </div>
-    <section>
+    <section class="section__padded">
         <div class="container album-container">
             <div class="row">
                 {% for picture in context.pictures %}

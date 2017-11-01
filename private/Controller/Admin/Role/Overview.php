@@ -19,6 +19,7 @@ class Overview extends Admin
 
         return [
             'roles' => Role::getAll(),
+            'active' => 'role'
         ];
     }
 }

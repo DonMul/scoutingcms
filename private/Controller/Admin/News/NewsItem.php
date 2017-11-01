@@ -23,7 +23,8 @@ class NewsItem extends Admin
         }
 
         return [
-            'newsItem' => $newsItem
+            'newsItem' => $newsItem,
+            'active' => 'news',
         ];
     }
 }

@@ -44,6 +44,16 @@ class Save extends \Controller\Services\Admin
             );
         }
 
+        if (!empty($_FILES['thumbnail']['name'])) {
+            $targetName = $_SERVER["DOCUMENT_ROOT"] . 'public/upload/' . $album->getCategoryObject()->getName() . '/' . $_FILES["thumbnail"]["name"];
+            if (!move_uploaded_file($_FILES['thumbnail']['tmp_name'], $targetName)) {
+                throw new \Exception("Could not upload file");
+            }
+
+            $album->setThumbnail($_FILES["thumbnail"]["name"]);
+        }
+
+
         $album->save();
 
         return [

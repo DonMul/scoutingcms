@@ -22,7 +22,8 @@ class Overview extends \Controller\Admin
         );
 
         return [
-            'items' => $items
+            'items' => $items,
+            'active' => 'calender'
         ];
     }
 }

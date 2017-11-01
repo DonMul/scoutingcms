@@ -19,7 +19,15 @@ class Album extends Admin
     {
         $album = \Lib\Data\Album::getById($_GET['id']);
         if (!$album) {
-            $album = new \Lib\Data\Album(null, "New Album", '', '', '', '');
+            $album = new \Lib\Data\Album(
+                null,
+                "",
+                '',
+                '',
+                '',
+                '',
+                0
+            );
         } else {
             $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.view');
         }
@@ -28,7 +36,8 @@ class Album extends Admin
             'album' => $album,
             'pictures' => Picture::findByAlbumId($_GET['id']),
             'categories' => AlbumCategory::getAll(),
-            'albumHash' => md5($album->getId())
+            'albumHash' => md5($album->getId()),
+            'active' => 'album'
         ];
     }
 }

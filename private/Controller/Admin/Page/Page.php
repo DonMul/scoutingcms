@@ -23,7 +23,8 @@ class Page extends Admin
         }
 
         return [
-            'page' => $page
+            'page' => $page,
+            'active' => 'page'
         ];
     }
 }

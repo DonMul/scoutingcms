@@ -125,7 +125,7 @@
     </nav>
 {% endmacro %}
 
-{% macro adminSidebar(permissions) %}
+{% macro adminSidebar(permissions, active) %}
         <div class="adminmenu">
             <h2 class="adminmenu__brand">
                 <a href="{{ tl('admin') }}" class="adminmenu__brand-link">FLG Admin</a>
@@ -133,21 +133,21 @@
             <i class="fa fa-bars adminmenu__toggle" data-toggle="collapse" data-target="#menu-content"></i>
             <ul class="adminmenu__list collapse out" id="menu-content">
                 {% if 'user.edit' in permissions %}
-                    <li class="adminmenu__list-item">
+                    <li class="adminmenu__list-item {{ active == 'user' ? 'adminmenu__list-item--active' }}">
                         <a href="{{ tl('adminUsers') }}" class="adminmenu__list-item-link">
                             {{ t('admin.nav.users') }}
                         </a>
                     </li>
                 {% endif %}
                 {% if 'role.edit' in permissions %}
-                    <li class="adminmenu__list-item">
+                    <li class="adminmenu__list-item {{ active == 'role' ? 'adminmenu__list-item--active' }}">
                         <a href="{{ tl('adminRoles') }}" class="adminmenu__list-item-link">
                             {{ t('admin.nav.roles') }}
                         </a>
                     </li>
                 {% endif %}
                 {% if 'news.edit' in permissions %}
-                    <li class="adminmenu__list-item">
+                    <li class="adminmenu__list-item {{ active == 'news' ? 'adminmenu__list-item--active' }}">
                         <a href="{{ tl('adminNews') }}" class="adminmenu__list-item-link">
                             {{ t('admin.nav.news') }}
                         </a>
@@ -160,14 +160,14 @@
                     {% endif %}
                 {% endfor %}
                 {% if hasGroupPermission == true %}
-                    <li class="adminmenu__list-item">
+                    <li class="adminmenu__list-item {{ active == 'group' ? 'adminmenu__list-item--active' }}">
                         <a href="{{ tl('adminGroups') }}" class="adminmenu__list-item-link">
                             {{ t('admin.nav.groups') }}
                         </a>
                     </li>
                 {% endif %}
                 {% if 'calender.edit' in permissions %}
-                    <li class="adminmenu__list-item">
+                    <li class="adminmenu__list-item {{ active == 'calender' ? 'adminmenu__list-item--active' }}">
                         <a href="{{ tl('adminCalender') }}" class="adminmenu__list-item-link">
                             {{ t('admin.nav.calender') }}
                         </a>
@@ -180,7 +180,7 @@
                     {% endif %}
                 {% endfor %}
                 {% if hasAlbumPermission == true %}
-                    <li class="adminmenu__list-item">
+                    <li class="adminmenu__list-item {{ active == 'album' ? 'adminmenu__list-item--active' }}">
                         <a href="{{ tl('adminAlbums') }}" class="adminmenu__list-item-link">
                             {{ t('admin.nav.albums') }}
                         </a>
@@ -194,14 +194,14 @@
                     {% endif %}
                 {% endfor %}
                 {% if hasDownloadPermission == true %}
-                    <li class="adminmenu__list-item">
+                    <li class="adminmenu__list-item {{ active == 'download' ? 'adminmenu__list-item--active' }}">
                         <a href="{{ tl('adminDownloads') }}" class="adminmenu__list-item-link">
                             {{ t('admin.nav.downloads') }}
                         </a>
                     </li>
                 {% endif %}
                 {% if 'pages.edit' in permissions %}
-                    <li class="adminmenu__list-item">
+                    <li class="adminmenu__list-item {{ active == 'page' ? 'adminmenu__list-item--active' }}">
                         <a href="{{ tl('adminPages') }}" class="adminmenu__list-item-link">
                             {{ t('admin.nav.pages') }}
                         </a>

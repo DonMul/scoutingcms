@@ -28,7 +28,8 @@ class Download extends Admin
         }
 
         return [
-            'download' => $download
+            'download' => $download,
+            'active' => 'download'
         ];
     }
 }

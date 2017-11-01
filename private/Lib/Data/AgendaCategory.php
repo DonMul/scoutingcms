@@ -20,14 +20,36 @@ final class AgendaCategory
     private $name;
 
     /**
+     * @var string
+     */
+    private $color;
+
+    /**
      * AgendaCategory constructor.
      * @param int $id
      * @param string $name
      */
-    public function __construct($id, $name)
+    public function __construct($id, $name, $color)
     {
         $this->setId($id);
         $this->setName($name);
+        $this->setColor($color);
+    }
+
+    /**
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
     }
 
     /**
@@ -125,7 +147,8 @@ final class AgendaCategory
     {
         return new AgendaCategory(
             Util::arrayGet($data, 'id'),
-            Util::arrayGet($data, 'name')
+            Util::arrayGet($data, 'name'),
+            Util::arrayGet($data, 'color')
         );
     }
 }

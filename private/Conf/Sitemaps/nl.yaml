@@ -62,6 +62,14 @@
   controller: \Controller\Admin\Agenda\AgendaItem
   hash: adminCalenderItem
 
+/admin/agenda-categories:
+  controller: \Controller\Admin\AgendaCategory\Overview
+  hash: adminCalenderCategories
+
+/admin/agenda-category/{id}:
+  controller: \Controller\Admin\AgendaCategory\Category
+  hash: adminCalenderCategory
+
 /admin/albums:
   controller: \Controller\Admin\Album\Overview
   hash: adminAlbums

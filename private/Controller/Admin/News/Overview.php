@@ -18,7 +18,8 @@ class Overview extends Admin
         $this->ensurePermission('news.edit');
 
         return [
-            'news' => \Lib\Data\News::getAll()
+            'news' => \Lib\Data\News::getAll(),
+            'active' => 'news',
         ];
     }
 }

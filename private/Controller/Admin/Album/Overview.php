@@ -39,6 +39,7 @@ class Overview extends BaseController
         return [
             'albums' => $albums,
             'categories' => AlbumCategory::getAll(),
+            'active' => 'album'
         ];
     }
 }

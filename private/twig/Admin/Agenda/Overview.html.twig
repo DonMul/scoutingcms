@@ -4,13 +4,27 @@
 
 {% block adminTemplate %}
     <h2>{{ t('agenda.admin') }}</h2>
-    <a href="{{ tl('adminCalenderItem', {'id': 0}) }}" class="button__no">
-        <i class="fa fa-plus button__add">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <a href="{{ tl('adminCalenderItem', {'id': 0}) }}" class="button__no">
+                <i class="fa fa-plus button__add">
             <span class="button__inner">
                 {{ t('agenda.new') }}
             </span>
-        </i>
-    </a>
+                </i>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 text-right">
+            <a href="{{ tl('adminCalenderCategories', {'id': 0}) }}" class="button__no">
+                <i class="fa fa-wrench button__info">
+            <span class="button__inner">
+                {{ t('agenda.categories') }}
+            </span>
+                </i>
+            </a>
+        </div>
+    </div>
+
     <table class="table table-striped">
         <thead>
         <tr>

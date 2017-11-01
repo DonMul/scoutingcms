@@ -19,6 +19,7 @@ class Overview extends Admin
 
         return [
             'pages' => \Lib\Data\Page::getAll(),
+            'active' => 'page'
         ];
     }
 }

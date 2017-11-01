@@ -12,6 +12,9 @@ use Lib\Data\Download;
  */
 class Overview extends Admin
 {
+    /**
+     * @return array
+     */
     public function getArray()
     {
         $downloads = Download::getAll();
@@ -32,6 +35,7 @@ class Overview extends Admin
 
         return [
             'downloads' => $downloads,
+            'active' => 'download'
         ];
     }
 }

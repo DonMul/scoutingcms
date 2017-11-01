@@ -34,7 +34,8 @@ class Role extends Admin
             'permissions' => Permission::findForRole($role),
             'albumCategories' => AlbumCategory::getAll(),
             'groups' => Speltak::getAll(),
-            'downloads' => [['name' => 'report'],['name' => 'newsletter']]
+            'downloads' => [['name' => 'report'],['name' => 'newsletter']],
+            'active' => 'role'
         ];
     }
 }

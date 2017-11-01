@@ -20,6 +20,7 @@ class Overview extends Admin
 
         return [
             'users' => User::getAll(),
+            'active' => 'user'
         ];
     }
 }

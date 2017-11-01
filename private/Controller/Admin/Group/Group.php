@@ -18,6 +18,7 @@ class Group extends \Controller\Admin
 
         return [
             'speltak' => $group,
+            'active' => 'group'
         ];
     }
 }

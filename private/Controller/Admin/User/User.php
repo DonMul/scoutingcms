@@ -33,6 +33,7 @@ class User extends Admin
             'user' => $user,
             'roles' => Role::getAll(),
             'userRoles' => $user->getRoles(),
+            'active' => 'user'
         ];
     }
 }

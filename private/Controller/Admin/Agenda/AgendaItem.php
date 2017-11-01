@@ -31,7 +31,8 @@ class AgendaItem extends \Controller\Admin
 
         return [
             'item' => $item,
-            'categories' => AgendaCategory::getAll()
+            'categories' => AgendaCategory::getAll(),
+            'active' => 'calender'
         ];
     }
 }

@@ -36,7 +36,8 @@ class Overview extends \Controller\Admin
         $this->ensurePermission('news.edit');
 
         return [
-            'speltakken' => $groups
+            'speltakken' => $groups,
+            'active' => 'group',
         ];
     }
 }
