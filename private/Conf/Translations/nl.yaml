@@ -45,6 +45,13 @@ album.thumbnail: Afbeelding
 album.admin: Albums
 album.noItems: Er zijn nog geen albums aangemaakt!
 album.private: Privaat album
+album.categories: Categorieën
+
+albumCategory.admin: Album Categorieën
+albumCategory.new: Nieuwe album categorie
+albumCategory.name: Naam
+albumCategory.edit: Album categorie aanpassen
+albumCategory.noItems: Er zijn nog geen album categorieën aangemaakt
 
 picture.name: Naam
 picture.thumb: Afbeelding
@@ -132,6 +139,8 @@ error.group.notFound: Speltak bestaat niet
 error.user.notFound: Gebruiker bestaat niet
 error.role.notFound: Rol bestaat niet
 error.picture.notFound: Afbeelding bestaat niet
+error.albumCategory.notFound: Album categorie bestaat niet
+error.calenderCategory.notFound: Agenda categorie bestaat niet
 error.noPermssion: Geen toegang
 
 admin.nav.users: Gebruikers

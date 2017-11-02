@@ -1,0 +1,23 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('albumCategory.edit') }}</h2>
+    <form method="post" action="{{ tl('serviceAlbumCategorySave') }}">
+        <input type="hidden" name="categoryId" value="{{ context.category.id }}"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="name">{{ t('albumCategory.name') }}</label>
+                <input type="text" name="name" value="{{ context.category.name }}" class="form-control" id="name"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-success">
+                    {{ t('common.save') }}
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

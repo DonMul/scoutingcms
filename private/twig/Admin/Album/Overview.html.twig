@@ -11,13 +11,26 @@
         {% endif %}
     {% endfor %}
     {% if canEdit == true %}
-        <a href="{{ tl('adminAlbum', {'id': 0}) }}" class="button__no">
-            <i class="fa fa-plus button__add">
-                <span class="button__inner">
-                    {{ t('album.new') }}
-                </span>
-            </i>
-        </a>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <a href="{{ tl('adminAlbum', {'id': 0}) }}" class="button__no">
+                    <i class="fa fa-plus button__add">
+                    <span class="button__inner">
+                        {{ t('album.new') }}
+                    </span>
+                    </i>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 text-right">
+                <a href="{{ tl('adminAlbumCategories', {'id': 0}) }}" class="button__no">
+                    <i class="fa fa-wrench button__info">
+                    <span class="button__inner">
+                        {{ t('album.categories') }}
+                    </span>
+                    </i>
+                </a>
+            </div>
+        </div>\
     {% endif %}
     <table class="table table-striped">
         <thead>
