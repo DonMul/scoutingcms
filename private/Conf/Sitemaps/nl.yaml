@@ -67,7 +67,7 @@
   hash: adminCalenderCategories
 
 /admin/agenda-category/{id}:
-  controller: \Controller\Admin\AgendaCategory\Category
+  controller: \Controller\Admin\AgendaCategory\CalenderCategory
   hash: adminCalenderCategory
 
 /admin/albums:
@@ -144,6 +144,14 @@
 /services/admin/agenda/delete:
   controller: \Controller\Services\Admin\Agenda\Delete
   hash: serviceCalenderDelete
+
+/services/admin/calender-category/save:
+  controller: \Controller\Services\Admin\CalenderCategory\Save
+  hash: serviceCalenderCategorySave
+
+/services/admin/calender-category/delete:
+  controller: \Controller\Services\Admin\CalenderCategory\Delete
+  hash: serviceCalenderCategoryDelete
 
 /services/admin/album/save:
   controller: \Controller\Services\Admin\Album\Save

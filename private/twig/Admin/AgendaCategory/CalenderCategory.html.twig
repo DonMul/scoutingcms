@@ -1,0 +1,40 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <link rel="stylesheet" href="/css/bootstrap-colorpicker.min.css">
+    <script src="/js/bootstrap-colorpicker.min.js"></script>
+
+    <h2>{{ t('calenderCategory.edit') }}</h2>
+    <form method="post" action="{{ tl('serviceCalenderCategorySave') }}" enctype="multipart/form-data">
+        <input type="hidden" name="categoryId" value="{{ context.category.id }}"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="name">{{ t('calenderCategory.name') }}</label>
+                <input type="text" name="name" value="{{ context.category.name }}" class="form-control" id="name"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="color">{{ t('calenderCategory.color') }}</label>
+                <input type="text" id="color" name="color" value="{{ context.category.color }}" class="form-control"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-success">
+                    {{ t('common.save') }}
+                </button>
+            </div>
+        </div>
+    </form>
+    <script>
+        $(document).ready(function(){
+            $('#color').colorpicker({
+                'format': 'rgba',
+                'color': $('#color').val()
+            });
+        });
+    </script>
+{% endblock %}

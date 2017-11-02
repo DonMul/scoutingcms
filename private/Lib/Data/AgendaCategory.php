@@ -151,4 +151,37 @@ final class AgendaCategory
             Util::arrayGet($data, 'color')
         );
     }
+
+    /**
+     *
+     */
+    public function save()
+    {
+        $db = \Lib\Core\Database::getInstance();
+        $params = [
+            $this->getName(),
+            $this->getColor(),
+        ];
+
+        $types = 'ss';
+        if ($this->getId() === null || $this->getId() === 0) {
+            $sql = "INSERT INTO `flg_agendaCategory` (`name`, `color`) VALUES ( ?, ? )";
+        } else {
+            $sql = "UPDATE `flg_agendaCategory` SET `name` = ?, `color` = ? WHERE `id` = ?";
+            $params[] = $this->getId();
+            $types .= 'i';
+        }
+
+        $result = $db->query($sql, $params, $types);
+        $this->setId($result->insert_id);
+    }
+
+    /**
+     * @return bool
+     */
+    public function delete()
+    {
+        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `flg_agendaCategory` WHERE id = ?", [$this->getId()], 'i');
+        return $result->affected_rows > 0;
+    }
 }

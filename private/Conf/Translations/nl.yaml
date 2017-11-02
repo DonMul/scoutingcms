@@ -19,6 +19,13 @@ calender.untill: t/m
 calender.type: Soort activiteit
 calender.description: Beschrijving
 
+calenderCategory.edit: Agendacategorie aanpassen
+calenderCategory.name: Naam
+calenderCategory.color: Kleur
+calenderCategory.admin: Agenda categoriën
+calenderCategory.new: Nieuwe agenda categorie
+calenderCategory.noItems: Er zijn nog geen agenda categoriën aangemaakt
+
 agenda.admin: Agendapunten
 agenda.name: Naam
 agenda.startDate: Startdatum
