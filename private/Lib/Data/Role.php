@@ -228,7 +228,7 @@ final class Role
     public static function findByUserId($userId)
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `" . self::getTableName() . "` WHERE id IN (SELECT roleId FROM `" . self::getTableName() . "` WHERE userId = ?)",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id IN (SELECT roleId FROM `" . Database::getInstance()->getFullTableName('userRole') . "` WHERE userId = ?)",
             [$userId],
             'i'
         );

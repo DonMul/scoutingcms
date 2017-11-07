@@ -135,7 +135,7 @@ final class Permission
     public static function findForRole(Role $role)
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM flg_permission WHERE flg_permission.id IN (SELECT permissionId FROM `" . self::getTableName() . "` WHERE roleId = ?)",
+            "SELECT * FROM flg_permission WHERE flg_permission.id IN (SELECT permissionId FROM `" . Database::getInstance()->getFullTableName('rolePermission') . "` WHERE roleId = ?)",
             [$role->getId()],
             'i'
         );

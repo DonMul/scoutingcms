@@ -17,6 +17,7 @@ class Autoloader extends Singleton
     public function load($class)
     {
         $fixedName = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+        $fixedName = str_replace('_', DIRECTORY_SEPARATOR, $fixedName);
         $fixedName .= '.php';
 
         $fileLocations = [
