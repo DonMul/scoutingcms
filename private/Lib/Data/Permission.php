@@ -1,6 +1,7 @@
 <?php
 
 namespace Lib\Data;
+use Lib\Core\Database;
 use Lib\Core\Util;
 
 /**
@@ -9,6 +10,8 @@ use Lib\Core\Util;
  */
 final class Permission
 {
+    const TABLENAME = 'permission';
+
     /**
      * @var int
      */
@@ -63,12 +66,20 @@ final class Permission
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @return Permission[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_permission`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $permissions = [];
@@ -86,7 +97,7 @@ final class Permission
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_permission` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [$id],
             'i'
         );
@@ -105,7 +116,7 @@ final class Permission
     public static function getByName($name)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_permission` WHERE `name` = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE `name` = ?",
             [$name],
             's'
         );
@@ -124,7 +135,7 @@ final class Permission
     public static function findForRole(Role $role)
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM flg_permission WHERE flg_permission.id IN (SELECT permissionId FROM `flg_rolePermission` WHERE roleId = ?)",
+            "SELECT * FROM flg_permission WHERE flg_permission.id IN (SELECT permissionId FROM `" . self::getTableName() . "` WHERE roleId = ?)",
             [$role->getId()],
             'i'
         );
@@ -161,9 +172,9 @@ final class Permission
 
         $types = 's';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_permission` (`name`) VALUES ( ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`name`) VALUES ( ? )";
         } else {
-            $sql = "UPDATE `flg_permission` SET `name` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `name` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
         }

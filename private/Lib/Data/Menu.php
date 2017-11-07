@@ -10,6 +10,8 @@ use Lib\Core\Util;
 
 final class Menu
 {
+    const TABLENAME = 'menu';
+
     const TYPE_PAGE = 'page';
     const TYPE_ALBUM = 'album';
     const TYPE_CALENDER = 'calender';
@@ -166,12 +168,20 @@ final class Menu
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @return Menu[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_menu`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $menuItems = [];
@@ -321,12 +331,12 @@ final class Menu
 
         $types = 'isssi';
         if ($this->getId() === null || $this->getId() == 0) {
-            $sql = "INSERT INTO `flg_menu` (`parentId`, `name`, `type`, `value`, `position`) VALUES ( ?, ?, ?, ?, ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`parentId`, `name`, `type`, `value`, `position`) VALUES ( ?, ?, ?, ?, ? )";
             $result = $db->query($sql, $params, $types);
             $insertId = $result->insert_id;
             $this->setId($insertId);
         } else {
-            $sql = "UPDATE `flg_menu` SET `parentId` = ?, `name` = ?, `type` = ?, `value` = ?, `position` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `parentId` = ?, `name` = ?, `type` = ?, `value` = ?, `position` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
             $db->query($sql, $params, $types);
@@ -338,7 +348,7 @@ final class Menu
      */
     public function delete()
     {
-        $sql = "DELETE FROM `flg_menu` WHERE id = ?";
+        $sql = "DELETE FROM `" . self::getTableName() . "` WHERE id = ?";
         Database::getInstance()->query($sql, [$this->getId()], 'i');
     }
 }

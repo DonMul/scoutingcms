@@ -11,6 +11,8 @@ use Lib\Core\Util;
  */
 final class Album
 {
+    const TABLENAME = 'album';
+
     /**
      * @var int
      */
@@ -179,12 +181,20 @@ final class Album
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @return Album[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_album`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $albums = [];
@@ -202,7 +212,7 @@ final class Album
     public static function findByCategory($category)
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_album` WHERE category = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE category = ?",
             [$category],
             'i'
         );
@@ -222,7 +232,7 @@ final class Album
     public static function findPublicByCategory($category)
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_album` WHERE category = ? AND private = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE category = ? AND private = ?",
             [$category, 0],
             'ii'
         );
@@ -242,7 +252,7 @@ final class Album
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_album` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [$id],
             'i'
         );
@@ -262,7 +272,7 @@ final class Album
     public static function getByCategoryAndSlug($category, $slug)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_album` WHERE category = ? AND slug = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE category = ? AND slug = ?",
             [$category, $slug],
             'ss'
         );
@@ -308,9 +318,9 @@ final class Album
 
         $types = 'sssssi';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_album` (`name`, `slug`, `description`, `category`, `thumbnail`, `private`) VALUES ( ?, ?, ?, ?, ?, ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`name`, `slug`, `description`, `category`, `thumbnail`, `private`) VALUES ( ?, ?, ?, ?, ?, ? )";
         } else {
-            $sql = "UPDATE `flg_album` SET `name` = ?, `slug` = ?, `description` = ?, `category` = ?, `thumbnail` = ?, `private` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `name` = ?, `slug` = ?, `description` = ?, `category` = ?, `thumbnail` = ?, `private` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
         }
@@ -324,7 +334,7 @@ final class Album
      */
     public function delete()
     {
-        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `flg_album` WHERE id = ?", [$this->getId()], 'i');
+        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `" . self::getTableName() . "` WHERE id = ?", [$this->getId()], 'i');
         return $result->affected_rows > 0;
     }
 
@@ -333,7 +343,7 @@ final class Album
      */
     public static function getTotalAmount()
     {
-        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `flg_album`");
+        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `" . self::getTableName() . "`");
         return Util::arrayGet($result, 'cnt', 0);
     }
 

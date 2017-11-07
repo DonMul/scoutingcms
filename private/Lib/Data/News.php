@@ -11,6 +11,8 @@ use Lib\Core\Util;
  */
 final class News
 {
+    const TABLENAME = 'news';
+
     /**
      * @var int
      */
@@ -137,12 +139,20 @@ final class News
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @return Album[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_news`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $newsItems = [];
@@ -161,7 +171,7 @@ final class News
     public static function getLimitedDescending($offset, $amount)
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_news` WHERE status = ? LIMIT ?,?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE status = ? LIMIT ?,?",
             [
                 self::STATUS_PUBLISHED,
                 $offset,
@@ -200,7 +210,7 @@ final class News
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_news` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [$id],
             'i'
         );
@@ -227,9 +237,9 @@ final class News
 
         $types = 'ssss';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_news` (`title`, `content`, `published`, `status`) VALUES ( ?, ?, ?, ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`title`, `content`, `published`, `status`) VALUES ( ?, ?, ?, ? )";
         } else {
-            $sql = "UPDATE `flg_news` SET `title` = ?, `content` = ?, `published` = ?, `status` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `title` = ?, `content` = ?, `published` = ?, `status` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
         }
@@ -243,7 +253,7 @@ final class News
      */
     public static function getTotalAmount()
     {
-        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `flg_news`");
+        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `" . self::getTableName() . "`");
         return Util::arrayGet($result, 'cnt', 0);
     }
 
@@ -252,7 +262,7 @@ final class News
      */
     public function delete()
     {
-        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `flg_news` WHERE id = ?", [$this->getId()], 'i');
+        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `" . self::getTableName() . "` WHERE id = ?", [$this->getId()], 'i');
         return $result->affected_rows > 0;
     }
 }

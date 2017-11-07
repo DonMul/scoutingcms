@@ -11,6 +11,8 @@ use Lib\Core\Util;
  */
 final class Download
 {
+    const TABLENAME = 'download';
+
     /**
      * @var int
      */
@@ -114,12 +116,20 @@ final class Download
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @return Download[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_download`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $downloads = [];
@@ -151,7 +161,7 @@ final class Download
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_download` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [$id],
             'i'
         );
@@ -177,9 +187,9 @@ final class Download
 
         $types = 'sss';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_download` (`name`, `type`, `filename`) VALUES ( ?, ?, ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`name`, `type`, `filename`) VALUES ( ?, ?, ? )";
         } else {
-            $sql = "UPDATE `flg_download` SET `name` = ?, `type` = ?, `filename` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `name` = ?, `type` = ?, `filename` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
         }
@@ -194,7 +204,7 @@ final class Download
     public static function findByType($type)
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_download` WHERE type = ? ORDER BY id DESC",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE type = ? ORDER BY id DESC",
             [$type],
             's'
         );
@@ -212,7 +222,7 @@ final class Download
      */
     public function delete()
     {
-        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `flg_download` WHERE id = ?", [$this->getId()], 'i');
+        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `" . self::getTableName() . "` WHERE id = ?", [$this->getId()], 'i');
         return $result->affected_rows > 0;
     }
 
@@ -221,7 +231,7 @@ final class Download
      */
     public static function getTotalAmount()
     {
-        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `flg_download`");
+        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `" . self::getTableName() . "`");
         return Util::arrayGet($result, 'cnt', 0);
     }
 }

@@ -11,6 +11,8 @@ use Lib\Core\Util;
  */
 final class Speltak
 {
+    const TABLENAME = 'group';
+
     /**
      * @var int
      */
@@ -111,12 +113,20 @@ final class Speltak
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @return Speltak[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_speltak`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $speltakken = [];
@@ -134,7 +144,7 @@ final class Speltak
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_speltak` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [$id],
             'i'
         );
@@ -153,7 +163,7 @@ final class Speltak
     public static function getByName($name)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_speltak` WHERE name = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE name = ?",
             [$name],
             's'
         );
@@ -193,9 +203,9 @@ final class Speltak
 
         $types = 'sss';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_speltak` (`name`, `description`, `picture`) VALUES ( ?, ?, ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`name`, `description`, `picture`) VALUES ( ?, ?, ? )";
         } else {
-            $sql = "UPDATE `flg_speltak` SET `name` = ?, `description` = ?, `picture` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `name` = ?, `description` = ?, `picture` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
         }
@@ -209,7 +219,7 @@ final class Speltak
      */
     public static function getTotalAmount()
     {
-        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `flg_speltak`");
+        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `" . self::getTableName() . "`");
         return Util::arrayGet($result, 'cnt', 0);
     }
 }

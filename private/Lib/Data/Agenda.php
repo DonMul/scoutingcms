@@ -11,6 +11,8 @@ use Lib\Core\Util;
  */
 final class Agenda
 {
+    const TABLENAME = 'agenda';
+
     /**
      * @var int
      */
@@ -180,12 +182,20 @@ final class Agenda
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @return Agenda[]
      */
     public static function getAll()
     {
-        $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_agenda`"
+        $data = Database::getInstance()->fetchAll(
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $agendaItems = [];
@@ -204,7 +214,7 @@ final class Agenda
      */
     public static function findBetweenDates($startDate, $endDate, $reverseOrder = false)
     {
-        $query = "SELECT * FROM `flg_agenda` WHERE startDate > ? AND endDate < ?";
+        $query = "SELECT * FROM `" . self::getTableName() . "` WHERE startDate > ? AND endDate < ?";
         if ($reverseOrder) {
             $query .= " ORDER BY startDate DESC";
         }
@@ -226,7 +236,7 @@ final class Agenda
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_agenda` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [
                 $id
             ],
@@ -247,7 +257,7 @@ final class Agenda
     public static function getBySlug($slug)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_agenda` WHERE slug = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE slug = ?",
             [
                 $slug
             ],
@@ -295,9 +305,9 @@ final class Agenda
 
         $types = 'ssssss';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_agenda` (`name`, `startDate`, `endDate`, `description`, `slug`, `category`) VALUES ( ?, ?, ?, ?, ?, ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`name`, `startDate`, `endDate`, `description`, `slug`, `category`) VALUES ( ?, ?, ?, ?, ?, ? )";
         } else {
-            $sql = "UPDATE `flg_agenda` SET `name` = ?, `startDate` = ?, `endDate` = ?, `description` = ?, `slug` = ?, `category` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `name` = ?, `startDate` = ?, `endDate` = ?, `description` = ?, `slug` = ?, `category` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
         }
@@ -311,7 +321,7 @@ final class Agenda
      */
     public function delete()
     {
-        $result =  Database::getInstance()->query("DELETE FROM `flg_agenda` WHERE id = ?", [$this->getId()], 'i');
+        $result =  Database::getInstance()->query("DELETE FROM `" . self::getTableName() . "` WHERE id = ?", [$this->getId()], 'i');
         return $result->affected_rows > 0;
     }
 
@@ -320,7 +330,7 @@ final class Agenda
      */
     public static function getTotalAmount()
     {
-        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `flg_agenda`");
+        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `" . self::getTableName() . "`");
         return Util::arrayGet($result, 'cnt', 0);
     }
 }

@@ -10,6 +10,8 @@ use Lib\Core\Util;
  */
 final class Picture
 {
+    const TABLENAME = 'picture';
+
     /**
      * @var int
      */
@@ -110,12 +112,20 @@ final class Picture
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @return Picture[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_picture`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $pictures = [];
@@ -133,7 +143,7 @@ final class Picture
     public static function findByAlbumId($albumId)
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_picture` WHERE albumId = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE albumId = ?",
             [$albumId],
             'i'
         );
@@ -171,9 +181,9 @@ final class Picture
 
         $types = 'iss';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_picture` (`albumId`, `location`, `title`) VALUES ( ?, ?, ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`albumId`, `location`, `title`) VALUES ( ?, ?, ? )";
         } else {
-            $sql = "UPDATE `flg_album` SET `albumId` = ?, `location` = ?, `title` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `albumId` = ?, `location` = ?, `title` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
         }
@@ -187,7 +197,7 @@ final class Picture
      */
     public static function getTotalAmount()
     {
-        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `flg_picture`");
+        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `" . self::getTableName() . "`");
         return Util::arrayGet($result, 'cnt', 0);
     }
 
@@ -198,7 +208,7 @@ final class Picture
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_picture` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [$id],
             'i'
         );
@@ -215,6 +225,6 @@ final class Picture
      */
     public function delete()
     {
-        Database::getInstance()->query("DELETE FROM `flg_picture` WHERE id = ?", [$this->getId()], 'i');
+        Database::getInstance()->query("DELETE FROM `" . self::getTableName() . "` WHERE id = ?", [$this->getId()], 'i');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace Lib\Data;
+use Lib\Core\Database;
 use Lib\Core\Util;
 
 /**
@@ -9,6 +10,8 @@ use Lib\Core\Util;
  */
 final class Role
 {
+    const TABLENAME = 'role';
+
     /**
      * @var int
      */
@@ -86,12 +89,20 @@ final class Role
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @return Role[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_role`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $roles = [];
@@ -109,7 +120,7 @@ final class Role
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_role` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [$id],
             'i'
         );
@@ -128,7 +139,7 @@ final class Role
     public static function getByName($name)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_role` WHERE `name` = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE `name` = ?",
             [$name],
             's'
         );
@@ -166,11 +177,11 @@ final class Role
 
         $types = 'si';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_role` (`name`, `isAdmin`) VALUES ( ?, ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`name`, `isAdmin`) VALUES ( ?, ? )";
             $result = $db->query($sql, $params, $types);
             $this->setId($result->insert_id);
         } else {
-            $sql = "UPDATE `flg_role` SET `name` = ?, `isAdmin` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `name` = ?, `isAdmin` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
             $db->query($sql, $params, $types);
@@ -183,7 +194,7 @@ final class Role
     public function clearPermissions()
     {
         \Lib\Core\Database::getInstance()->query(
-            "DELETE FROM `flg_rolePermission` WHERE roleId = ?",
+            "DELETE FROM `" . self::getTableName() . "` WHERE roleId = ?",
             [$this->getId()],
             'i'
         );
@@ -195,7 +206,7 @@ final class Role
     public function delete()
     {
         \Lib\Core\Database::getInstance()->query(
-            "DELETE FROM `flg_role` WHERE id = ?",
+            "DELETE FROM `" . self::getTableName() . "` WHERE id = ?",
             [$this->getId()],
             'i'
         );
@@ -204,7 +215,7 @@ final class Role
     public function addPermission(Permission $permission)
     {
         \Lib\Core\Database::getInstance()->query(
-            "INSERT INTO `flg_rolePermission` (`roleId`, `permissionId`) VALUES ( ?, ? )",
+            "INSERT INTO `" . self::getTableName() . "` (`roleId`, `permissionId`) VALUES ( ?, ? )",
             [$this->getId(), $permission->getId()],
             'ii'
         );
@@ -217,7 +228,7 @@ final class Role
     public static function findByUserId($userId)
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_role` WHERE id IN (SELECT roleId FROM `flg_userRole` WHERE userId = ?)",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id IN (SELECT roleId FROM `" . self::getTableName() . "` WHERE userId = ?)",
             [$userId],
             'i'
         );

@@ -10,6 +10,11 @@ namespace Lib\Core;
 class Database extends \Lib\Core\Singleton
 {
     /**
+     * @var string
+     */
+    private $prefix;
+
+    /**
      * THe underlying MySQL database connection
      *
      * @var \mysqli
@@ -21,6 +26,16 @@ class Database extends \Lib\Core\Singleton
      * @var bool
      */
     private $connectionLoaded = false;
+
+    /**
+     * @param string $tableName
+     * @return string
+     */
+    public function getFullTableName($tableName)
+    {
+        $this->ensureConnection();
+        return $this->prefix . $tableName;
+    }
 
     /**
      * Executes the given query and returns the mysql_result of it. Bind the given params to the query's
@@ -151,7 +166,9 @@ class Database extends \Lib\Core\Singleton
                 throw new \Exception("MySql connect error: " . mysqli_connect_error());
             }
 
+            $this->prefix = Util::arrayGet($dbSettings, 'prefix', '');
             $this->connectionLoaded = true;
         }
+
     }
 } 

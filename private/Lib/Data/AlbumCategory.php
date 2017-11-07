@@ -1,6 +1,7 @@
 <?php
 
 namespace Lib\Data;
+use Lib\Core\Database;
 use Lib\Core\Util;
 
 /**
@@ -9,6 +10,8 @@ use Lib\Core\Util;
  */
 final class AlbumCategory
 {
+    const TABLENAME = 'albumCategory';
+
     /**
      * @var int
      */
@@ -63,12 +66,20 @@ final class AlbumCategory
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @return AlbumCategory[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_albumCategory`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $albumCategories = [];
@@ -86,7 +97,7 @@ final class AlbumCategory
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_albumCategory` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [$id],
             'i'
         );
@@ -105,7 +116,7 @@ final class AlbumCategory
     public static function getByName($name)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_albumCategory` WHERE `name` = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE `name` = ?",
             [$name],
             's'
         );
@@ -141,9 +152,9 @@ final class AlbumCategory
 
         $types = 's';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_albumCategory` (`name`) VALUES ( ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`name`) VALUES ( ? )";
         } else {
-            $sql = "UPDATE `flg_albumCategory` SET `name` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `name` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
         }
@@ -157,7 +168,7 @@ final class AlbumCategory
      */
     public function delete()
     {
-        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `flg_albumCategory` WHERE id = ?", [$this->getId()], 'i');
+        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `" . self::getTableName() . "` WHERE id = ?", [$this->getId()], 'i');
         return $result->affected_rows > 0;
     }
 }

@@ -11,6 +11,8 @@ use Lib\Core\Util;
  */
 final class User
 {
+    const TABLENAME = 'user';
+
     /**
      * @var int
      */
@@ -139,13 +141,21 @@ final class User
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @param int $id
      * @return User
      */
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_user` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [$id],
             'i'
         );
@@ -178,7 +188,7 @@ final class User
     public function delete()
     {
         \Lib\Core\Database::getInstance()->fetchOne(
-            "DELETE FROM `flg_user` WHERE id = ?",
+            "DELETE FROM `" . self::getTableName() . "` WHERE id = ?",
             [$this->getId()],
             'i'
         );
@@ -191,7 +201,7 @@ final class User
     public static function getByUsername($username)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_user` WHERE username = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE username = ?",
             [$username],
             's'
         );
@@ -236,11 +246,11 @@ final class User
 
         $types = 'ssss';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_user` (`username`, `password`, `nickname`, `email`) VALUES ( ?, ?, ?, ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`username`, `password`, `nickname`, `email`) VALUES ( ?, ?, ?, ? )";
             $result = $db->query($sql, $params, $types);
             $this->setId($result->insert_id);
         } else {
-            $sql = "UPDATE `flg_user` SET `username` = ?, `password` = ?, `nickname` = ?, `email` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `username` = ?, `password` = ?, `nickname` = ?, `email` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
             $db->query($sql, $params, $types);
@@ -252,7 +262,7 @@ final class User
      */
     public static function getTotalAmount()
     {
-        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `flg_user`");
+        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `" . self::getTableName() . "`");
         return Util::arrayGet($result, 'cnt', 0);
     }
 
@@ -262,7 +272,7 @@ final class User
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_user`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $users = [];
@@ -286,7 +296,7 @@ final class User
      */
     public function clearRoles()
     {
-        \Lib\Core\Database::getInstance()->query("DELETE FROM `flg_userRole` WHERE userId = ?",
+        \Lib\Core\Database::getInstance()->query("DELETE FROM `" . self::getTableName() . "` WHERE userId = ?",
             [$this->getId()],
             'i'
         );
@@ -297,7 +307,7 @@ final class User
      */
     public function addRole(Role $role)
     {
-        \Lib\Core\Database::getInstance()->query("INSERT INTO `flg_userRole` (`userId`, `roleId`) VALUES ( ?, ? )",
+        \Lib\Core\Database::getInstance()->query("INSERT INTO `" . self::getTableName() . "` (`userId`, `roleId`) VALUES ( ?, ? )",
             [$this->getId(), $role->getId()],
             'ii'
         );

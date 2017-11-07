@@ -1,6 +1,7 @@
 <?php
 
 namespace Lib\Data;
+use Lib\Core\Database;
 use Lib\Core\Util;
 
 /**
@@ -9,6 +10,8 @@ use Lib\Core\Util;
  */
 final class AgendaCategory
 {
+    const TABLENAME = 'agendaCategory';
+
     /**
      * @var int
      */
@@ -85,12 +88,20 @@ final class AgendaCategory
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @return AgendaCategory[]
      */
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_agendaCategory`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $agendaCategories = [];
@@ -108,7 +119,7 @@ final class AgendaCategory
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_agendaCategory` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [$id],
             'i'
         );
@@ -127,7 +138,7 @@ final class AgendaCategory
     public static function getByName($name)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_agendaCategory` WHERE `name` = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE `name` = ?",
             [$name],
             's'
         );
@@ -165,9 +176,9 @@ final class AgendaCategory
 
         $types = 'ss';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_agendaCategory` (`name`, `color`) VALUES ( ?, ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`name`, `color`) VALUES ( ?, ? )";
         } else {
-            $sql = "UPDATE `flg_agendaCategory` SET `name` = ?, `color` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `name` = ?, `color` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
         }
@@ -181,7 +192,7 @@ final class AgendaCategory
      */
     public function delete()
     {
-        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `flg_agendaCategory` WHERE id = ?", [$this->getId()], 'i');
+        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `" . self::getTableName() . "` WHERE id = ?", [$this->getId()], 'i');
         return $result->affected_rows > 0;
     }
 }

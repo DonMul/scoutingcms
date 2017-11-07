@@ -11,6 +11,8 @@ use Lib\Core\Util;
  */
 final class Page
 {
+    const TABLENAME = 'page';
+
     /**
      * @var int
      */
@@ -155,13 +157,21 @@ final class Page
     }
 
     /**
+     * @return string
+     */
+    private static function getTableName()
+    {
+        return Database::getInstance()->getFullTableName(self::TABLENAME);
+    }
+
+    /**
      * @param string $slug
      * @return Page
      */
     public static function getBySlug($slug)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_page` WHERE slug = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE slug = ?",
             [$slug],
             's'
         );
@@ -180,7 +190,7 @@ final class Page
     public static function getById($id)
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_page` WHERE id = ?",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
             [$id],
             'i'
         );
@@ -198,7 +208,7 @@ final class Page
     public static function getHomepage()
     {
         $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `flg_page` WHERE isHomepage = ? LIMIT 1",
+            "SELECT * FROM `" . self::getTableName() . "` WHERE isHomepage = ? LIMIT 1",
             [1],
             'i'
         );
@@ -216,7 +226,7 @@ final class Page
     public static function getAll()
     {
         $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `flg_page`"
+            "SELECT * FROM `" . self::getTableName() . "`"
         );
 
         $pages = [];
@@ -248,7 +258,7 @@ final class Page
      */
     public static function getTotalAmount()
     {
-        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `flg_page`");
+        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `" . self::getTableName() . "`");
         return Util::arrayGet($result, 'cnt', 0);
     }
 
@@ -257,7 +267,7 @@ final class Page
      */
     public function delete()
     {
-        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `flg_page` WHERE id = ?", [$this->getId()], 'i');
+        $result =  \Lib\Core\Database::getInstance()->query("DELETE FROM `" . self::getTableName() . "` WHERE id = ?", [$this->getId()], 'i');
         return $result->affected_rows > 0;
     }
 
@@ -277,9 +287,9 @@ final class Page
 
         $types = 'ssssi';
         if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `flg_page` (`title`, `slug`, `content`, `header`, `isHomepage`) VALUES ( ?, ?, ?, ?, ? )";
+            $sql = "INSERT INTO `" . self::getTableName() . "` (`title`, `slug`, `content`, `header`, `isHomepage`) VALUES ( ?, ?, ?, ?, ? )";
         } else {
-            $sql = "UPDATE `flg_page` SET `title` = ?, `slug` = ?, `content` = ?, `header` = ?, `isHomepage` = ? WHERE `id` = ?";
+            $sql = "UPDATE `" . self::getTableName() . "` SET `title` = ?, `slug` = ?, `content` = ?, `header` = ?, `isHomepage` = ? WHERE `id` = ?";
             $params[] = $this->getId();
             $types .= 'i';
         }
