@@ -46,6 +46,10 @@
   controller: \Controller\Download
   hash: download
 
+/registreer:
+  controller: \Controller\User\Register
+  hash: register
+
 ###
 # ADMIN LINKS
 ###
@@ -138,6 +142,10 @@
   controller: \Controller\Admin\Menu
   hash: adminMenu
 
+/admin/logout:
+  controller: \Controller\User\Logout
+  hash: adminLogout
+
 ###
 # SERVICES
 ###
@@ -145,6 +153,10 @@
 /services/user/login:
   controller: \Controller\Services\User\Login
   hash: serviceLogin
+
+/services/user/register:
+  controller: \Controller\Services\User\Register
+  hash: serviceRegister
 
 /services/admin/speltak/save:
   controller: \Controller\Services\Admin\Speltak\Save

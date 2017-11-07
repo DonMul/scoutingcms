@@ -1,0 +1,61 @@
+{% extends 'global.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block template %}
+    {{ macros.nav(menu) }}
+    <div class="hero__image hero__image--main">
+        <div class="hero__text">
+            <h1>Registreren</h1>
+            <h2>Franciscus Lodewijk Groep</h2>
+        </div>
+    </div>
+
+    <form method="post" action="{{ tl('serviceRegister') }}">
+        <section class="section__padded">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label for="username">{{ t('user.username') }}</label>
+                        <input type="text" id="username" name="username" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label for="nick">{{ t('user.nickname') }}</label>
+                        <input type="text" id="nick" name="nick" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label for="password">{{ t('user.password') }}</label>
+                        <input type="password" id="password" name="password" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label for="passwordRepeat">{{ t('user.password.repeat') }}</label>
+                        <input type="password" id="passwordRepeat" name="passwordRepeat" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label for="email">{{ t('user.email') }}</label>
+                        <input type="email" id="email" name="email" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section__padded">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-success">
+                            {{ t('common.register') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+{% endblock %}

@@ -97,6 +97,7 @@ group.edit: Speltak bijwerken
 
 user.username: Gebruikersnaam
 user.password: Wachtwoord
+user.password.repeat: Herhaal wachtwoord
 user.nickname: Echte naam
 user.email: E-mailadres
 user.admin: Gebruikers
@@ -143,6 +144,10 @@ error.picture.notFound: Afbeelding bestaat niet
 error.albumCategory.notFound: Album categorie bestaat niet
 error.calenderCategory.notFound: Agenda categorie bestaat niet
 error.noPermssion: Geen toegang
+error.user.usernameAlreadyExists: De gekozen gebruikersnaam bestaat al!
+error.user.passwordsDoNotMatch: De opgegeven wachtwoorden komen niet overeen
+
+success.user.registration: Registratie voltooid!
 
 admin.nav.users: Gebruikers
 admin.nav.roles: Rollen
@@ -153,6 +158,7 @@ admin.nav.albums: Foto's
 admin.nav.downloads: Downloads
 admin.nav.pages: Pagina's
 admin.nav.menu: Menu
+admin.nav.logout: Uitloggen
 
 menu.admin: Menu beheren
 menu.admin.name: Naam
@@ -160,6 +166,16 @@ menu.admin.type: Type
 menu.admin.value: Waarde
 
 common.login: Login
+common.register: Registreer
 common.save: Opslaan
 common.yes: Ja
 common.no: Nee
+
+stats.agenda: Agendapunten
+stats.album: Albums
+stats.download: Downloads
+stats.news: Nieuwsartikelen
+stats.page: Pagina's
+stats.picture: Afbeeldingen
+stats.speltak: Speltakken
+stats.user: Gebruikers
