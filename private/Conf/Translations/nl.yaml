@@ -128,6 +128,7 @@ role.permission.editRoles: Rollen wijzigen
 role.permission.editCalender: Agenda aanpassen
 role.permission.editPages: Pagina's wijzigen
 role.permission.editNews: Nieuwsartikelen wijzigen
+role.permission.editMenu: Menu's aanpassen
 
 error.user.invalidUsernameOrPassword: Gebruikersnaam of wachtwoord is incorrect
 error.item.notFound: Agendapunt bestaat niet
@@ -151,6 +152,9 @@ admin.nav.calender: Agenda
 admin.nav.albums: Foto's
 admin.nav.downloads: Downloads
 admin.nav.pages: Pagina's
+admin.nav.menu: Menu
+
+menu.admin: Menu beheren
 
 common.login: Login
 common.save: Opslaan

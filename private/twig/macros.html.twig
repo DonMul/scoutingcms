@@ -1,4 +1,4 @@
-{% macro nav() %}
+{% macro nav(menu) %}
     <nav class="navbar transparent navbar-fixed-top">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -10,116 +10,20 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/" class="navigation__item-link">Home</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Informatie <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/agenda">Agenda</a>
-                        </li>
-                        <li>
-                            <a href="/contact">Contact</a>
-                        </li>
-                        <li>
-                            <a href="/de-vereniging">De vereniging</a>
-                        </li>
-                        <li>
-                            <a href="/lidmaatschap">Lidmaatschap</a>
-                        </li>
-                        <li>
-                            <a href="/de-beheerstichting">De beheerstichting</a>
-                        </li>
-                        <li>
-                            <a href="/handige-websites">Handige Websites</a>
-                        </li>
-                        <li>
-                            <a href="/news">Nieuwsarchief</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Speltakken <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/speltak/bevers">Bevers</a>
-                        </li>
-                        <li>
-                            <a href="/speltak/welpen">Welpen</a>
-                        </li>
-                        <li>
-                            <a href="/speltak/kabouters">Kabouters</a>
-                        </li>
-                        <li>
-                            <a href="/speltak/verkenners">Verkenners</a>
-                        </li>
-                        <li>
-                            <a href="/speltak/padvindsters">Padvindsters</a>
-                        </li>
-                        <li>
-                            <a href="/speltak/explorers">Explorers</a>
-                        </li>
-                        <li>
-                            <a href="/speltak/stam">Stam</a>
-                        </li>
-                        <li>
-                            <a href="/speltak/boomstam">Boomstam</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Foto's <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/fotos/groepsactiviteiten">Groepsactiviteiten</a>
-                        </li>
-                        <li>
-                            <a href="/fotos/bevers">Bevers</a>
-                        </li>
-                        <li>
-                            <a href="/fotos/welpen">Welpen</a>
-                        </li>
-                        <li>
-                            <a href="/fotos/kabouters">Kabouters</a>
-                        </li>
-                        <li>
-                            <a href="/fotos/verkenners">Verkenners</a>
-                        </li>
-                        <li>
-                            <a href="/fotos/padvindsters">Padvindsters</a>
-                        </li>
-                        <li>
-                            <a href="/fotos/explorers">Explorers</a>
-                        </li>
-                        <li>
-                            <a href="/fotos/stam">Stam</a>
-                        </li>
-                        <li>
-                            <a href="/fotos/boomstam">Boomstam</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Downloads <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/download/newsletter">Groene Bladen</a>
-                        </li>
-                        <li>
-                            <a href="/download/report">Jaarverslagen</a>
-                        </li>
-                        <li>
-                            <a href="/downloads/Inschrijfformulier FLG.pdf" target="_blank">Inschrijfformulier</a>
-                        </li>
-                    </ul>
-                </li>
+                {% for menuItem in menu %}
+                    <li>
+                        <a href="{{ menuItem.url }}" {% if menuItem.subItems|length > 0 %}class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"{% endif %}>{{ menuItem.name }}</a>
+                        {% if menuItem.subItems|length > 0 %}
+                        <ul class="dropdown-menu">
+                            {% for subItem in menuItem.subItems %}
+                                <li>
+                                    <a href="{{ subItem.url }}">{{ subItem.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </li>
+                {% endfor %}
             </ul>
         </div>
     </nav>
@@ -204,6 +108,13 @@
                     <li class="adminmenu__list-item {{ active == 'page' ? 'adminmenu__list-item--active' }}">
                         <a href="{{ tl('adminPages') }}" class="adminmenu__list-item-link">
                             {{ t('admin.nav.pages') }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if 'menu.edit' in permissions %}
+                    <li class="adminmenu__list-item {{ active == 'menu' ? 'adminmenu__list-item--active' }}">
+                        <a href="{{ tl('adminMenu') }}" class="adminmenu__list-item-link">
+                            {{ t('admin.nav.menu') }}
                         </a>
                     </li>
                 {% endif %}

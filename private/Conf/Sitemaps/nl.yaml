@@ -133,6 +133,11 @@
 /admin/rol/{id}:
   controller: \Controller\Admin\Role\Role
   hash: adminRole
+
+/admin/menu:
+  controller: \Controller\Admin\Menu
+  hash: adminMenu
+
 ###
 # SERVICES
 ###
@@ -224,3 +229,7 @@
 /services/admin/picture/delete:
   controller: \Controller\Services\Admin\Picture\Delete
   hash: servicePictureDelete
+
+/services/admin/menu/save:
+  controller: \Controller\Services\Admin\Menu\Save
+  hash: serviceMenuSave

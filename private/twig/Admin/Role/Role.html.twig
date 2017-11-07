@@ -61,6 +61,12 @@
                     {{ macros.permissionCheckbox('news.edit', context.permissions) }}
                 </td>
             </tr>
+            <tr>
+                <td>{{ t('role.permission.editMenu') }}</td>
+                <td>
+                    {{ macros.permissionCheckbox('menu.edit', context.permissions) }}
+                </td>
+            </tr>
             </tbody>
         </table>
         <h4>{{ t('role.permission.albums') }}</h4>

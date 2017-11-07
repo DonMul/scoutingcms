@@ -2,6 +2,7 @@
 
 namespace Lib\Core;
 
+use Lib\Data\Menu;
 use Lib\Data\Permission;
 
 /**
@@ -130,6 +131,7 @@ abstract class BaseController
             'request' => $_GET,
             'loggedIn' => \Lib\Core\Session::getInstance()->isLoggedIn(),
             'language' => \Lib\Core\Translation::getInstance()->getLanguage(),
+            'menu' => Menu::getNestedStructure()
         ];
 
         if ($this->getTitle() !== null) {

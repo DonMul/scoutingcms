@@ -128,6 +128,14 @@ class Database extends \Lib\Core\Singleton
     }
 
     /**
+     * @return int
+     */
+    public function lastInsertId()
+    {
+        return mysqli_insert_id($this->connection);
+    }
+
+    /**
      * Makes sure the connection is made with the database.
      *
      * @throws \Exception

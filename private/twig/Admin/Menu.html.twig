@@ -1,0 +1,54 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+{% import _self as menuMacros %}
+{% block adminTemplate %}
+    <h2>{{ t('menu.admin') }}</h2>
+    <form method="post" action="{{ tl('serviceMenuSave') }}">
+        <div class="menulist" id="menulist">
+            {% for item in context.menu %}
+                {{ menuMacros.menuItem(item) }}
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-success">
+            {{ t('common.save') }}
+        </button>
+    </form>
+    <div class="hidden" id="menuTemplate">
+        {{ _self.menuItem({}) }}
+    </div>
+{% endblock %}
+
+{% macro menuItem(item) %}
+    {% import _self as menuMacros %}
+
+    <div class="menulist__entry" data-id="{{ item.id }}">
+        <input type="hidden" name="menu[parent][]" class="js-parent-id" value="{{ item.parentId }}"/>
+        <input type="hidden" name="menu[position][]" class="js-position" value="{{ item.position }}"/>
+        <input type="hidden" name="menu[id][]" class="js-id" value="{{ item.id }}"/>
+        <div class="menulist__entry-title">
+            <input type="text" name="menu[name][]" value="{{ item.name }}"/>
+        </div>
+        <div class="menulist__entry-data">
+            <select name="menu[type][]">
+                <option value="url" {% if (item.type == 'url') %}selected="selected"{% endif %}>URL</option>
+                <option value="page" {% if (item.type == 'page') %}selected="selected"{% endif %}>Pagina</option>
+                <option value="group" {% if (item.type == 'group') %}selected="selected"{% endif %}>Speltak</option>
+                <option value="album" {% if (item.type == 'album') %}selected="selected"{% endif %}>Albums</option>
+                <option value="download" {% if (item.type == 'download') %}selected="selected"{% endif %}>Download</option>
+            </select>
+            <input type="text" name="menu[value][]" value="{{ item.value }}"/>
+        </div>
+        <div class="menulist__entry-controls">
+            <i class="fa fa-plus js-add-menu-item button__add"></i>
+            <i class="fa fa-times js-remove-menu-item button__remove"></i>
+            <i class="fa fa-chevron-up js-move-menu-item-up button__info"></i>
+            <i class="fa fa-chevron-down js-move-menu-item-down button__info"></i>
+        </div>
+        <div class="menulist__entry-subItems">
+            {% for subItem in item.subItems %}
+                {{ menuMacros.menuItem(subItem) }}
+            {% endfor %}
+        </div>
+    </div>
+{% endmacro %}

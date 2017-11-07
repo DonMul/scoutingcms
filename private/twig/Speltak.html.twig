@@ -3,7 +3,7 @@
 {% import 'macros.html.twig' as macros %}
 
 {% block template %}
-    {{ macros.nav() }}
+    {{ macros.nav(menu) }}
     <div class="hero__image hero__image--main" style="background-image: url('/upload/{{ context.speltak.picture }}')">
         <div class="hero__text">
             <h1>{{ context.speltak.name|capitalize }}</h1>

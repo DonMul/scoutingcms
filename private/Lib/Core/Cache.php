@@ -2,70 +2,70 @@
 
 namespace Lib\Core;
 
-/**
- * Class Cache
- * @package Lib\Core
- */
-class Cache extends \Lib\Core\Singleton
+
+class Cache extends Singleton
 {
     /**
      * @var array
      */
-    private $tmpCache = [];
-
-    /**
-     * @var \Memcached
-     */
-    private $memcached = null;
-
-    /**
-     *
-     */
-    protected function __construct()
-    {
-        $this->memcached = new \Memcached(\Lib\Core\Settings::getInstance()->get(['memcached', $_SERVER['SERVER_ADDR']]));
-        $this->memcached->addServer('node0.posd.io', 11211);
-    }
+    private $requestCache = [];
 
     /**
      * @param string $key
-     * @param mixed  $value
-     * @param int    $expiration
-     */
-    public function set($key, $value, $expiration = null)
-    {
-        $this->memcached->set($key, $value, 0, $expiration);
-        $this->tmpCache[$key] = $value;
-    }
-
-    /**
-     * @param string $key
+     * @param mixed $default
      * @return mixed
      */
-    public function get($key)
+    public function get($key, $default = null)
     {
-        if (isset($this->tmpCache[$key])) {
-            return $this->tmpCache[$key];
+        if (isset($this->requestCache[$key])) {
+            return $this->requestCache[$key];
         }
 
-        return $this->memcached->get($key);
+        $tmpFile = $this->getTmpFileForKey($key);
+
+        if (file_exists($tmpFile)) {
+            return unserialize(file_get_contents($tmpFile));
+        }
+
+        return $default;
     }
 
     /**
      * @param string $key
-     * @return mixed
+     * @param mixed $value
      */
-    public function has($key)
+    public function set($key, $value)
     {
-        if (isset($this->tmpCache[$key])) {
-            return $this->tmpCache[$key];
+        $this->requestCache[$key] = $value;
+        $tmpFile = $this->getTmpFileForKey($key);
+        if (file_exists($tmpFile)) {
+            unlink($tmpFile);
         }
 
-        $val = $this->get($key);
-        if ($val) {
-            $this->tmpCache[$key] = $val;
+        file_put_contents($tmpFile, serialize($value));
+    }
+
+    /**
+     * @param string $key
+     */
+    public function unset($key)
+    {
+        if (isset($this->requestCache[$key])) {
+            unset($this->requestCache[$key]);
         }
 
-        return $val;
+        $tmpFile = $this->getTmpFileForKey($key);
+        if (file_exists($tmpFile)) {
+            unlink($tmpFile);
+        }
+    }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    private function getTmpFileForKey($key)
+    {
+        return sys_get_temp_dir() . DIRECTORY_SEPARATOR . md5($key) . '.cache';
     }
 }
