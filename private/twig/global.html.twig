@@ -32,88 +32,31 @@
                 <div class="col-md-4 text-center">
                     <h3>Algemeen</h3>
                     <ul class="sitemap__list">
-                        <li class="sitemap__item">
-                            <a href="/agenda" class="sitemap__link">Agenda</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/contact" class="sitemap__link">Contact</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/de-vereniging" class="sitemap__link">De vereniging</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/lidmaatschap" class="sitemap__link">Lidmaatschap</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/de-beheerstichting" class="sitemap__link">De beheerstichting</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/handige-websites" class="sitemap__link">Handige websites</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="#" class="sitemap__link">Nieuwsarchief</a>
-                        </li>
+                        {% for page in pages %}
+                            <li class="sitemap__item">
+                                <a href="/{{ page.slug }}" class="sitemap__link">{{ page.title|capitalize }}</a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="col-md-4 text-center">
                     <h3>Speltakken</h3>
                     <ul class="sitemap__list">
-                        <li class="sitemap__item">
-                            <a href="/speltak/bevers" class="sitemap__link">Bevers</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/speltak/welpen" class="sitemap__link">Welpen</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/speltak/kabouters" class="sitemap__link">kabouters</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/speltak/verkenners" class="sitemap__link">Verkenners</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/speltak/padvindsters" class="sitemap__link">Padvindsters</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/speltak/explorers" class="sitemap__link">Explorers</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/speltak/stam" class="sitemap__link">Stam</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/speltak/boomstam" class="sitemap__link">Boomstam</a>
-                        </li>
+                        {% for group in groups %}
+                            <li class="sitemap__item">
+                                <a href="{{ tl('group', {'speltak': group.name}) }}" class="sitemap__link">{{ group.name|capitalize }}</a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="col-md-4 text-center">
                     <h3>Foto's</h3>
                     <ul class="sitemap__list">
-                        <li class="sitemap__item">
-                            <a href="/fotos/groepsactiviteiten" class="sitemap__link">Groepsactiviteiten</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/fotos/bevers" class="sitemap__link">Bevers</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/fotos/welpen" class="sitemap__link">Welpen</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/fotos/kabouters" class="sitemap__link">Kabouters</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/fotos/verkenners" class="sitemap__link">Verkenners</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/fotos/padvindsters" class="sitemap__link">Padvindsters</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/fotos/explorers" class="sitemap__link">Explorers</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/fotos/stam" class="sitemap__link">Stam</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a href="/fotos/boomstam" class="sitemap__link">Boomstam</a>
-                        </li>
+                        {% for category in albumCategories %}
+                            <li class="sitemap__item">
+                                <a href="{{ tl('albums', {'category': category.name}) }}" class="sitemap__link">{{ category.name|capitalize }}</a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

@@ -2,8 +2,11 @@
 
 namespace Lib\Core;
 
+use Lib\Data\AlbumCategory;
 use Lib\Data\Menu;
+use Lib\Data\Page;
 use Lib\Data\Permission;
+use Lib\Data\Speltak;
 
 /**
  * Class BaseController
@@ -131,7 +134,10 @@ abstract class BaseController
             'request' => $_GET,
             'loggedIn' => \Lib\Core\Session::getInstance()->isLoggedIn(),
             'language' => \Lib\Core\Translation::getInstance()->getLanguage(),
-            'menu' => Menu::getNestedStructure()
+            'menu' => Menu::getNestedStructure(),
+            'pages' => Page::getAll(),
+            'groups' => Speltak::getAll(),
+            'albumCategories' => AlbumCategory::getAll(),
         ];
 
         if ($this->getTitle() !== null) {

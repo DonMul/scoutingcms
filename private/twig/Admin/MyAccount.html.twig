@@ -1,0 +1,60 @@
+{% extends 'Admin.html.twig' %}
+
+{% import 'macros.html.twig' as macros %}
+
+{% block adminTemplate %}
+    <h2>{{ t('user.edit') }}</h2>
+    <form method="post" action="{{ tl('serviceAccountSave') }}" enctype="multipart/form-data">
+        <input type="hidden" name="userId" value="{{ context.user.id }}"/>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="username">{{ t('user.username') }}</label>
+                <input type="text" disabled name="username" value="{{ context.user.username }}" class="form-control"
+                       id="username"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="password">{{ t('user.password') }}</label>
+                <input type="password" name="password" class="form-control" id="password"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="passwordRepeat">{{ t('user.password.repeat') }}</label>
+                <input type="password" name="passwordRepeat" class="form-control" id="passwordRepeat"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="nickname">{{ t('user.nickname') }}</label>
+                <input type="text" name="nickname" value="{{ context.user.nickname }}" class="form-control"
+                       id="nickname"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="email">{{ t('user.email') }}</label>
+                <input type="email" name="email" value="{{ context.user.email }}" class="form-control" id="nickname"/>
+            </div>
+        </div>
+        <h3>{{ t('user.role') }}</h3>
+        <div class="row">
+            <div class="col-xs-12">
+                <ul>
+                    {% for role in context.roles %}
+                        <li>{{ role.name }}</li>
+                    {% endfor %}
+                    {% if context.roles|length <= 0 %}
+                        <li>{{ t('user.role.noRoles') }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div class="admin__controlls-row">
+            <button type="submit" class="btn btn-success">
+                {{ t('common.save') }}
+            </button>
+        </div>
+    </form>
+{% endblock %}

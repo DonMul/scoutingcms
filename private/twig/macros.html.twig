@@ -36,6 +36,11 @@
             </h2>
             <i class="fa fa-bars adminmenu__toggle" data-toggle="collapse" data-target="#menu-content"></i>
             <ul class="adminmenu__list collapse out" id="menu-content">
+                <li class="adminmenu__list-item">
+                    <a href="{{ tl('adminMyAccount') }}" class="adminmenu__list-item-link">
+                        {{ t('admin.nav.myAccount') }}
+                    </a>
+                </li>
                 {% if 'user.edit' in permissions %}
                     <li class="adminmenu__list-item {{ active == 'user' ? 'adminmenu__list-item--active' }}">
                         <a href="{{ tl('adminUsers') }}" class="adminmenu__list-item-link">

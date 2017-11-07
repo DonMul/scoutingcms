@@ -105,6 +105,7 @@ user.noItems: Er zijn nog geen gebruikers aangemaakt!
 user.edit: Gebruiker aanpassen
 user.new: Nieuwe gebruiker aanmaken
 user.role: Rollen
+user.role.noRoles: Je hebt nog geen rollen
 
 role.admin: Rollen
 role.new: Nieuwe Rol
@@ -159,6 +160,7 @@ admin.nav.downloads: Downloads
 admin.nav.pages: Pagina's
 admin.nav.menu: Menu
 admin.nav.logout: Uitloggen
+admin.nav.myAccount: Mijn gegevens
 
 menu.admin: Menu beheren
 menu.admin.name: Naam

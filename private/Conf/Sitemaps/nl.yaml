@@ -146,6 +146,10 @@
   controller: \Controller\User\Logout
   hash: adminLogout
 
+/admin/mijn-gegevens:
+  controller: \Controller\Admin\MyAccount
+  hash: adminMyAccount
+
 ###
 # SERVICES
 ###
@@ -245,3 +249,7 @@
 /services/admin/menu/save:
   controller: \Controller\Services\Admin\Menu\Save
   hash: serviceMenuSave
+
+/service/admin/account/save:
+  controller: \Controller\Services\Admin\Account\Save
+  hash: serviceAccountSave
