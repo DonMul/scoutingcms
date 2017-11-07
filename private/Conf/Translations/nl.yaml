@@ -155,6 +155,9 @@ admin.nav.pages: Pagina's
 admin.nav.menu: Menu
 
 menu.admin: Menu beheren
+menu.admin.name: Naam
+menu.admin.type: Type
+menu.admin.value: Waarde
 
 common.login: Login
 common.save: Opslaan

@@ -12,12 +12,10 @@
                 <input type="text" name="name" value="{{ context.category.name }}" class="form-control" id="name"/>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <button type="submit" class="btn btn-success">
-                    {{ t('common.save') }}
-                </button>
-            </div>
+        <div class="admin__controlls-row">
+            <button type="submit" class="btn btn-success">
+                {{ t('common.save') }}
+            </button>
         </div>
     </form>
 {% endblock %}

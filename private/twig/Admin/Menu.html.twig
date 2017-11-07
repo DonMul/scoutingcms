@@ -10,9 +10,11 @@
                 {{ menuMacros.menuItem(item) }}
             {% endfor %}
         </div>
-        <button type="submit" class="btn btn-success">
-            {{ t('common.save') }}
-        </button>
+        <div class="admin__controlls-row">
+            <button type="submit" class="btn btn-success">
+                {{ t('common.save') }}
+            </button>
+        </div>
     </form>
     <div class="hidden" id="menuTemplate">
         {{ _self.menuItem({}) }}
@@ -27,17 +29,20 @@
         <input type="hidden" name="menu[position][]" class="js-position" value="{{ item.position }}"/>
         <input type="hidden" name="menu[id][]" class="js-id" value="{{ item.id }}"/>
         <div class="menulist__entry-title">
-            <input type="text" name="menu[name][]" value="{{ item.name }}"/>
+            <label class="menulist__entry-label">{{ t('menu.admin.name') }}</label>
+            <input type="text" name="menu[name][]" value="{{ item.name }}" class="menulist__entry-input"/>
         </div>
         <div class="menulist__entry-data">
-            <select name="menu[type][]">
+            <label class="menulist__entry-label">{{ t('menu.admin.type') }}</label>
+            <select name="menu[type][]" class="menulist__entry-input">
                 <option value="url" {% if (item.type == 'url') %}selected="selected"{% endif %}>URL</option>
                 <option value="page" {% if (item.type == 'page') %}selected="selected"{% endif %}>Pagina</option>
                 <option value="group" {% if (item.type == 'group') %}selected="selected"{% endif %}>Speltak</option>
                 <option value="album" {% if (item.type == 'album') %}selected="selected"{% endif %}>Albums</option>
                 <option value="download" {% if (item.type == 'download') %}selected="selected"{% endif %}>Download</option>
             </select>
-            <input type="text" name="menu[value][]" value="{{ item.value }}"/>
+            <label class="menulist__entry-label">{{ t('menu.admin.value') }}</label>
+            <input type="text" name="menu[value][]" value="{{ item.value }}" class="menulist__entry-input"/>
         </div>
         <div class="menulist__entry-controls">
             <i class="fa fa-plus js-add-menu-item button__add"></i>

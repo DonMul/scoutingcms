@@ -27,12 +27,10 @@
             {% endif %}
         {% endfor %}
         {% if canEdit == true %}
-            <div class="row">
-                <div class="col-xs-12">
-                    <button type="submit" class="btn btn-success">
-                        {{ t('common.save') }}
-                    </button>
-                </div>
+            <div class="admin__controlls-row">
+                <button type="submit" class="btn btn-success">
+                    {{ t('common.save') }}
+                </button>
             </div>
         {% endif %}
     </form>
