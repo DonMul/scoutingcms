@@ -6,11 +6,10 @@ Scouting CMS is a CMS which is ment for Scouting Groups in order to manage their
 * Customizable pages
 * Photo albums
 * Information / page per subgroup
-* A custom admin panel
-  * Manage Credentials
-  * Manage Users
-  * Manage Pages
-  * Customize Menu
+* News items
+* Agenda
+* A admin panel to manage it all
+* Custom downloads
 
 ## How to install
 I still want to make a simple install script which automates these steps, but for now:
@@ -36,3 +35,17 @@ database:
 
 ## How to use
 Go to the `/admin` URL in order to start editing your site.
+
+## Changelog
+### 0.1
+* Initial setup of the entire framework
+* Add admin panel
+* Add photo albums
+* Add customizable pages
+* Add roles and permissions
+* Add user management
+* Add editable menu
+* Add base setup script
+* Add news items
+* Add agenda
+* Add downloads
