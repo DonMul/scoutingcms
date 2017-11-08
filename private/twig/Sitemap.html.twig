@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    {% for page in context.pages %}
+        <url>
+            <loc>{{ context.host }}/{{ page.slug }}</loc>
+        </url>
+    {% endfor %}
+    {% for group in context.groups %}
+        <url>
+            <loc>{{ context.host }}{{ tl('speltak', {'name': group.name}) }}</loc>
+            <image:image>
+                <image:loc>{{ context.host }}/upload/{{ group.picture }}</image:loc>
+            </image:image>
+        </url>
+    {% endfor %}
+    {% for albumCategory in context.albumCategories %}
+        <url>
+            <loc>{{ context.host }}{{ tl('albums', {'category': albumCategory.name|lower}) }}</loc>
+        </url>
+    {% endfor %}
+    {% for album in context.albums %}
+        <url>
+            {% set category = '' %}
+            {% for albumCategory in context.albumCategories %}
+                {% if albumCategory.id == album.category %}
+                    {% set category = albumCategory.name %}
+                {% endif %}
+            {% endfor %}
+            <loc>{{ context.host }}{{ tl('album', {'category': category, 'album': album.slug}) }}</loc>
+            {% for picture in context.pictures %}
+                {% if picture.albumId == album.id %}
+                    <image:image>
+                        <image:loc>{{ context.host }}/upload/{{ category }}/{{ md5(album.id) }}/{{ picture.location }}</image:loc>
+                    </image:image>
+                {% endif %}
+            {% endfor %}
+        </url>
+    {% endfor %}
+</urlset>

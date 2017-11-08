@@ -50,6 +50,10 @@
   controller: \Controller\User\Register
   hash: register
 
+/sitemap.xml:
+  controller: \Controller\Sitemap
+  hash: sitemap
+
 ###
 # ADMIN LINKS
 ###

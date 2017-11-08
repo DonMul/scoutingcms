@@ -208,6 +208,12 @@ abstract class BaseController
         $twig->addFunction($translate);
         $twig->addFunction($settings);
         $twig->addFunction($translateUrl);
+        $twig->addFunction(new \Twig_SimpleFunction('md5', [$this, 'md5']));
+    }
+
+    public function md5($a)
+    {
+        return md5($a);
     }
 
     /**
