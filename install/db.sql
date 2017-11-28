@@ -1,4 +1,4 @@
-CREATE TABLE `flg_agenda` (
+CREATE TABLE IF NOT EXISTS `agenda` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `startDate` datetime NOT NULL,
@@ -8,13 +8,13 @@ CREATE TABLE `flg_agenda` (
   `category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_agendaCategory` (
+CREATE TABLE IF NOT EXISTS `agendaCategory` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `color` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_album` (
+CREATE TABLE IF NOT EXISTS `album` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
@@ -24,26 +24,26 @@ CREATE TABLE `flg_album` (
   `private` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_albumCategory` (
+CREATE TABLE IF NOT EXISTS `albumCategory` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_download` (
+CREATE TABLE IF NOT EXISTS `download` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `type` enum('report','newsletter') NOT NULL DEFAULT 'report',
   `filename` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_group` (
+CREATE TABLE IF NOT EXISTS `group` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `picture` varchar(255) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_menu` (
+CREATE TABLE IF NOT EXISTS `menu` (
   `id` int(11) NOT NULL,
   `parentId` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `flg_menu` (
   `position` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_news` (
+CREATE TABLE IF NOT EXISTS `news` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `flg_news` (
   `status` enum('draft','published') NOT NULL DEFAULT 'draft'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_page` (
+CREATE TABLE IF NOT EXISTS `page` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
@@ -69,31 +69,31 @@ CREATE TABLE `flg_page` (
   `isHomepage` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_permission` (
+CREATE TABLE IF NOT EXISTS `permission` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_picture` (
+CREATE TABLE IF NOT EXISTS `picture` (
   `id` int(11) NOT NULL,
   `albumId` int(11) NOT NULL,
   `location` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_role` (
+CREATE TABLE IF NOT EXISTS `role` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `isAdmin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_rolePermission` (
+CREATE TABLE IF NOT EXISTS `rolePermission` (
   `id` int(11) NOT NULL,
   `roleId` int(11) NOT NULL,
   `permissionId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE `flg_user` (
   `email` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flg_userRole` (
+CREATE TABLE IF NOT EXISTS `userRole` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `roleId` int(11) NOT NULL
@@ -109,103 +109,103 @@ CREATE TABLE `flg_userRole` (
 
 -- ADD INDEXES
 
-ALTER TABLE `flg_agenda`
+ALTER TABLE `agenda`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_agendaCategory`
+ALTER TABLE `agendaCategory`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_album`
+ALTER TABLE `album`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_albumCategory`
+ALTER TABLE `albumCategory`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_download`
+ALTER TABLE `download`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_group`
+ALTER TABLE `group`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
-ALTER TABLE `flg_menu`
+ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_news`
+ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_page`
+ALTER TABLE `page`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_permission`
+ALTER TABLE `permission`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_picture`
+ALTER TABLE `picture`
   ADD PRIMARY KEY (`id`),
   ADD KEY `albumId` (`albumId`);
 
-ALTER TABLE `flg_role`
+ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_rolePermission`
+ALTER TABLE `rolePermission`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_settings`
+ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `flg_user`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
-ALTER TABLE `flg_userRole`
+ALTER TABLE `userRole`
   ADD PRIMARY KEY (`id`);
 
 -- ADD AUTO_INCREMENTS
 
-ALTER TABLE `flg_agenda`
+ALTER TABLE `agenda`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_agendaCategory`
+ALTER TABLE `agendaCategory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_album`
+ALTER TABLE `album`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_albumCategory`
+ALTER TABLE `albumCategory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_download`
+ALTER TABLE `download`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_group`
+ALTER TABLE `group`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_menu`
+ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_news`
+ALTER TABLE `news`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_page`
+ALTER TABLE `page`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_permission`
+ALTER TABLE `permission`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_picture`
+ALTER TABLE `picture`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_role`
+ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_rolePermission`
+ALTER TABLE `rolePermission`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_settings`
+ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_user`
+ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `flg_userRole`
+ALTER TABLE `userRole`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

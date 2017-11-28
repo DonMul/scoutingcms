@@ -21,7 +21,10 @@ class Settings extends \Lib\Core\Singleton
      */
     public function __construct()
     {
-        $this->settings = Yaml::parse(file_get_contents(CONFROOT . 'settings.yaml'));
+        $file = CONFROOT . 'settings.yaml';
+        if (file_exists($file)) {
+            $this->settings = Yaml::parse(file_get_contents($file));
+        }
     }
 
     /**
@@ -35,6 +38,14 @@ class Settings extends \Lib\Core\Singleton
     public function get($name, $default = null)
     {
         return \Lib\Core\Util::arrayGet($this->settings, $name, $default);
+    }
+
+    /**
+     * @param array $settings
+     */
+    public function overrideSettings($settings)
+    {
+        $this->settings = array_merge($this->settings, $settings);
     }
 
     /**

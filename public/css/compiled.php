@@ -1,6 +1,7 @@
 <?php
 
 require_once realpath(dirname(__FILE__) . '/../../private/bootstrap.php');
+header("Content-type: text/css; charset: UTF-8");
 
 $settings = \Lib\Core\Settings::getInstance();
 $compiledFile = dirname(__FILE__) . '/compiled.css';

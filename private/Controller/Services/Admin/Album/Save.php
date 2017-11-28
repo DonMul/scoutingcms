@@ -2,6 +2,7 @@
 
 namespace Controller\Services\Admin\Album;
 
+use Lib\Core\Imager;
 use Lib\Core\Translation;
 use Lib\Core\Util;
 use Lib\Data\Album;
@@ -46,17 +47,13 @@ class Save extends \Controller\Services\Admin
 
         if (!empty($_FILES['thumbnail']['name'])) {
             $targetName = $_SERVER["DOCUMENT_ROOT"] . 'public/upload/' . $album->getCategoryObject()->getName() . '/' . $_FILES["thumbnail"]["name"];
-            if (!file_exists($_SERVER['DOCUMENT_ROOT'] . 'public/upload/' . $album->getCategoryObject()->getName())) {
-                mkdir($_SERVER['DOCUMENT_ROOT'] . 'public/upload/' . ($album->getCategoryObject()->getName()));
-            }
 
-            if (!move_uploaded_file($_FILES['thumbnail']['tmp_name'], $targetName)) {
-                throw new \Exception("Could not upload file");
-            }
+            $imager = new Imager();
+            $imager->uploadImage($_FILES['thumbnail']['tmp_name'], $targetName);
+            $imager->resizeImage($targetName, 400, 400);
 
             $album->setThumbnail($_FILES["thumbnail"]["name"]);
         }
-
 
         $album->save();
 

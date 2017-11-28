@@ -83,10 +83,11 @@ class Database extends \Lib\Core\Singleton
 
     /**
      * @param string $queries
+     * @return bool
      */
     public function multiQuery($queries)
     {
-        $this->connection->multi_query($queries);
+        return $this->connection->multi_query($queries);
     }
 
     /**

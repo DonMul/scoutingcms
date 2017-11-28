@@ -1,0 +1,62 @@
+.install-section {
+  border: 1px solid #cecece;
+  padding: 12px;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 24px;
+
+  .install-section__field:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.install-section__header {
+  margin-top: -27px;
+  font-size: 24px;
+  background-color: white;
+  display: inline-flex;
+  z-index: 10;
+  padding: 0 12px;
+}
+
+.install-section__label {
+  width: 33%;
+}
+
+.install-section__input {
+  padding: 6px;
+  border: 1px solid #cece;
+  border-radius: 5px;
+  width: 66%;
+}
+
+.install-section__field {
+  margin-bottom: 12px;
+
+  &--required {
+    .install-section__label {
+      color: rgba(255, 0, 0, 0.8);
+    }
+
+    .install-section__input {
+      border: 1px solid rgba(255, 0, 0, 0.5);
+    }
+  }
+}
+
+.install__button {
+  display:block;
+  margin: 12px auto;
+  width: 25%;
+  min-width: 250px;
+}
+
+.install__error {
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  background-color: rgba(255, 0, 0, 0.2);
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
