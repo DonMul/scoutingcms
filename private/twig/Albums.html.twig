@@ -23,7 +23,7 @@
                     <div class="col-xs-12 col-sm-4">
                         <a href="/fotos/{{ categoryName }}/{{ album.slug }}" class="album">
                             <div class="album__thumb">
-                                <img class="album__thumb-image" src="/upload/{{ categoryName }}/{{ album.thumbnail }}"/>
+                                <img class="album__thumb-image" src="{{ up(album.id, 'albumThumb') }}"/>
                             </div>
                             <div class="album__title">
                                 {{ album.name }}

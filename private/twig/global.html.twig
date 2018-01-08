@@ -44,7 +44,7 @@
                     <ul class="sitemap__list">
                         {% for group in groups %}
                             <li class="sitemap__item">
-                                <a href="{{ tl('group', {'speltak': group.name}) }}" class="sitemap__link">{{ group.name|capitalize }}</a>
+                                <a href="{{ tl('speltak', {'name': group.name}) }}" class="sitemap__link">{{ group.name|capitalize }}</a>
                             </li>
                         {% endfor %}
                     </ul>

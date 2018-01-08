@@ -16,7 +16,7 @@
                 {% for download in context.downloads %}
                     <ul>
                         <li>
-                            <a href="/downloads/{{ download.type }}/{{ download.filename }}" target="_blank">{{ download.name }}</a>
+                            <a href="{{ up(download.id, 'download') }}" target="_blank">{{ download.name }}</a>
                         </li>
                     </ul>
                 {% endfor %}

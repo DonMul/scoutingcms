@@ -26,9 +26,9 @@ class Save extends \Controller\Services\Admin
             throw new \Exception(Translation::getInstance()->translate("error.album.notFound", ['id' => $albumId]));
         }
 
-        $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.edit');
-
         if ($album) {
+            $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.edit');
+
             $album->setName($this->getPostValue('name'));
             $album->setDescription($this->getPostValue('description'));
             $album->setCategory($this->getPostValue('category'));
@@ -43,6 +43,8 @@ class Save extends \Controller\Services\Admin
                 '',
                 isset($_POST['private'])
             );
+
+            $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.edit');
         }
 
         if (!empty($_FILES['thumbnail']['name'])) {

@@ -296,7 +296,7 @@ final class User
      */
     public function clearRoles()
     {
-        \Lib\Core\Database::getInstance()->query("DELETE FROM `" . self::getTableName() . "` WHERE userId = ?",
+        \Lib\Core\Database::getInstance()->query("DELETE FROM `flg_userRole` WHERE userId = ?",
             [$this->getId()],
             'i'
         );
@@ -307,7 +307,7 @@ final class User
      */
     public function addRole(Role $role)
     {
-        \Lib\Core\Database::getInstance()->query("INSERT INTO `" . self::getTableName() . "` (`userId`, `roleId`) VALUES ( ?, ? )",
+        \Lib\Core\Database::getInstance()->query("INSERT INTO `flg_userRole` (`userId`, `roleId`) VALUES ( ?, ? )",
             [$this->getId(), $role->getId()],
             'ii'
         );

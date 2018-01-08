@@ -204,13 +204,62 @@ abstract class BaseController
         $translate = new \Twig_SimpleFunction('t', [\Lib\Core\Translation::getInstance(), 'translate']);
         $settings = new \Twig_SimpleFunction('s', [\Lib\Core\Settings::getInstance(), 'get']);
         $translateUrl = new \Twig_SimpleFunction('tl', [\Lib\Core\Translation::getInstance(), 'translateLink']);
+        $uploadPath = new \Twig_SimpleFunction('up', [$this, 'uploadPath']);
 
         $twig->addFunction($translate);
         $twig->addFunction($settings);
         $twig->addFunction($translateUrl);
         $twig->addFunction(new \Twig_SimpleFunction('md5', [$this, 'md5']));
+        $twig->addFunction($uploadPath);
     }
 
+    /**
+     * @param int $id
+     * @param string $type
+     * @return string
+     */
+    public function uploadPath($id, $type)
+    {
+        $path = '';
+        $cdn = Settings::getInstance()->get('cdn');
+        switch($type) {
+            case 'image':
+                $image = \Lib\Data\Picture::getById($id);
+                $album = \Lib\Data\Album::getById($image->getAlbumId());
+                $category = $album->getCategoryObject();
+                $path = $category->getName() . '/' . md5($album->getId()) . '/' . $image->getLocation();
+                if (Util::arrayGet($cdn, 'enabled', false) === true) {
+                    $path = 'http://' . $cdn['host'] . '/' . $path;
+                } else {
+                    $path = '/upload/' . $path;
+                }
+                break;
+            case 'albumThumb':
+                $album = \Lib\Data\Album::getById($id);
+                $path = $album->getCategoryObject()->getName() . '/' . $album->getThumbnail();
+                if (Util::arrayGet($cdn, 'enabled', false) === true) {
+                    $path = 'http://' . $cdn['host'] . '/' . $path;
+                } else {
+                    $path = '/upload/' . $path;
+                }
+                break;
+            case 'download':
+                $download = \Lib\Data\Download::getById($id);
+                $path = $download->getType() . '/' . $download->getFilename();
+                if (Util::arrayGet($cdn, 'enabled', false) === true) {
+                    $path = 'http://' . $cdn['host'] . '/' . $path;
+                } else {
+                    $path = '/downloads/' . $path;
+                }
+        }
+
+        return $path;
+    }
+
+    /**
+     * @param string $a
+     * @return string
+     */
     public function md5($a)
     {
         return md5($a);

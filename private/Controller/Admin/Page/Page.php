@@ -3,6 +3,7 @@
 namespace Controller\Admin\Page;
 
 use Controller\Admin;
+use Lib\Core\Translation;
 
 /**
  * Class Page
@@ -19,12 +20,13 @@ class Page extends Admin
 
         $page = \Lib\Data\Page::getById($_GET['id']);
         if (!$page) {
-            $page = new \Lib\Data\Page(null, "New Page", "", "", "", false);
+            $page = new \Lib\Data\Page(null, Translation::getInstance()->translate('page.title'), "", "", "", false);
         }
 
         return [
             'page' => $page,
-            'active' => 'page'
+            'active' => 'page',
+            'isNew' => $page->getId() == null,
         ];
     }
 }

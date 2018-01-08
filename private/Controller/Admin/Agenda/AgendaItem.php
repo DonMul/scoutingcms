@@ -32,7 +32,8 @@ class AgendaItem extends \Controller\Admin
         return [
             'item' => $item,
             'categories' => AgendaCategory::getAll(),
-            'active' => 'calender'
+            'active' => 'calender',
+            'isNew' => $item->getId() == null,
         ];
     }
 }

@@ -16,6 +16,27 @@ final class Imager
     {
         $this->ensureDestinationPath($destination);
         move_uploaded_file($tmpName, $destination);
+
+        $this->uploadToCdn($destination);
+    }
+
+    /**
+     * @param string $destination
+     */
+    private function uploadToCdn($destination)
+    {
+        $cdnData = Settings::getInstance()->get('cdn');
+        if (\Lib\Core\Util::arrayGet($cdnData, 'enabled', false) !== true) {
+            return;
+        }
+
+        $ftp = new \Lib\Ftp\Client(
+            $cdnData['host'],
+            $cdnData['username'],
+            $cdnData['password']
+        );
+
+        $ftp->upload(realpath($destination), str_replace('/subdomains/scoutingflg/public/upload/', '', realpath($destination)));
     }
 
     /**

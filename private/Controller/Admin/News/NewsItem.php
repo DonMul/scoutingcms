@@ -25,6 +25,7 @@ class NewsItem extends Admin
         return [
             'newsItem' => $newsItem,
             'active' => 'news',
+            'isNew' => $newsItem->getId() == null,
         ];
     }
 }

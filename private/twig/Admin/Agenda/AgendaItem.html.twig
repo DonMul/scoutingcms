@@ -9,19 +9,19 @@
         <div class="row">
             <div class="col-xs-12">
                 <label for="name">{{ t('agenda.name') }}</label>
-                <input type="text" name="name" value="{{ context.item.name }}" class="form-control" id="name"/>
+                <input type="text" name="name" placeholder="{{  context.isNew == true ? context.item.name : '' }}" value="{{ context.isNew == true ? '' : context.item.name }}" class="form-control" id="name"/>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12">
                 <label for="startDate">{{ t('agenda.startDate') }}</label>
-                <input type="datetime-local" id="startDate" name="startDate" value="{{ context.item.startDate|date("Y-m-d") ~'T' ~ context.item.startDate|date("H:i:s")}}" class="form-control"/>
+                <input type="datetime-local" id="startDate" name="startDate" value="{{ context.item.startDate|date("Y-m-d") ~'T' ~ context.item.startDate|date("H:i:00")}}" class="form-control"/>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12">
                 <label for="endDate">{{ t('agenda.endDate') }}</label>
-                <input type="datetime-local" id="endDate" name="endDate" value="{{ context.item.endDate|date("Y-m-d") ~'T' ~ context.item.endDate|date("H:i:s")}}" class="form-control"/>
+                <input type="datetime-local" id="endDate" name="endDate" value="{{ context.item.endDate|date("Y-m-d") ~'T' ~ context.item.endDate|date("H:i:00")}}" class="form-control"/>
             </div>
         </div>
         <div class="row">

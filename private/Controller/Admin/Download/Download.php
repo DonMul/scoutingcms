@@ -3,6 +3,7 @@
 namespace Controller\Admin\Download;
 
 use Controller\Admin;
+use Lib\Core\Translation;
 
 /**
  * Class Download
@@ -19,7 +20,7 @@ class Download extends Admin
         if (!$download) {
             $download = new \Lib\Data\Download(
                 null,
-                "New Download",
+                Translation::getInstance()->translate('download.name'),
                 \Lib\Data\Download::TYPE_REPORT,
                 ''
             );
@@ -29,7 +30,8 @@ class Download extends Admin
 
         return [
             'download' => $download,
-            'active' => 'download'
+            'active' => 'download',
+            'isNew' => $download->getId() == null,
         ];
     }
 }

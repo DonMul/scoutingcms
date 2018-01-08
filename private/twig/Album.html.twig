@@ -16,7 +16,7 @@
                 {% for picture in context.pictures %}
                     <div class="col-xs-12 col-sm-4">
                         <div class="albumimage">
-                            <img src="/upload/{{ context.category.name }}/{{ context.albumHash }}/{{ picture.location }}" class="albumimage__image js-modal" data-toggle="modal" data-target="#myModal"/>
+                            <img src="{{ up(picture.id, 'image') }}" class="albumimage__image js-modal" data-toggle="modal" data-target="#myModal"/>
                         </div>
                     </div>
                 {% endfor %}

@@ -3,7 +3,6 @@
 namespace Controller\Services\Admin\Download;
 
 use Lib\Core\Translation;
-use Lib\Core\Util;
 use Lib\Data\Download;
 
 /**
@@ -25,7 +24,7 @@ class Save extends \Controller\Services\Admin
             throw new \Exception(Translation::getInstance()->translate("error.download.notFound", ['id' => $downloadId]));
         }
 
-        $this->ensurePermission('download.' . $download->getType() . '.edit');
+        $this->ensurePermission('download.' . $this->getPostValue('type') . '.edit');
 
         if ($download) {
             $download->setName($this->getPostValue('name'));
@@ -47,6 +46,17 @@ class Save extends \Controller\Services\Admin
             $targetName = $_SERVER["DOCUMENT_ROOT"] . 'public/downloads/' . $download->getType() . '/' . $_FILES['file']['name'];
             if (!move_uploaded_file($_FILES['file']['tmp_name'], $targetName)) {
                 throw new \Exception("Could not upload file");
+            }
+
+            $cdnData = \Lib\Core\Settings::getInstance()->get('cdn');
+            if (\Lib\Core\Util::arrayGet($cdnData, 'enabled', false) === true) {
+                $ftp = new \Lib\Ftp\Client(
+                    $cdnData['host'],
+                    $cdnData['username'],
+                    $cdnData['password']
+                );
+
+                $ftp->upload(realpath($targetName), str_replace('/subdomains/scoutingflg/public/downloads/', '', realpath($targetName)));
             }
 
             $download->setFilename($_FILES['file']['name']);

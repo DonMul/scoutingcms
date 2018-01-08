@@ -299,7 +299,7 @@ final class Menu
                 $url = Translation::getInstance()->translateLink('speltak', ['name' => $group->getName()]);
                 break;
             case self::TYPE_DOWNLOAD:
-                $url = Translation::getInstance()->translateLink('speltak', ['type' => $item->getValue()]);
+                $url = Translation::getInstance()->translateLink('download', ['type' => $item->getValue()]);
                 break;
         }
 

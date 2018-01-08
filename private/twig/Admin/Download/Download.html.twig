@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <label for="name">{{ t('download.name') }}</label>
-                <input type="text" name="name" id="name" class="form-control" value="{{ context.download.name }}"/>
+                <input type="text" name="name" id="name" class="form-control" placeholder="{{ context.isNew ? context.download.name : '' }}" value="{{ context.isNew ? '' : context.download.name }}"/>
             </div>
         </div>
         <div class="row">
