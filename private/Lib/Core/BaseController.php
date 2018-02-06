@@ -113,10 +113,6 @@ abstract class BaseController
      */
     protected function serveTemplate($templateLocation, $context)
     {
-        // Initiates the Twig environment
-        require_once LIBROOT . 'Twig/Autoloader.php';
-        \Twig_Autoloader::register();
-
         $loader = new \Twig_Loader_Filesystem(TEMPLATEROOT);
         $twig = new \Twig_Environment($loader, [
             'cache' => false
