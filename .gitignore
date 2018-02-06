@@ -2,3 +2,4 @@ private/Conf/settings.yaml
 public/downloads/*
 public/upload/*
 /vendor/
+/build/

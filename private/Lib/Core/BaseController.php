@@ -2,11 +2,13 @@
 
 namespace Lib\Core;
 
+use Controller\FourOFour;
 use Lib\Data\AlbumCategory;
 use Lib\Data\Menu;
 use Lib\Data\Page;
 use Lib\Data\Permission;
 use Lib\Data\Speltak;
+use Lib\Exception\PageNotFound;
 use Twig\Loader\FilesystemLoader;
 
 /**
@@ -99,7 +101,14 @@ abstract class BaseController extends RepositoryContainer
                 return;
             }
 
-            $data = $this->getArray();
+            try {
+                $data = $this->getArray();
+            } catch (PageNotFound $exception) {
+                header("HTTP/1.1 404 Not Found");
+                $controller = new FourOFour();
+                $controller->execute();
+                exit;
+            }
             $this->serveTemplate(str_replace('Controller\\', '', get_called_class()) . '.html.twig', $data);
         } catch (\Exception $ex) {
             $this->showErrorPage([$ex->getMessage()]);
