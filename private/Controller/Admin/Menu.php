@@ -7,8 +7,9 @@ use Controller\Admin;
 /**
  * Class Menu
  * @package Controller\Admin
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Menu extends Admin
+final class Menu extends Admin
 {
     /**
      * @return array

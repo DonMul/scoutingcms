@@ -10,8 +10,9 @@ use Lib\Data\Speltak;
 /**
  * Class Role
  * @package Controller\Admin\Role
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Role extends Admin
+final class Role extends Admin
 {
     /**
      * @return array

@@ -7,8 +7,9 @@ use Lib\Data\Role;
 /**
  * Class Overview
  * @package Controller\Admin\Role
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Overview extends Admin
+final class Overview extends Admin
 {
     /**
      * @return array

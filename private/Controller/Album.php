@@ -5,6 +5,11 @@ namespace Controller;
 use Lib\Data\AlbumCategory;
 use Lib\Data\Picture;
 
+/**
+ * Class Album
+ * @package Controller
+ * @author Joost Mul <scoutingcms@jmul.net>
+ */
 class Album extends \Lib\Core\BaseController
 {
     public function getArray()

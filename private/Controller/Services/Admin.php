@@ -6,7 +6,7 @@ use Lib\Core\Translation;
 /**
  * Class Login
  * @package Controller\Services\User
- * @author Joost Mul
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 abstract class Admin extends \Lib\Core\BaseController\Ajax
 {

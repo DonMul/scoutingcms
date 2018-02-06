@@ -8,9 +8,9 @@ use Lib\Data\Download;
 /**
  * Class Login
  * @package Controller\Services\User
- * @author Joost Mul
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Save extends \Controller\Services\Admin
+final class Save extends \Controller\Services\Admin
 {
     /**
      * @return array
@@ -56,7 +56,7 @@ class Save extends \Controller\Services\Admin
                     $cdnData['password']
                 );
 
-                $ftp->upload(realpath($targetName), str_replace('/subdomains/scoutingflg/public/downloads/', '', realpath($targetName)));
+                $ftp->upload(realpath($targetName), str_replace('/subdomains/scoutingflg/public/', '', realpath($targetName)));
             }
 
             $download->setFilename($_FILES['file']['name']);

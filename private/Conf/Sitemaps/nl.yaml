@@ -257,3 +257,11 @@
 /service/admin/account/save:
   controller: \Controller\Services\Admin\Account\Save
   hash: serviceAccountSave
+
+###
+# CRONJOBS
+###
+
+/cronjob/import/fb/events:
+  controller: \Controller\CronJob\Import\Facebook\Events
+  hash: cronImportFbEvents

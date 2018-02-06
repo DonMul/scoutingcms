@@ -7,8 +7,9 @@ use Controller\Admin;
 /**
  * Class NewsItem
  * @package Controller\Admin
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class NewsItem extends Admin
+final class NewsItem extends Admin
 {
     /**
      *

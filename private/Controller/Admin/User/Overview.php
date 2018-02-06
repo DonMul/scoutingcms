@@ -8,8 +8,9 @@ use Lib\Data\User;
 /**
  * Class Overview
  * @package Controller\Admin\User
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Overview extends Admin
+final class Overview extends Admin
 {
     /**
      * @return array

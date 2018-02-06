@@ -9,9 +9,9 @@ use Lib\Data\Download;
 /**
  * Class Login
  * @package Controller\Services\User
- * @author Joost Mul
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Delete extends \Controller\Services\Admin
+final class Delete extends \Controller\Services\Admin
 {
     /**
      * @return array

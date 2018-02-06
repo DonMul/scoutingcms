@@ -6,9 +6,9 @@ use Controller\FourOFour;
 /**
  * Class Admin
  * @package Controller
- * @author Joost Mul
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Overview extends \Controller\Admin
+final class Overview extends \Controller\Admin
 {
 
     /**

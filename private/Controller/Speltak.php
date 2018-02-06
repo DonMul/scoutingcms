@@ -2,7 +2,11 @@
 
 namespace Controller;
 
-
+/**
+ * Class Speltak
+ * @package Controller
+ * @author Joost Mul <scoutingcms@jmul.net>
+ */
 class Speltak extends \Lib\Core\BaseController
 {
     /**

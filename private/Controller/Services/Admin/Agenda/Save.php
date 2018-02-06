@@ -9,9 +9,9 @@ use Lib\Data\Agenda;
 /**
  * Class Login
  * @package Controller\Services\User
- * @author Joost Mul
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Save extends \Controller\Services\Admin
+final class Save extends \Controller\Services\Admin
 {
     public function getArray()
     {

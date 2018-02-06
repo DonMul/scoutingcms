@@ -8,8 +8,9 @@ use Lib\Core\Session;
 /**
  * Class Logout
  * @package Controller\User
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Logout extends BaseController
+final class Logout extends BaseController
 {
     /**
      *

@@ -9,8 +9,9 @@ use Lib\Data\User;
 /**
  * Class MyAccount
  * @package Controller\Admin
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class MyAccount extends Admin
+final class MyAccount extends Admin
 {
     public function getArray()
     {

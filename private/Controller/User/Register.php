@@ -8,8 +8,9 @@ use Lib\Core\Session;
 /**
  * Class Register
  * @package Controller\User
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Register extends BaseController
+final class Register extends BaseController
 {
     /**
      *
@@ -17,7 +18,7 @@ class Register extends BaseController
     public function getArray()
     {
         if (Session::getInstance()->isLoggedIn()) {
-            //header("Location: /");
+            header("Location: /");
         }
     }
 }

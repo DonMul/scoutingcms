@@ -8,8 +8,9 @@ use Lib\Core\Translation;
 /**
  * Class Download
  * @package Controller\Admin
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Download extends Admin
+final class Download extends Admin
 {
     /**
      * @return array

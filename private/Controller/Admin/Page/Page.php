@@ -8,8 +8,9 @@ use Lib\Core\Translation;
 /**
  * Class Page
  * @package Controller\Admin\Page
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Page extends Admin
+final class Page extends Admin
 {
     /**
      * @return array

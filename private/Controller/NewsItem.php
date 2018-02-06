@@ -2,6 +2,11 @@
 
 namespace Controller;
 
+/**
+ * Class NewsItem
+ * @package Controller
+ * @author Joost Mul <scoutingcms@jmul.net>
+ */
 class NewsItem extends \Lib\Core\BaseController
 {
     public function getArray()

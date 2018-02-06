@@ -5,7 +5,7 @@ namespace Controller;
 /**
  * Class Index
  * @package Controller
- * @author  Joost Mul <jmul@posd.io>
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Index extends \Lib\Core\BaseController
 {

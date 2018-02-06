@@ -9,8 +9,9 @@ use Lib\Data\Download;
 /**
  * Class Overview
  * @package Controller\Admin\Download
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Overview extends Admin
+final class Overview extends Admin
 {
     /**
      * @return array

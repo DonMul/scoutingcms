@@ -5,7 +5,12 @@ namespace Controller\Agenda;
 use Lib\Data\Agenda;
 use Lib\Data\AgendaCategory;
 
-class Item extends \Lib\Core\BaseController
+/**
+ * Class Item
+ * @package Controller\Agenda
+ * @author Joost Mul <scoutingcms@jmul.net>
+ */
+final class Item extends \Lib\Core\BaseController
 {
     public function getArray()
     {

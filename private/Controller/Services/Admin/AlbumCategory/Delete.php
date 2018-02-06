@@ -9,8 +9,9 @@ use Lib\Core\Translation;
 /**
  * Class Delete
  * @package Controller\Services\Admin\CalenderCategory
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Delete extends Admin
+final class Delete extends Admin
 {
     /**
      * @return array

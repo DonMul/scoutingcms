@@ -10,9 +10,9 @@ use Lib\Data\Album;
 /**
  * Class Login
  * @package Controller\Services\User
- * @author Joost Mul
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Save extends \Controller\Services\Admin
+final class Save extends \Controller\Services\Admin
 {
     /**
      * @return array

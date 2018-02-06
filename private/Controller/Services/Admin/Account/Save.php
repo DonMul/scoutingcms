@@ -10,8 +10,9 @@ use Lib\Data\User;
 /**
  * Class Save
  * @package Controller\Services\Admin\Account
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Save extends Admin
+final class Save extends Admin
 {
     /**
      * @return array

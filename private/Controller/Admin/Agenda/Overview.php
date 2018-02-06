@@ -5,8 +5,9 @@ namespace Controller\Admin\Agenda;
 /**
  * Class Overview
  * @package Controller\Admin\Agenda
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Overview extends \Controller\Admin
+final class Overview extends \Controller\Admin
 {
     /**
      * @return array

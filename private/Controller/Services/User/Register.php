@@ -6,7 +6,12 @@ use Lib\Core\BaseController\Ajax;
 use Lib\Core\Translation;
 use Lib\Data\User;
 
-class Register extends Ajax
+/**
+ * Class Register
+ * @package Controller\Services\User
+ * @author Joost Mul <scoutingcms@jmul.net>
+ */
+final class Register extends Ajax
 {
     public function getArray()
     {

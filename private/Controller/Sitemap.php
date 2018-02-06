@@ -9,6 +9,7 @@ use Lib\Data\Picture;
 /**
  * Class Sitemap
  * @package Controller
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Sitemap extends \Lib\Core\BaseController
 {

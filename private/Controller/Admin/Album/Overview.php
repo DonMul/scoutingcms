@@ -10,11 +10,12 @@ use Lib\Data\AlbumCategory;
 /**
  * Class Overview
  * @package Controller\Admin\Album
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Overview extends BaseController
+final class Overview extends BaseController
 {
     /**
-     *
+     * @return array
      */
     public function getArray()
     {

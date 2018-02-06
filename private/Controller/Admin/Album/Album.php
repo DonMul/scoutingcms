@@ -9,8 +9,9 @@ use Lib\Data\Picture;
 /**
  * Class Album
  * @package Controller\Admin
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Album extends Admin
+final class Album extends Admin
 {
     /**
      * @return array

@@ -4,6 +4,11 @@ namespace Controller;
 
 use Lib\Core\Util;
 
+/**
+ * Class News
+ * @package Controller
+ * @author Joost Mul <scoutingcms@jmul.net>
+ */
 class News extends \Lib\Core\BaseController
 {
     public function getArray()

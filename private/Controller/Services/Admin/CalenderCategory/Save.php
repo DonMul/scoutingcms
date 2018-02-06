@@ -9,8 +9,9 @@ use Lib\Data\AgendaCategory;
 /**
  * Class Save
  * @package Controller\Services\Admin\CalenderCategory
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Save extends Admin
+final class Save extends Admin
 {
     /**
      * @return array

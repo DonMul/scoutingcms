@@ -36,7 +36,7 @@ final class Imager
             $cdnData['password']
         );
 
-        $ftp->upload(realpath($destination), str_replace('/subdomains/scoutingflg/public/upload/', '', realpath($destination)));
+        $ftp->upload(realpath($destination), str_replace('/subdomains/scoutingflg/public/images/', '', realpath($destination)));
     }
 
     /**

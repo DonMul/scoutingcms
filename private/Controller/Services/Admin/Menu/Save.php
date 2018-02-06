@@ -10,8 +10,9 @@ use Lib\Data\Menu;
 /**
  * Class Save
  * @package Controller\Services\Admin\Menu
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Save extends Admin
+final class Save extends Admin
 {
     /**
      * @return array

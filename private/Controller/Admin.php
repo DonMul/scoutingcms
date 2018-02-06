@@ -7,7 +7,7 @@ use Lib\Data\Picture;
 /**
  * Class Admin
  * @package Controller
- * @author Joost Mul
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Admin extends \Lib\Core\BaseController
 {

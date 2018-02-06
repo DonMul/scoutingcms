@@ -11,7 +11,7 @@ use Lib\Data\Role;
  * Class Save
  * @package Controller\Services\Admin\Role
  */
-class Save extends Admin
+final class Save extends Admin
 {
     /**
      * @return array

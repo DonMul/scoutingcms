@@ -8,8 +8,9 @@ use Lib\Data;
 /**
  * Class AlbumCategory
  * @package Controller\Admin\AlbumCategory
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class AlbumCategory extends Admin
+final class AlbumCategory extends Admin
 {
     public function getArray()
     {

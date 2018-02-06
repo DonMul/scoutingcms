@@ -12,7 +12,7 @@ use Lib\Data\Picture;
  * Class Upload
  * @package Controller\Services\Admin\Album
  */
-class Upload extends \Controller\Services\Admin
+final class Upload extends \Controller\Services\Admin
 {
     /**
      * @return array

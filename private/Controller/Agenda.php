@@ -2,6 +2,11 @@
 
 namespace Controller;
 
+/**
+ * Class Agenda
+ * @package Controller
+ * @author Joost Mul <scoutingcms@jmul.net>
+ */
 class Agenda extends \Lib\Core\BaseController
 {
     public function getArray()

@@ -8,8 +8,9 @@ use Lib\Data\Role;
 /**
  * Class User
  * @package Controller\Admin\User
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class User extends Admin
+final class User extends Admin
 {
     /**
      * @return array

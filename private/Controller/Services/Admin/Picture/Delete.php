@@ -11,7 +11,7 @@ use Lib\Data\Picture;
  * Class Delete
  * @package Controller\Services\Admin\Picture
  */
-class Delete extends Admin
+final class Delete extends Admin
 {
     /**
      * @return array

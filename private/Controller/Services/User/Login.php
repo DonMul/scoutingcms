@@ -7,9 +7,9 @@ use Lib\Core\Translation;
 /**
  * Class Login
  * @package Controller\Services\User
- * @author Joost Mul
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Login extends \Lib\Core\BaseController\Ajax
+final class Login extends \Lib\Core\BaseController\Ajax
 {
     /**
      * @throws \Exception

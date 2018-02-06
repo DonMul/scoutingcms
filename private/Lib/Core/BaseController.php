@@ -229,7 +229,7 @@ abstract class BaseController
                 $category = $album->getCategoryObject();
                 $path = $category->getName() . '/' . md5($album->getId()) . '/' . $image->getLocation();
                 if (Util::arrayGet($cdn, 'enabled', false) === true) {
-                    $path = 'http://' . $cdn['host'] . '/' . $path;
+                    $path = 'http://' . $cdn['host'] . '/Images/' . $path;
                 } else {
                     $path = '/upload/' . $path;
                 }
@@ -238,7 +238,7 @@ abstract class BaseController
                 $album = \Lib\Data\Album::getById($id);
                 $path = $album->getCategoryObject()->getName() . '/' . $album->getThumbnail();
                 if (Util::arrayGet($cdn, 'enabled', false) === true) {
-                    $path = 'http://' . $cdn['host'] . '/' . $path;
+                    $path = 'http://' . $cdn['host'] . '/Images/' . $path;
                 } else {
                     $path = '/upload/' . $path;
                 }
@@ -247,7 +247,7 @@ abstract class BaseController
                 $download = \Lib\Data\Download::getById($id);
                 $path = $download->getType() . '/' . $download->getFilename();
                 if (Util::arrayGet($cdn, 'enabled', false) === true) {
-                    $path = 'http://' . $cdn['host'] . '/' . $path;
+                    $path = 'http://' . $cdn['host'] . '/Downloads/' . $path;
                 } else {
                     $path = '/downloads/' . $path;
                 }

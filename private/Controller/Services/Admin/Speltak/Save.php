@@ -2,15 +2,16 @@
 
 namespace Controller\Services\Admin\Speltak;
 
+use Lib\Core\Imager;
 use Lib\Core\Translation;
 use Lib\Data\Speltak;
 
 /**
  * Class Login
  * @package Controller\Services\User
- * @author Joost Mul
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Save extends \Controller\Services\Admin
+final class Save extends \Controller\Services\Admin
 {
     /**
      * @throws \Exception
@@ -31,9 +32,9 @@ class Save extends \Controller\Services\Admin
             $exploded = explode('.', $_FILES['picture']['name']);
             $type = array_pop($exploded);
             $targetName = $_SERVER["DOCUMENT_ROOT"] . '/public/upload/' . $speltak->getName() . '.' . $type;
-            if (!move_uploaded_file($_FILES['picture']['tmp_name'], $targetName)) {
-                throw new \Exception("Could not upload file");
-            }
+
+            $imager = new Imager();
+            $imager->uploadImage($_FILES['picture']['tmp_name'], $targetName);
 
             $speltak->setPicture($speltak->getName() . '.' . $type);
         }

@@ -5,6 +5,7 @@ namespace Controller;
 /**
  * Class Page
  * @package Controller
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Page extends \Lib\Core\BaseController
 {

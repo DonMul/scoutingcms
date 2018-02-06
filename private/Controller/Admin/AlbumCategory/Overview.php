@@ -8,8 +8,9 @@ use Lib\Data\AlbumCategory;
 /**
  * Class Overview
  * @package Controller\Admin\AlbumCategory
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Overview extends Admin
+final class Overview extends Admin
 {
     /**
      * @return array

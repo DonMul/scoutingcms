@@ -5,8 +5,9 @@ namespace Controller\Admin\Group;
 /**
  * Class Group
  * @package Controller\Admin\Group
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Group extends \Controller\Admin
+final class Group extends \Controller\Admin
 {
     /**
      * @return array

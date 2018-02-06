@@ -7,8 +7,9 @@ use Lib\Data\AgendaCategory;
 /**
  * Class AgendaItem
  * @package Controller\Admin\Agenda
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class AgendaItem extends \Controller\Admin
+final class AgendaItem extends \Controller\Admin
 {
     /**
      * @return array

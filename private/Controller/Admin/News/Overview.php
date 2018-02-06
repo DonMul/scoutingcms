@@ -7,8 +7,9 @@ use Controller\Admin;
 /**
  * Class Overview
  * @package Controller\Admin\News
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Overview extends Admin
+final class Overview extends Admin
 {
     /**
      * @return array
