@@ -1,4 +1,6 @@
 # ScoutingCMS
+[![Coverage Status](https://coveralls.io/repos/github/DonMul/scoutingcms/badge.svg?branch=master)](https://coveralls.io/github/DonMul/scoutingcms?branch=master)
+[![Build Status](https://travis-ci.org/DonMul/scoutingcms.svg?branch=master)](https://travis-ci.org/DonMul/scoutingcms)
 ## What is it?
 Scouting CMS is a CMS which is ment for Scouting Groups in order to manage their site.
 
