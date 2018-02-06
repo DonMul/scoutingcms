@@ -3,15 +3,13 @@
 namespace Controller;
 
 use Lib\Core\Settings;
-use Lib\Data\AlbumCategory;
-use Lib\Data\Picture;
 
 /**
  * Class Sitemap
  * @package Controller
  * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Sitemap extends \Lib\Core\BaseController
+final class Sitemap extends \Lib\Core\BaseController
 {
     /**
      * @return array
@@ -21,14 +19,14 @@ class Sitemap extends \Lib\Core\BaseController
         header("Content-type: text/xml");
 
         return [
-            'pages' => \Lib\Data\Page::getAll(),
-            'groups' => \Lib\Data\Speltak::getAll(),
-            'albumCategories' => AlbumCategory::getAll(),
-            'albums' => \Lib\Data\Album::getAll(),
-            'pictures' => Picture::getAll(),
-            'agendaItems' => \Lib\Data\Agenda::getAll(),
-            'downloads' => \Lib\Data\Download::getAll(),
-            'newsItems' => \Lib\Data\News::getAll(),
+            'pages' => $this->getPageRepository()->getAll(),
+            'groups' => $this->getSpeltakRepository()->getAll(),
+            'albumCategories' => $this->getAlbumCategoryRepository()->getAll(),
+            'albums' => $this->getAlbumRepository()->getAll(),
+            'pictures' => $this->getPictureRepository()->getAll(),
+            'agendaItems' => $this->getAgendaRepository()->getAll(),
+            'downloads' => $this->getDownloadRepository()->getAll(),
+            'newsItems' => $this->getNewsRepository()->getAll(),
             'host' => (Settings::getInstance()->get('ssl') == true ? 'https://' : 'http://') . $_SERVER['HTTP_HOST']
         ];
     }

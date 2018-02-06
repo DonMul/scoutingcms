@@ -2,6 +2,7 @@
 
 namespace Controller\Admin\Agenda;
 
+
 /**
  * Class Overview
  * @package Controller\Admin\Agenda
@@ -16,7 +17,7 @@ final class Overview extends \Controller\Admin
     {
         $this->ensurePermission('calender.edit');
 
-        $items = \Lib\Data\Agenda::findBetweenDates(
+        $items = $this->getAgendaRepository()->findBetweenDates(
             date('Y-m-d H:i:s', strtotime('-1 year')),
             date('Y-m-d H:i:s', strtotime('+1 year')),
             true

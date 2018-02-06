@@ -7,14 +7,14 @@ namespace Controller;
  * @package Controller
  * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Page extends \Lib\Core\BaseController
+final class Page extends \Lib\Core\BaseController
 {
     /**
      * @return array
      */
     public function getArray()
     {
-        $page = \Lib\Data\Page::getBySlug($_GET['slug']);
+        $page = $this->getPageRepository()->getBySlug($this->getVariable('slug', ''));
 
         if (!$page) {
             header("HTTP/1.1 404 Not Found");

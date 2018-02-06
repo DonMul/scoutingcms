@@ -19,7 +19,7 @@ final class Save extends \Controller\Services\Admin
     public function getArray()
     {
         $speltakId = $this->getPostValue('speltakId');
-        $speltak = Speltak::getById($speltakId);
+        $speltak = $this->getSpeltakRepository()->getById($speltakId);
         if (!($speltak instanceof Speltak)) {
             throw new \Exception(Translation::getInstance()->translate('error.group.notFound'));
         }
@@ -39,7 +39,7 @@ final class Save extends \Controller\Services\Admin
             $speltak->setPicture($speltak->getName() . '.' . $type);
         }
 
-        $speltak->save();
+        $this->getSpeltakRepository()->save($speltak);
 
         return [
             'redirect' => Translation::getInstance()->translateLink("adminGroups")

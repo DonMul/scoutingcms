@@ -22,7 +22,7 @@ final class Save extends Admin
         $this->ensurePermission('role.edit');
 
         $roleId = $this->getPostValue('roleId');
-        $role = \Lib\Data\Role::getById($roleId);
+        $role = $this->getRoleRepository()->getById($roleId);
         if (!($role instanceof Role) && intval($roleId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.role.notFound", ['id' => $roleId]));
         }
@@ -38,17 +38,17 @@ final class Save extends Admin
             );
         }
 
-        $role->save();
-        $role->clearPermissions();
+        $this->getRoleRepository()->save($role);
+        $this->getRoleRepository()->clearPermissions($role);
 
         foreach ($this->getPostValue('permission') as $permissionName => $enabled) {
-            $permission = Permission::getByName($permissionName);
+            $permission = $this->getPermissionRepository()->getByName($permissionName);
             if (!($permission instanceof Permission)) {
                 $permission = new Permission(null, $permissionName);
                 $permission->save();
             }
 
-            $role->addPermission($permission);
+            $this->getRoleRepository()->addPermission($role, $permission);
         }
 
         $_SESSION['permissions'] = null;

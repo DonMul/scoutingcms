@@ -20,12 +20,12 @@ final class Delete extends \Controller\Services\Admin
         $this->ensurePermission('user.edit');
 
         $userId = $this->getPostValue('userId');
-        $user = User::getById($userId);
+        $user = $this->getUserRepository()->getById($userId);
         if (!($user instanceof User)) {
             throw new \Exception(Translation::getInstance()->translate("error.user.notFound"));
         }
 
-        $user->delete();
+        $this->getUserRepository()->delete($user);
 
         return [
             'reload' => true,

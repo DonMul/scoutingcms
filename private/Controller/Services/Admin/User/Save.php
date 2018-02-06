@@ -22,7 +22,7 @@ final class Save extends \Controller\Services\Admin
         $this->ensurePermission('user.edit');
 
         $userId = $this->getPostValue('userId');
-        $user = \Lib\Data\User::getById($userId);
+        $user =$this->getUserRepository()->getById($userId);
         if (!($user instanceof User) && intval($userId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.user.notFound"));
         }
@@ -46,11 +46,11 @@ final class Save extends \Controller\Services\Admin
             $user->setPassword($newPassword, true);
         }
 
-        $user->save();
-        $user->clearRoles();
+        $this->getUserRepository()->save($user);
+        $this->getUserRepository()->clearRoles($user);
         foreach ($this->getPostValue(['role']) as $roleId => $enabled) {
-            $role = Role::getById($roleId);
-            $user->addRole($role);
+            $role = $this->getRoleRepository()->getById($roleId);
+            $this->getUserRepository()->addRole($user, $role);
         }
 
         return [

@@ -19,12 +19,12 @@ final class Delete extends \Controller\Services\Admin
         $this->ensurePermission('news.edit');
 
         $newsId = $this->getPostValue('itemId');
-        $news = News::getById($newsId);
+        $news = $this->getNewsRepository()->getById($newsId);
         if (!($news instanceof News)) {
             throw new \Exception(Translation::getInstance()->translate("error.news.notFound", ['id' => $newsId]));
         }
 
-        $news->delete();
+        $this->getNewsRepository()->delete($news);
 
         return [
             'reload' => true,

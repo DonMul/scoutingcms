@@ -2,22 +2,23 @@
 
 namespace Controller;
 
-use Lib\Core\Util;
-
 /**
  * Class News
  * @package Controller
  * @author Joost Mul <scoutingcms@jmul.net>
  */
-class News extends \Lib\Core\BaseController
+final class News extends \Lib\Core\BaseController
 {
+    /**
+     * @return array
+     */
     public function getArray()
     {
-        $offset = Util::arrayGet($_GET, 'offset', 0);
-        $amount = Util::arrayGet($_GET, 'amount', 10);
-
-        $newsArticles = \Lib\Data\News::getLimitedDescending($offset, $amount);
-        $total = \Lib\Data\News::getTotalAmount();
+        $newsArticles = $this->getNewsRepository()->getLimitedDescending(
+            $this->getVariable('offset', 0),
+            $this->getVariable('amount', 10)
+        );
+        $total = $this->getNewsRepository()->getTotalAmount();
 
         return [
             'articles' => $newsArticles,

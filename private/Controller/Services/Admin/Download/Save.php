@@ -19,7 +19,7 @@ final class Save extends \Controller\Services\Admin
     public function getArray()
     {
         $downloadId = $this->getPostValue('itemId');
-        $download = Download::getById($downloadId);
+        $download = $this->getDownloadRepository()->getById($downloadId);
         if (!($download instanceof Download) && intval($downloadId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.download.notFound", ['id' => $downloadId]));
         }
@@ -62,7 +62,7 @@ final class Save extends \Controller\Services\Admin
             $download->setFilename($_FILES['file']['name']);
         }
 
-        $download->save();
+        $this->getDownloadRepository()->save($download);
 
         return [
             'redirect' => Translation::getInstance()->translateLink("adminDownloads")

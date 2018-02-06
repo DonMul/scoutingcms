@@ -4,7 +4,6 @@ namespace Controller\Admin\Download;
 
 use Controller\Admin;
 use Controller\FourOFour;
-use Lib\Data\Download;
 
 /**
  * Class Overview
@@ -18,7 +17,7 @@ final class Overview extends Admin
      */
     public function getArray()
     {
-        $downloads = Download::getAll();
+        $downloads = $this->getDownloadRepository()->getAll();
         $allowed = true;
 
         foreach (['report', 'newsletter'] as $download) {

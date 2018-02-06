@@ -16,7 +16,7 @@ final class Register extends Ajax
     public function getArray()
     {
         $username = $this->getPostValue('username');
-        $user = User::getByUsername($username);
+        $user = $this->getUserRepository()->getByUsername($username);
         if ($user instanceof User) {
             throw new \Exception(Translation::getInstance()->translate('error.user.usernameAlreadyExists'));
         }

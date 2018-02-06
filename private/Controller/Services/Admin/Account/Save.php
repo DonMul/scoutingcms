@@ -20,7 +20,7 @@ final class Save extends Admin
      */
     public function getArray()
     {
-        $user = User::getById(Session::getInstance()->getKey());
+        $user = $this->getUserRepository()->getById(Session::getInstance()->getKey());
         if (!$user instanceof User) {
             throw new \Exception(Translation::getInstance()->translate('error.user.notFound'));
         }
@@ -36,7 +36,7 @@ final class Save extends Admin
         $user->setNickname($this->getPostValue('nickname'));
         $user->setEmail($this->getPostValue('email'));
 
-        $user->save();
+        $this->getUserRepository()->save($user);
 
         return [
             'reload' => true,

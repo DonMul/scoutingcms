@@ -20,14 +20,14 @@ final class Delete extends \Controller\Services\Admin
     public function getArray()
     {
         $downloadId = $this->getPostValue('itemId');
-        $download = Download::getById($downloadId);
+        $download = $this->getDownloadRepository()->getById($downloadId);
         if (!($download instanceof Download)) {
             throw new \Exception(Translation::getInstance()->translate("error.download.notFound", ['id' => $downloadId]));
         }
 
         $this->ensurePermission('download.' . $download->getType() . '.edit');
 
-        $download->delete();
+        $this->getDownloadRepository()->delete($download);
 
         return [
             'reload' => true,

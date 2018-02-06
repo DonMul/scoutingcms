@@ -20,12 +20,12 @@ final class Delete extends Admin
     public function getArray()
     {
         $categoryId = $this->getPostValue('categoryId');
-        $category = AgendaCategory::getById($categoryId);
+        $category = $this->getAgendaCategoryRepository()->getById($categoryId);
         if (!($category instanceof AgendaCategory) && intval($categoryId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.calenderCategory.notFound", ['id' => $categoryId]));
         }
 
-        $category->delete();
+        $this->getAgendaCategoryRepository()->delete($category);
 
         return [
             'redirect' => Translation::getInstance()->translateLink('adminCalenderCategories')

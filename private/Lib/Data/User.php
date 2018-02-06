@@ -11,8 +11,6 @@ use Lib\Core\Util;
  */
 final class User
 {
-    const TABLENAME = 'user';
-
     /**
      * @var int
      */
@@ -141,79 +139,6 @@ final class User
     }
 
     /**
-     * @return string
-     */
-    private static function getTableName()
-    {
-        return Database::getInstance()->getFullTableName(self::TABLENAME);
-    }
-
-    /**
-     * @param int $id
-     * @return User
-     */
-    public static function getById($id)
-    {
-        $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `" . self::getTableName() . "` WHERE id = ?",
-            [$id],
-            'i'
-        );
-
-        if (!$data) {
-            return null;
-        }
-
-        return self::bindSqlResult($data);
-    }
-
-    /**
-     * @param array $data
-     * @return User
-     */
-    private static function bindSqlResult($data)
-    {
-        return new self(
-            $data['id'],
-            $data['username'],
-            $data['password'],
-            $data['nickname'],
-            $data['email']
-        );
-    }
-
-    /**
-     *
-     */
-    public function delete()
-    {
-        \Lib\Core\Database::getInstance()->fetchOne(
-            "DELETE FROM `" . self::getTableName() . "` WHERE id = ?",
-            [$this->getId()],
-            'i'
-        );
-    }
-
-    /**
-     * @param string    $username
-     * @return User
-     */
-    public static function getByUsername($username)
-    {
-        $data = \Lib\Core\Database::getInstance()->fetchOne(
-            "SELECT * FROM `" . self::getTableName() . "` WHERE username = ?",
-            [$username],
-            's'
-        );
-
-        if (!$data) {
-            return null;
-        }
-
-        return self::bindSqlResult($data);
-    }
-
-    /**
      * @param string $password
      * @return string
      */
@@ -229,107 +154,5 @@ final class User
     public function verifyPassword($password)
     {
         return hash('sha512', $password) == $this->getPassword();
-    }
-
-    /**
-     *
-     */
-    public function save()
-    {
-        $db = \Lib\Core\Database::getInstance();
-        $params = [
-            $this->getUsername(),
-            $this->getPassword(),
-            $this->getNickname(),
-            $this->getEmail(),
-        ];
-
-        $types = 'ssss';
-        if ($this->getId() === null || $this->getId() === 0) {
-            $sql = "INSERT INTO `" . self::getTableName() . "` (`username`, `password`, `nickname`, `email`) VALUES ( ?, ?, ?, ? )";
-            $result = $db->query($sql, $params, $types);
-            $this->setId($result->insert_id);
-        } else {
-            $sql = "UPDATE `" . self::getTableName() . "` SET `username` = ?, `password` = ?, `nickname` = ?, `email` = ? WHERE `id` = ?";
-            $params[] = $this->getId();
-            $types .= 'i';
-            $db->query($sql, $params, $types);
-        }
-    }
-
-    /**
-     * @return int
-     */
-    public static function getTotalAmount()
-    {
-        $result = Database::getInstance()->fetchOne("SELECT count(1) AS cnt FROM `" . self::getTableName() . "`");
-        return Util::arrayGet($result, 'cnt', 0);
-    }
-
-    /**
-     * @return User[]
-     */
-    public static function getAll()
-    {
-        $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `" . self::getTableName() . "`"
-        );
-
-        $users = [];
-        foreach ($data as $user) {
-            $users[] = self::bindSqlResult($user);
-        }
-
-        return $users;
-    }
-
-    /**
-     * @return array
-     */
-    public function getRoles()
-    {
-        return Role::findByUserId($this->getId());
-    }
-
-    /**
-     *
-     */
-    public function clearRoles()
-    {
-        \Lib\Core\Database::getInstance()->query("DELETE FROM `flg_userRole` WHERE userId = ?",
-            [$this->getId()],
-            'i'
-        );
-    }
-
-    /**
-     * @param Role $role
-     */
-    public function addRole(Role $role)
-    {
-        \Lib\Core\Database::getInstance()->query("INSERT INTO `flg_userRole` (`userId`, `roleId`) VALUES ( ?, ? )",
-            [$this->getId(), $role->getId()],
-            'ii'
-        );
-    }
-
-    /**
-     * @return array
-     */
-    public function getPermissions()
-    {
-        $permissions = [];
-        $roles = $this->getRoles();
-        foreach ($roles as $role) {
-            $permissions = array_merge($permissions, Permission::findForRole($role));
-        }
-
-        $permissionNames = [];
-        foreach ($permissions as $permission) {
-            $permissionNames[] = $permission->getName();
-        }
-
-        $permissionNames = array_unique($permissionNames);
-        return $permissionNames;
     }
 }

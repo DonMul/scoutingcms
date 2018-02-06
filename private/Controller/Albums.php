@@ -2,23 +2,23 @@
 
 namespace Controller;
 
-use Lib\Data\Album;
-use Lib\Data\AlbumCategory;
-
 /**
  * Class Albums
  * @package Controller
  * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Albums extends \Lib\Core\BaseController
+final class Albums extends \Lib\Core\BaseController
 {
+    /**
+     * @return array
+     */
     public function getArray()
     {
-        $category = AlbumCategory::getByName($_GET['category']);
+        $category = $this->getAlbumCategoryRepository()->getByName($this->getVariable('category', 0));
 
         return [
-            'albums' => Album::findPublicByCategory($category->getId()),
-            'categories' => AlbumCategory::getAll(),
+            'albums' => $this->getAlbumRepository()->findPublicByCategory($category->getId()),
+            'categories' => $this->getAlbumCategoryRepository()->getAll(),
         ];
     }
 }

@@ -12,13 +12,13 @@ use Controller\Admin;
 final class NewsItem extends Admin
 {
     /**
-     *
+     * @return array
      */
     public function getArray()
     {
         $this->ensurePermission('news.edit');
 
-        $newsItem = \Lib\Data\News::getById($_GET['id']);
+        $newsItem = $this->getNewsRepository()->getById($this->getVariable('id', 0));
         if (!$newsItem) {
             $newsItem = new \Lib\Data\News(null, "New news", '', date("Y-m-d H:i:s"), \Lib\Data\News::STATUS_DRAFT);
         }

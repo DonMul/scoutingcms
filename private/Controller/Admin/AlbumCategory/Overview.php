@@ -3,7 +3,6 @@
 namespace Controller\Admin\AlbumCategory;
 
 use Controller\Admin;
-use Lib\Data\AlbumCategory;
 
 /**
  * Class Overview
@@ -17,7 +16,7 @@ final class Overview extends Admin
      */
     public function getArray()
     {
-        $categories = AlbumCategory::getAll();
+        $categories = $this->getAlbumCategoryRepository()->getAll();
         return [
             'categories' => $categories
         ];

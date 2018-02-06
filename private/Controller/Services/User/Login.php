@@ -17,7 +17,7 @@ final class Login extends \Lib\Core\BaseController\Ajax
     public function getArray()
     {
         $isValid = false;
-        $user = \Lib\Data\User::getByUsername($this->getPostValue('username'));
+        $user = $this->getUserRepository()->getByUsername($this->getPostValue('username'));
         if ($user) {
             $isValid = $user->verifyPassword($this->getPostValue('password'));
         }

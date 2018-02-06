@@ -7,11 +7,14 @@ namespace Controller;
  * @package Controller
  * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Agenda extends \Lib\Core\BaseController
+final class Agenda extends \Lib\Core\BaseController
 {
+    /**
+     * @return array
+     */
     public function getArray()
     {
-        $items = \Lib\Data\Agenda::findBetweenDates(
+        $items = $this->getAgendaRepository()->findBetweenDates(
             date('Y-m-1 H:i:s'),
             date('Y-m-1 H:i:s', strtotime('+1 year'))
         );

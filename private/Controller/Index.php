@@ -7,16 +7,15 @@ namespace Controller;
  * @package Controller
  * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Index extends \Lib\Core\BaseController
+final class Index extends \Lib\Core\BaseController
 {
     /**
      * @return array
      */
     public function getArray()
     {
-        $page = \Lib\Data\Page::getHomepage();
         return [
-            'page' => $page
+            'page' => $this->getPageRepository()->getHomepage(),
         ];
     }
 

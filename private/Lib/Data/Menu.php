@@ -2,16 +2,17 @@
 
 namespace Lib\Data;
 
-
 use Lib\Core\Cache;
 use Lib\Core\Database;
 use Lib\Core\Translation;
 use Lib\Core\Util;
 
+/**
+ * Class Menu
+ * @package Lib\Data
+ */
 final class Menu
 {
-    const TABLENAME = 'menu';
-
     const TYPE_PAGE = 'page';
     const TYPE_ALBUM = 'album';
     const TYPE_CALENDER = 'calender';
@@ -168,47 +169,6 @@ final class Menu
     }
 
     /**
-     * @return string
-     */
-    private static function getTableName()
-    {
-        return Database::getInstance()->getFullTableName(self::TABLENAME);
-    }
-
-    /**
-     * @return Menu[]
-     */
-    public static function getAll()
-    {
-        $data = \Lib\Core\Database::getInstance()->fetchAll(
-            "SELECT * FROM `" . self::getTableName() . "`"
-        );
-
-        $menuItems = [];
-        foreach ($data as $menuItem) {
-            $menuItems[] = self::bindSqlResult($menuItem);
-        }
-
-        return $menuItems;
-    }
-
-    /**
-     * @param array $data
-     * @return Menu
-     */
-    private static function bindSqlResult($data)
-    {
-        return new Menu(
-            Util::arrayGet($data, 'id'),
-            Util::arrayGet($data, 'parentId'),
-            Util::arrayGet($data, 'name'),
-            Util::arrayGet($data, 'type'),
-            Util::arrayGet($data, 'value'),
-            Util::arrayGet($data, 'position')
-        );
-    }
-
-    /**
      * @param Menu $item
      */
     public function addSubItem(Menu $item)
@@ -222,133 +182,5 @@ final class Menu
     public function getSubItems()
     {
         return $this->subItems;
-    }
-
-    /**
-     * @return Menu[]
-     */
-    public static function getNestedObjectStructure()
-    {
-        $allMenus = self::getAll();
-        $menuIdMapping = [];
-        foreach ($allMenus as $menu) {
-            $menuIdMapping[$menu->getId()] = $menu;
-        }
-
-        foreach ($allMenus as $menu) {
-            if ($menu->getParentId() == 0) {
-                continue;
-            }
-
-            $menuIdMapping[$menu->getParentId()]->addSubItem($menu);
-        }
-
-        foreach ($allMenus as $menu) {
-            if ($menu->getParentId() != 0) {
-                unset($menuIdMapping[$menu->getId()]);
-                continue;
-            }
-        }
-
-        return $menuIdMapping;
-    }
-
-    /**
-     * @return Menu[]
-     */
-    public static function getNestedStructure()
-    {
-        $cacheKey = 'globalMenu';
-        $cache = Cache::getInstance()->get($cacheKey);
-        if ($cache !== null) {
-            return $cache;
-        }
-
-        $menuIdMapping = self::getNestedObjectStructure();
-
-        $mapping = [];
-        foreach ($menuIdMapping as $item) {
-            $mapping[$item->getPosition()] = self::getData($item);
-        }
-
-        Cache::getInstance()->set($cacheKey, $mapping);
-        return $mapping;
-    }
-
-    /**
-     * @param Menu $item
-     * @return array
-     */
-    private static function getData(Menu $item)
-    {
-        $url = '';
-        switch ($item->getType()) {
-            case self::TYPE_ALBUM:
-                $album = AlbumCategory::getByName($item->getValue());
-                $url = Translation::getInstance()->translateLink('albums', ['category' => $album->getName()]);
-                break;
-            case self::TYPE_URL:
-                $url = $item->getValue();
-                break;
-            case self::TYPE_PAGE:
-                $page = Page::getBySlug($item->getValue());
-                $url = $page->getSlug();
-                break;
-            case self::TYPE_GROUP:
-                $group = Speltak::getByName($item->getValue());
-                $url = Translation::getInstance()->translateLink('speltak', ['name' => $group->getName()]);
-                break;
-            case self::TYPE_DOWNLOAD:
-                $url = Translation::getInstance()->translateLink('download', ['type' => $item->getValue()]);
-                break;
-        }
-
-        $subItems = [];
-        foreach ($item->getSubItems() as $subItem) {
-            $subItems[$subItem->getPosition()] = self::getData($subItem);
-        }
-
-        return [
-            'name' => $item->getName(),
-            'url' => $url,
-            'subItems' => $subItems
-        ];
-    }
-
-    /**
-     *
-     */
-    public function save()
-    {
-        $db = Database::getInstance();
-        $params = [
-            $this->getParentId(),
-            $this->getName(),
-            $this->getType(),
-            $this->getValue(),
-            $this->getPosition(),
-        ];
-
-        $types = 'isssi';
-        if ($this->getId() === null || $this->getId() == 0) {
-            $sql = "INSERT INTO `" . self::getTableName() . "` (`parentId`, `name`, `type`, `value`, `position`) VALUES ( ?, ?, ?, ?, ? )";
-            $result = $db->query($sql, $params, $types);
-            $insertId = $result->insert_id;
-            $this->setId($insertId);
-        } else {
-            $sql = "UPDATE `" . self::getTableName() . "` SET `parentId` = ?, `name` = ?, `type` = ?, `value` = ?, `position` = ? WHERE `id` = ?";
-            $params[] = $this->getId();
-            $types .= 'i';
-            $db->query($sql, $params, $types);
-        }
-    }
-
-    /**
-     *
-     */
-    public function delete()
-    {
-        $sql = "DELETE FROM `" . self::getTableName() . "` WHERE id = ?";
-        Database::getInstance()->query($sql, [$this->getId()], 'i');
     }
 }

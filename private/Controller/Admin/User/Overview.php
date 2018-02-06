@@ -3,7 +3,6 @@
 namespace Controller\Admin\User;
 
 use Controller\Admin;
-use Lib\Data\User;
 
 /**
  * Class Overview
@@ -20,7 +19,7 @@ final class Overview extends Admin
         $this->ensurePermission('user.edit');
 
         return [
-            'users' => User::getAll(),
+            'users' => $this->getUserRepository()->getAll(),
             'active' => 'user'
         ];
     }

@@ -19,7 +19,7 @@ final class Overview extends Admin
         $this->ensurePermission('pages.edit');
 
         return [
-            'pages' => \Lib\Data\Page::getAll(),
+            'pages' => $this->getPageRepository()->getAll(),
             'active' => 'page'
         ];
     }

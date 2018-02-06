@@ -20,12 +20,12 @@ final class Delete extends \Controller\Services\Admin
         $this->ensurePermission('pages.edit');
 
         $pageId = $this->getPostValue('pageId');
-        $page = Page::getById($pageId);
+        $page = $this->getPageRepository()->getById($pageId);
         if (!($page instanceof Page)) {
             throw new \Exception(Translation::getInstance()->translate("error.page.notFound", ['id' => $pageId]));
         }
 
-        $page->delete();
+        $this->getPageRepository()->delete($page);
 
         return [
             'reload' => true,

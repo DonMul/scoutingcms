@@ -3,7 +3,6 @@
 namespace Controller\Admin\AgendaCategory;
 
 use Controller\Admin;
-use Lib\Data\AgendaCategory;
 
 /**
  * Class Overview
@@ -17,7 +16,7 @@ final class Overview extends Admin
      */
     public function getArray()
     {
-        $categories = AgendaCategory::getAll();
+        $categories = $this->getAgendaCategoryRepository()->getAll();
         return [
             'categories' => $categories
         ];

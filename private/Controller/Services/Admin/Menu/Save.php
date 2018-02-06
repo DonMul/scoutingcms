@@ -21,7 +21,7 @@ final class Save extends Admin
     {
         $this->ensurePermission('menu.edit');
 
-        foreach (Menu::getAll() as $menu) {
+        foreach ($this->getMenuRepository()->getAll() as $menu) {
             $menu->delete();
         }
 
@@ -40,7 +40,7 @@ final class Save extends Admin
                 $this->getPostValue(['menu', 'position', $key])
             );
 
-            $item->save();
+            $this->getMenuRepository()->save($item);
             $menuItems[$key] = $item;
             $keyIdMapping[$this->getPostValue(['menu', 'id', $key])] = $item->getId();
         }

@@ -3,7 +3,6 @@
 namespace Controller\Admin\User;
 
 use Controller\Admin;
-use Lib\Data\Role;
 
 /**
  * Class User
@@ -19,7 +18,7 @@ final class User extends Admin
     {
         $this->ensurePermission('user.edit');
 
-        $user = \Lib\Data\User::getById($_GET['id']);
+        $user = $this->getUserRepository()->getById($this->getVariable('id', 0));
         if (!$user) {
             $user = new \Lib\Data\User(
                 null,
@@ -32,8 +31,8 @@ final class User extends Admin
 
         return [
             'user' => $user,
-            'roles' => Role::getAll(),
-            'userRoles' => $user->getRoles(),
+            'roles' => $this->getRoleRepository()->getAll(),
+            'userRoles' => $this->getUserRepository()->getRoles($user),
             'active' => 'user'
         ];
     }

@@ -4,8 +4,6 @@ namespace Controller\Admin\Album;
 
 use Controller\FourOFour;
 use Lib\Core\BaseController;
-use Lib\Data\Album;
-use Lib\Data\AlbumCategory;
 
 /**
  * Class Overview
@@ -19,11 +17,11 @@ final class Overview extends BaseController
      */
     public function getArray()
     {
-        $albums = Album::getAll();
+        $albums = $this->getAlbumRepository()->getAll();
         $allowed = false;
 
         foreach ($albums as $key => $album) {
-            if ($this->hasPermission('album.' . $album->getCategoryObject()->getName() . '.view')) {
+            if ($this->hasPermission('album.' . $this->getAlbumCategoryRepository()->getById($album->getCategory())->getName() . '.view')) {
                 $allowed = true;
             } else {
                 unset($albums[$key]);
@@ -39,7 +37,7 @@ final class Overview extends BaseController
 
         return [
             'albums' => $albums,
-            'categories' => AlbumCategory::getAll(),
+            'categories' => $this->getAlbumCategoryRepository()->getAll(),
             'active' => 'album'
         ];
     }

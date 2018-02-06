@@ -1,6 +1,7 @@
 <?php
 
 namespace Controller\Services\Admin\News;
+
 use Lib\Core\Translation;
 use Lib\Data\News;
 
@@ -19,7 +20,7 @@ final class Save extends \Controller\Services\Admin
         $this->ensurePermission('news.edit');
 
         $newsId = $this->getPostValue('newsId');
-        $news = News::getById($newsId);
+        $news = $this->getNewsRepository()->getById($newsId);
         if (!($news instanceof News) && intval($newsId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.news.notFound", ['id' => $newsId]));
         }
@@ -38,7 +39,7 @@ final class Save extends \Controller\Services\Admin
             );
         }
 
-        $news->save();
+        $this->getNewsRepository()->save($news);
 
         return [
             'redirect' => Translation::getInstance()->translateLink("adminNews")

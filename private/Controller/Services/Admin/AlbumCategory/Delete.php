@@ -20,12 +20,12 @@ final class Delete extends Admin
     public function getArray()
     {
         $categoryId = $this->getPostValue('categoryId');
-        $category = \Lib\Data\AlbumCategory::getById($categoryId);
+        $category = $this->getAlbumCategoryRepository()->getById($categoryId);
         if (!($category instanceof \Lib\Data\AlbumCategory)) {
             throw new \Exception(Translation::getInstance()->translate("error.albumCategory.notFound", ['id' => $categoryId]));
         }
 
-        $category->delete();
+        $this->getAlbumCategoryRepository()->delete($category);
 
         return [
             'redirect' => Translation::getInstance()->translateLink('adminAlbumCategories')

@@ -3,8 +3,6 @@
 namespace Controller\Admin\Album;
 
 use Controller\Admin;
-use Lib\Data\AlbumCategory;
-use Lib\Data\Picture;
 
 /**
  * Class Album
@@ -18,7 +16,7 @@ final class Album extends Admin
      */
     public function getArray()
     {
-        $album = \Lib\Data\Album::getById($_GET['id']);
+        $album = $this->getAlbumRepository()->getById($this->getVariable('id', 0));
         if (!$album) {
             $album = new \Lib\Data\Album(
                 null,
@@ -30,13 +28,14 @@ final class Album extends Admin
                 0
             );
         } else {
-            $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.view');
+            $this->ensurePermission(
+                'album.' . $this->getAlbumCategoryRepository()->getById($album->getCategory())->getName() . '.view');
         }
 
         return [
             'album' => $album,
-            'pictures' => Picture::findByAlbumId($_GET['id']),
-            'categories' => AlbumCategory::getAll(),
+            'pictures' => $this->getPictureRepository()->findByAlbumId($this->getVariable('id', 0)),
+            'categories' => $this->getAlbumCategoryRepository()->getAll(),
             'albumHash' => md5($album->getId()),
             'active' => 'album'
         ];

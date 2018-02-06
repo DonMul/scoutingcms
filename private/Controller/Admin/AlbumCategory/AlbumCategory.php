@@ -14,7 +14,7 @@ final class AlbumCategory extends Admin
 {
     public function getArray()
     {
-        $category = Data\AlbumCategory::getById($_GET['id']);
+        $category = $this->getAlbumCategoryRepository()->getById($this->getVariable('id', 0));
         if (!$category) {
             $category = new Data\AlbumCategory(null, '');
         }

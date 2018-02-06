@@ -22,13 +22,13 @@ final class Delete extends \Controller\Services\Admin
         $this->ensurePermission('calender.edit');
 
         $itemId = $this->getPostValue('itemId');
-        $item = Agenda::getById($itemId);
+        $item = $this->getAgendaRepository()->getById($itemId);
 
         if (!($item instanceof Agenda)) {
             throw new \Exception(Translation::getInstance()->translate("error.item.notFound", ['id' => $itemId]));
         }
 
-        $item->delete();
+        $this->getAgendaRepository()->delete($item);
 
         return [
             'reload' => true,

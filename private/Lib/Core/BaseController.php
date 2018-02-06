@@ -7,13 +7,14 @@ use Lib\Data\Menu;
 use Lib\Data\Page;
 use Lib\Data\Permission;
 use Lib\Data\Speltak;
+use Twig\Loader\FilesystemLoader;
 
 /**
  * Class BaseController
  * @package Lib\Core
  * @author  Joost Mul <jmul@posd.io>
  */
-abstract class BaseController
+abstract class BaseController extends RepositoryContainer
 {
     /**
      * @var bool
@@ -24,6 +25,16 @@ abstract class BaseController
      * @var array
      */
     protected $errors = [];
+
+    /**
+     * @param string|string[] $name
+     * @param mixed $default
+     * @return mixed
+     */
+    protected function getVariable($name, $default = null)
+    {
+        return Util::arrayGet($_GET, $name, $default);
+    }
 
     /**
      * @param boolean $requiresLogin
@@ -130,10 +141,10 @@ abstract class BaseController
             'request' => $_GET,
             'loggedIn' => \Lib\Core\Session::getInstance()->isLoggedIn(),
             'language' => \Lib\Core\Translation::getInstance()->getLanguage(),
-            'menu' => Menu::getNestedStructure(),
-            'pages' => Page::getAll(),
-            'groups' => Speltak::getAll(),
-            'albumCategories' => AlbumCategory::getAll(),
+            'menu' => $this->getMenuRepository()->getNestedStructure(),
+            'pages' => $this->getPageRepository()->getAll(),
+            'groups' => $this->getSpeltakRepository()->getAll(),
+            'albumCategories' => $this->getSpeltakRepository()->getAll(),
         ];
 
         if ($this->getTitle() !== null) {
@@ -145,7 +156,7 @@ abstract class BaseController
         }
 
         if (\Lib\Core\Session::getInstance()->isLoggedIn()) {
-            $array['user'] = \Lib\Data\User::getById(\Lib\Core\Session::getInstance()->getKey());
+            $array['user'] = $this->getUserRepository()->getById(\Lib\Core\Session::getInstance()->getKey());
             $array['permissions'] = $this->getPermissions();
         }
 
@@ -174,8 +185,8 @@ abstract class BaseController
         }
 
         if (!isset($_SESSION['permissions'])) {
-            $user = \Lib\Data\User::getById(\Lib\Core\Session::getInstance()->getKey());
-            $_SESSION['permissions'] = $user->getPermissions();
+            $user = $this->getUserRepository()->getById(\Lib\Core\Session::getInstance()->getKey());
+            $_SESSION['permissions'] = $this->getUserRepository()->getPermissions($user);
         }
 
         return $_SESSION['permissions'];
@@ -220,9 +231,9 @@ abstract class BaseController
         $cdn = Settings::getInstance()->get('cdn');
         switch($type) {
             case 'image':
-                $image = \Lib\Data\Picture::getById($id);
-                $album = \Lib\Data\Album::getById($image->getAlbumId());
-                $category = $album->getCategoryObject();
+                $image = $this->getPictureRepository()->getById($id);
+                $album = $this->getAlbumRepository()->getById($image->getAlbumId());
+                $category = $this->getAlbumCategoryRepository()->getById($album->getCategory());
                 $path = $category->getName() . '/' . md5($album->getId()) . '/' . $image->getLocation();
                 if (Util::arrayGet($cdn, 'enabled', false) === true) {
                     $path = 'http://' . $cdn['host'] . '/Images/' . $path;
@@ -231,8 +242,8 @@ abstract class BaseController
                 }
                 break;
             case 'albumThumb':
-                $album = \Lib\Data\Album::getById($id);
-                $path = $album->getCategoryObject()->getName() . '/' . $album->getThumbnail();
+                $album = $this->getAlbumRepository()->getById($id);
+                $path = $this->getAlbumCategoryRepository()->getById($album->getCategory())->getName() . '/' . $album->getThumbnail();
                 if (Util::arrayGet($cdn, 'enabled', false) === true) {
                     $path = 'http://' . $cdn['host'] . '/Images/' . $path;
                 } else {
@@ -240,7 +251,7 @@ abstract class BaseController
                 }
                 break;
             case 'download':
-                $download = \Lib\Data\Download::getById($id);
+                $download = $this->getDownloadRepository()->getById($id);
                 $path = $download->getType() . '/' . $download->getFilename();
                 if (Util::arrayGet($cdn, 'enabled', false) === true) {
                     $path = 'http://' . $cdn['host'] . '/Downloads/' . $path;

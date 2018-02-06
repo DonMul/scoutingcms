@@ -3,9 +3,6 @@
 namespace Controller\Admin\Role;
 
 use Controller\Admin;
-use Lib\Data\AlbumCategory;
-use Lib\Data\Permission;
-use Lib\Data\Speltak;
 
 /**
  * Class Role
@@ -21,7 +18,7 @@ final class Role extends Admin
     {
         $this->ensurePermission('role.edit');
 
-        $role = \Lib\Data\Role::getById($_GET['id']);
+        $role = $this->getRoleRepository()->getById($this->getVariable('id', 0));
         if (!$role) {
             $role = new \Lib\Data\Role(
                 null,
@@ -32,9 +29,9 @@ final class Role extends Admin
 
         return [
             'role' => $role,
-            'permissions' => Permission::findForRole($role),
-            'albumCategories' => AlbumCategory::getAll(),
-            'groups' => Speltak::getAll(),
+            'permissions' => $this->getPermissionRepository()->findForRole($role),
+            'albumCategories' => $this->getAlbumCategoryRepository()->getAll(),
+            'groups' => $this->getSpeltakRepository()->getAll(),
             'downloads' => [['name' => 'report'],['name' => 'newsletter']],
             'active' => 'role'
         ];

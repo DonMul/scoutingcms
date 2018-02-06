@@ -21,13 +21,13 @@ final class Save extends \Controller\Services\Admin
     public function getArray()
     {
         $albumId = $this->getPostValue('albumId');
-        $album = Album::getById($albumId);
+        $album = $this->getAlbumRepository()->getById($albumId);
         if (!($album instanceof Album) && intval($albumId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.album.notFound", ['id' => $albumId]));
         }
 
         if ($album) {
-            $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.edit');
+            $this->ensurePermission('album.' . $this->getAlbumCategoryRepository()->getById($album->getCategory())->getName() . '.edit');
 
             $album->setName($this->getPostValue('name'));
             $album->setDescription($this->getPostValue('description'));
@@ -44,11 +44,11 @@ final class Save extends \Controller\Services\Admin
                 isset($_POST['private'])
             );
 
-            $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.edit');
+            $this->ensurePermission('album.' . $this->getAlbumCategoryRepository()->getById($album->getCategory())->getName() . '.edit');
         }
 
         if (!empty($_FILES['thumbnail']['name'])) {
-            $targetName = $_SERVER["DOCUMENT_ROOT"] . 'public/upload/' . $album->getCategoryObject()->getName() . '/' . $_FILES["thumbnail"]["name"];
+            $targetName = $_SERVER["DOCUMENT_ROOT"] . 'public/upload/' . $this->getAlbumCategoryRepository()->getById($album->getCategory())->getName() . '/' . $_FILES["thumbnail"]["name"];
 
             $imager = new Imager();
             $imager->uploadImage($_FILES['thumbnail']['tmp_name'], $targetName);
@@ -57,7 +57,7 @@ final class Save extends \Controller\Services\Admin
             $album->setThumbnail($_FILES["thumbnail"]["name"]);
         }
 
-        $album->save();
+        $this->getAlbumRepository()->save($album);
 
         return [
             'redirect' => Translation::getInstance()->translateLink("adminAlbums"),

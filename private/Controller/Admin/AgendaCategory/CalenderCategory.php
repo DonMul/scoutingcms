@@ -17,7 +17,7 @@ final class CalenderCategory extends Admin
      */
     public function getArray()
     {
-        $category = AgendaCategory::getById($_GET['id']);
+        $category = $this->getAgendaCategoryRepository()->getById($this->getVariable('id', 0));
         if (!$category) {
             $category = new AgendaCategory(null, '', '');
         }

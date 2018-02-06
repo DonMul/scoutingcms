@@ -19,7 +19,7 @@ final class Menu extends Admin
         $this->ensurePermission('menu.edit');
 
         return [
-            'menu' => \Lib\Data\Menu::getNestedObjectStructure(),
+            'menu' => $this->getMenuRepository()->getNestedObjectStructure(),
         ];
     }
 }

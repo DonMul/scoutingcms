@@ -19,7 +19,7 @@ final class Overview extends Admin
         $this->ensurePermission('news.edit');
 
         return [
-            'news' => \Lib\Data\News::getAll(),
+            'news' => $this->getNewsRepository()->getAll(),
             'active' => 'news',
         ];
     }

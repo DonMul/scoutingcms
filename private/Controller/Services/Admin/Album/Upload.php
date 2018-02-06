@@ -20,15 +20,15 @@ final class Upload extends \Controller\Services\Admin
      */
     public function getArray()
     {
-        $album = Album::getById($_GET['id']);
+        $album = $this->getAlbumRepository()->getById($_GET['id']);
         if (!$album) {
             return [];
         }
 
-        $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.edit');
+        $this->ensurePermission('album.' . $this->getAlbumCategoryRepository()->getById($album->getCategory())->getName() . '.edit');
 
         $imager = new Imager();
-        $category = AlbumCategory::getById($album->getCategory());
+        $category = $this->getAlbumCategoryRepository()->getById($album->getCategory());
         $targetDir = ROOT . "../public/upload/" . $category->getName() . "/" . md5($album->getId()) . '/';
         $targetFile = $targetDir . basename($_FILES["file"]["name"]);
         $imager->uploadImage($_FILES["file"]["tmp_name"], $targetFile);
@@ -39,7 +39,7 @@ final class Upload extends \Controller\Services\Admin
             basename($_FILES["file"]["name"]),
             ''
         );
-        $picture->save();
+        $this->getPictureRepository()->save($picture);
 
         $isResized = $imager->resizeImage($targetFile, 1024, 720);
         if (!$isResized) {

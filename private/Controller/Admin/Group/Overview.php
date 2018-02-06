@@ -1,6 +1,7 @@
 <?php
 
 namespace Controller\Admin\Group;
+
 use Controller\FourOFour;
 
 /**
@@ -16,7 +17,7 @@ final class Overview extends \Controller\Admin
      */
     public function getArray()
     {
-        $groups = \Lib\Data\Speltak::getAll();
+        $groups = $this->getSpeltakRepository()->getAll();
         $allowed = false;
         foreach ($groups as $key => $group) {
             if ($this->hasPermission('group.' . $group->getName() . '.view')) {

@@ -17,7 +17,7 @@ final class Download extends Admin
      */
     public function getArray()
     {
-        $download = \Lib\Data\Download::getById($_GET['id']);
+        $download = $this->getDownloadRepository()->getById($this->getVariable('id', 0));
         if (!$download) {
             $download = new \Lib\Data\Download(
                 null,

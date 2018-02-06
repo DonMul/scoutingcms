@@ -19,7 +19,7 @@ final class Page extends Admin
     {
         $this->ensurePermission('pages.edit');
 
-        $page = \Lib\Data\Page::getById($_GET['id']);
+        $page = $this->getPageRepository()->getById($this->getVariable('id', 0));
         if (!$page) {
             $page = new \Lib\Data\Page(null, Translation::getInstance()->translate('page.title'), "", "", "", false);
         }

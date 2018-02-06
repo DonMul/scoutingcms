@@ -7,12 +7,15 @@ namespace Controller;
  * @package Controller
  * @author Joost Mul <scoutingcms@jmul.net>
  */
-class Download extends \Lib\Core\BaseController
+final class Download extends \Lib\Core\BaseController
 {
+    /**
+     * @return array
+     */
     public function getArray()
     {
         return [
-            'downloads' => \Lib\Data\Download::findByType($_GET['type']),
+            'downloads' => $this->getDownloadRepository()->findByType($this->getVariable('type', '')),
         ];
     }
 }

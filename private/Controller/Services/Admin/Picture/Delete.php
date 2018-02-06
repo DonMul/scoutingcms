@@ -20,15 +20,15 @@ final class Delete extends Admin
     public function getArray()
     {
         $pictureId = $this->getPostValue('pictureId');
-        $picture = Picture::getById($pictureId);
+        $picture = $this->getPictureRepository()->getById($pictureId);
         if (!$picture) {
             throw new \Exception(Translation::getInstance()->translate('error.picture.notFOund'));
         }
 
-        $album = Album::getById($picture->getAlbumId());
-        $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.edit');
+        $album = $this->getAlbumRepository()->getById($picture->getAlbumId());
+        $this->ensurePermission('album.' . $this->getAlbumCategoryRepository()->getById($album->getCategory())->getName() . '.edit');
 
-        $picture->delete();
+        $this->getPictureRepository()->delete($picture);
 
         return [
             'reload' => true,

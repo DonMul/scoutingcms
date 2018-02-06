@@ -20,14 +20,14 @@ final class Delete extends \Controller\Services\Admin
     public function getArray()
     {
         $albumId = $this->getPostValue('albumId');
-        $album = Album::getById($albumId);
+        $album = $this->getAlbumRepository()->getById($albumId);
         if (!($album instanceof Album)) {
             throw new \Exception(Translation::getInstance()->translate("error.album.notFound", ['id' => $albumId]));
         }
 
-        $this->ensurePermission('album.' . $album->getCategoryObject()->getName() . '.edit');
+        $this->ensurePermission('album.' . $this->getAlbumCategoryRepository()->getById($album->getCategory())->getName() . '.edit');
 
-        $album->delete();
+        $this->getAlbumRepository()->delete($album);
 
         return [
             'reload' => true,

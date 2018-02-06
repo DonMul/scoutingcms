@@ -13,12 +13,14 @@ use Lib\Core\Session;
 final class Register extends BaseController
 {
     /**
-     *
+     * @return array
      */
     public function getArray()
     {
         if (Session::getInstance()->isLoggedIn()) {
             header("Location: /");
         }
+
+        return [];
     }
 }

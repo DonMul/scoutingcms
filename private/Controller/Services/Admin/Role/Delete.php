@@ -20,12 +20,12 @@ final class Delete extends \Controller\Services\Admin
         $this->ensurePermission('role.edit');
 
         $roleId = $this->getPostValue('roleId');
-        $role = Role::getById($roleId);
+        $role = $this->getRoleRepository()->getById($roleId);
         if (!($role instanceof Role)) {
             throw new \Exception(Translation::getInstance()->translate("error.role.notFound", ['id' => $roleId]));
         }
 
-        $role->delete();
+        $this->getRoleRepository()->delete($role);
 
         return [
             'reload' => true,

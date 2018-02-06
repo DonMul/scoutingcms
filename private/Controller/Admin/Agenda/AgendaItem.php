@@ -17,7 +17,7 @@ final class AgendaItem extends \Controller\Admin
     public function getArray()
     {
         $this->ensurePermission('calender.edit');
-        $item = \Lib\Data\Agenda::getById($_GET['id']);
+        $item = $this->getAgendaRepository()->getById($_GET['id']);
         if ($item === null) {
             $item = new \Lib\Data\Agenda(
                 null,
@@ -32,7 +32,7 @@ final class AgendaItem extends \Controller\Admin
 
         return [
             'item' => $item,
-            'categories' => AgendaCategory::getAll(),
+            'categories' => $this->getAgendaCategoryRepository()->getAll(),
             'active' => 'calender',
             'isNew' => $item->getId() == null,
         ];

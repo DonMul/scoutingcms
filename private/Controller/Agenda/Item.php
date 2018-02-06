@@ -12,13 +12,16 @@ use Lib\Data\AgendaCategory;
  */
 final class Item extends \Lib\Core\BaseController
 {
+    /**
+     * @return array
+     */
     public function getArray()
     {
-        $item = Agenda::getBySlug($_GET['slug']);
+        $item = $this->getAgendaRepository()->getBySlug($_GET['slug']);
 
         return [
             'item' => $item,
-            'category' => AgendaCategory::getById($item->getCategory()),
+            'category' => $this->getAgendaCategoryRepository()->getById($item->getCategory()),
         ];
     }
 }

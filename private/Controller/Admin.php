@@ -2,8 +2,6 @@
 
 namespace Controller;
 
-use Lib\Data\Picture;
-
 /**
  * Class Admin
  * @package Controller
@@ -26,14 +24,14 @@ class Admin extends \Lib\Core\BaseController
     {
         return [
             'totals' => [
-                'agenda' => \Lib\Data\Agenda::getTotalAmount(),
-                'album' => \Lib\Data\Album::getTotalAmount(),
-                'download' => \Lib\Data\Download::getTotalAmount(),
-                'news' => \Lib\Data\News::getTotalAmount(),
-                'page' => \Lib\Data\Page::getTotalAmount(),
-                'picture' => Picture::getTotalAmount(),
-                'speltak' => \Lib\Data\Speltak::getTotalAmount(),
-                'user' => \Lib\Data\User::getTotalAmount(),
+                'agenda' => $this->getAgendaRepository()->getTotalAmount(),
+                'album' => $this->getAlbumRepository()->getTotalAmount(),
+                'download' => $this->getDownloadRepository()->getTotalAmount(),
+                'news' => $this->getNewsRepository()->getTotalAmount(),
+                'page' => $this->getPageRepository()->getTotalAmount(),
+                'picture' => $this->getPictureRepository()->getTotalAmount(),
+                'speltak' => $this->getSpeltakRepository()->getTotalAmount(),
+                'user' => $this->getUserRepository()->getTotalAmount(),
             ],
         ];
     }

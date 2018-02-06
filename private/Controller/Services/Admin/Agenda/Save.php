@@ -13,12 +13,16 @@ use Lib\Data\Agenda;
  */
 final class Save extends \Controller\Services\Admin
 {
+    /**
+     * @return array
+     * @throws \Exception
+     */
     public function getArray()
     {
         $this->ensurePermission('calender.edit');
 
         $itemId = $this->getPostValue('itemId');
-        $item = Agenda::getById($itemId);
+        $item = $this->getAgendaRepository()->getById($itemId);
 
         if (!($item instanceof Agenda) && intval($itemId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.item.notFound", ['id' => $itemId]));
@@ -42,7 +46,7 @@ final class Save extends \Controller\Services\Admin
             );
         }
 
-        $item->save();
+        $this->getAgendaRepository()->save($item);
 
         return [
             'redirect' => Translation::getInstance()->translateLink("adminCalender")

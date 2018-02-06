@@ -2,7 +2,6 @@
 namespace Controller\Admin\Role;
 
 use Controller\Admin;
-use Lib\Data\Role;
 
 /**
  * Class Overview
@@ -19,7 +18,7 @@ final class Overview extends Admin
         $this->ensurePermission('role.edit');
 
         return [
-            'roles' => Role::getAll(),
+            'roles' => $this->getRoleRepository()->getAll(),
             'active' => 'role'
         ];
     }
