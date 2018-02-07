@@ -7,7 +7,7 @@ namespace Controller;
  * @package Controller
  * @author Joost Mul <scoutingcms@jmul.net>
  */
-final class Index extends \Lib\Core\BaseController
+class Index extends \Lib\Core\BaseController
 {
     /**
      * @return array
