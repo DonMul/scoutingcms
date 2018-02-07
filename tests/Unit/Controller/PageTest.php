@@ -3,7 +3,6 @@
 namespace Unit\Controller;
 
 use Controller\Page;
-use Lib\Exception\PageNotFound;
 
 /**
  * Class PageTest

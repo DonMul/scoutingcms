@@ -94,7 +94,7 @@ class RepositoryContainer
     /**
      * @return Agenda
      */
-    protected function getAgendaRepository(): Agenda
+    public function getAgendaRepository(): Agenda
     {
         if (!($this->agendaRepository instanceof Agenda)) {
             $this->setAgendaRepository(new Agenda());
@@ -112,9 +112,9 @@ class RepositoryContainer
     }
 
     /**
-     * @return Agenda
+     * @return AgendaCategory
      */
-    protected function getAgendaCategoryRepository(): Agenda
+    public function getAgendaCategoryRepository(): AgendaCategory
     {
         if (!($this->agendaCategoryRepository instanceof Agenda)) {
             $this->setAgendaCategoryRepository(new AgendaCategory());
@@ -134,7 +134,7 @@ class RepositoryContainer
     /**
      * @return Album
      */
-    protected function getAlbumRepository(): Album
+    public function getAlbumRepository(): Album
     {
         if (!($this->albumRepository instanceof Album)) {
             $this->setAlbumRepository(new Album());
@@ -154,7 +154,7 @@ class RepositoryContainer
     /**
      * @return AlbumCategory
      */
-    protected function getAlbumCategoryRepository(): AlbumCategory
+    public function getAlbumCategoryRepository(): AlbumCategory
     {
         if (!($this->albumCategoryRepository instanceof AlbumCategory)) {
             $this->setAlbumCategoryRepository(new AlbumCategory());
@@ -174,7 +174,7 @@ class RepositoryContainer
     /**
      * @return Download
      */
-    protected function getDownloadRepository(): Download
+    public function getDownloadRepository(): Download
     {
         if (!($this->downloadRepository instanceof Download)) {
             $this->setDownloadRepository(new Download());
@@ -194,7 +194,7 @@ class RepositoryContainer
     /**
      * @return Menu
      */
-    protected function getMenuRepository(): Menu
+    public function getMenuRepository(): Menu
     {
         if (!($this->menuRepository instanceof Menu)) {
             $this->setMenuRepository(new Menu());
@@ -214,7 +214,7 @@ class RepositoryContainer
     /**
      * @return News
      */
-    protected function getNewsRepository(): News
+    public function getNewsRepository(): News
     {
         if (!($this->newsRepository instanceof News)) {
             $this->setNewsRepository(new News());
@@ -234,7 +234,7 @@ class RepositoryContainer
     /**
      * @return Page
      */
-    protected function getPageRepository(): Page
+    public function getPageRepository(): Page
     {
         if (!($this->pageRepository instanceof Page)) {
             $this->setPageRepository(new Page());
@@ -254,7 +254,7 @@ class RepositoryContainer
     /**
      * @return Permission
      */
-    protected function getPermissionRepository(): Permission
+    public function getPermissionRepository(): Permission
     {
         if (!($this->permissionRepository instanceof Permission)) {
             $this->setPermissionRepository(new Permission());
@@ -274,7 +274,7 @@ class RepositoryContainer
     /**
      * @return Picture
      */
-    protected function getPictureRepository(): Picture
+    public function getPictureRepository(): Picture
     {
         if (!($this->pictureRepository instanceof Picture)) {
             $this->setPictureRepository(new Picture());
@@ -294,7 +294,7 @@ class RepositoryContainer
     /**
      * @return Role
      */
-    protected function getRoleRepository(): Role
+    public function getRoleRepository(): Role
     {
         if (!($this->roleRepository instanceof Role)) {
             $this->setRoleRepository(new Role());
@@ -314,7 +314,7 @@ class RepositoryContainer
     /**
      * @return Speltak
      */
-    protected function getSpeltakRepository(): Speltak
+    public function getSpeltakRepository(): Speltak
     {
         if (!($this->speltakRepository instanceof Speltak)) {
             $this->setSpeltakRepository(new Speltak());
@@ -334,7 +334,7 @@ class RepositoryContainer
     /**
      * @return User
      */
-    protected function getUserRepository(): User
+    public function getUserRepository(): User
     {
         if (!($this->userRepository instanceof User)) {
             $this->setUserRepository(new User());

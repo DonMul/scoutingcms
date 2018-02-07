@@ -41,7 +41,7 @@ abstract class BaseController extends RepositoryContainer
     /**
      * @param boolean $requiresLogin
      */
-    protected function setRequiresLogin($requiresLogin)
+    protected function setRequiresLogin(bool $requiresLogin)
     {
         $this->requiresLogin = $requiresLogin;
     }
@@ -133,17 +133,6 @@ abstract class BaseController extends RepositoryContainer
      */
     protected function serveTemplate($templateLocation, $context)
     {
-        $loader = new \Twig_Loader_Filesystem(TEMPLATEROOT);
-        $twig = new \Twig_Environment($loader, [
-            'cache' => false
-        ]);
-
-        // Add custom twig functions to this page
-        $this->addTwigFunctions($twig);
-
-        // Load Template
-        $template = $twig->loadTemplate($templateLocation);
-
         $array = [
             'context' => $context,
             'languages' => \Lib\Core\Translation::getInstance()->getAllLanguages(),
@@ -180,10 +169,27 @@ abstract class BaseController extends RepositoryContainer
             exit;
         }
 
-        // Render the template
-        echo $template->render($array);
+        $this->render($templateLocation, $array);
     }
 
+    /**
+     * @param string $templateLocation
+     * @param array $data
+     */
+    protected function render($templateLocation, $data)
+    {
+        $loader = new \Twig_Loader_Filesystem(TEMPLATEROOT);
+        $twig = new \Twig_Environment($loader, [
+            'cache' => false
+        ]);
+
+        // Add custom twig functions to this page
+        $this->addTwigFunctions($twig);// Load Template
+        $template = $twig->loadTemplate($templateLocation);
+
+        // Render the template
+        echo $template->render($data);
+    }
     /**
      * @return string[]
      */

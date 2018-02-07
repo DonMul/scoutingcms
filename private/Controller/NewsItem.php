@@ -13,6 +13,7 @@ final class NewsItem extends \Lib\Core\BaseController
 {
     /**
      * @return array
+     * @throws PageNotFound
      */
     public function getArray()
     {
