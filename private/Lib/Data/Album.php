@@ -52,10 +52,11 @@ final class Album
      * @param string $name
      * @param string $slug
      * @param string $description
-     * @param string $category
+     * @param int $category
      * @param string $thumbnail
+     * @param bool $private
      */
-    public function __construct($id, $name, $slug, $description, $category, $thumbnail, $private)
+    public function __construct(?int $id, string $name, string $slug, string $description, int $category, string $thumbnail, bool $private)
     {
         $this->setId($id);
         $this->setName($name);
@@ -69,7 +70,7 @@ final class Album
     /**
      * @return bool
      */
-    public function isPrivate()
+    public function isPrivate(): bool
     {
         return $this->private;
     }
@@ -77,7 +78,7 @@ final class Album
     /**
      * @param bool $private
      */
-    public function setPrivate($private)
+    public function setPrivate(bool $private)
     {
         $this->private = $private;
     }
@@ -85,7 +86,7 @@ final class Album
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -93,7 +94,7 @@ final class Album
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
@@ -101,7 +102,7 @@ final class Album
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -109,7 +110,7 @@ final class Album
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -117,7 +118,7 @@ final class Album
     /**
      * @return string
      */
-    public function getSlug()
+    public function getSlug(): string
     {
         return $this->slug;
     }
@@ -125,7 +126,7 @@ final class Album
     /**
      * @param string $slug
      */
-    public function setSlug($slug)
+    public function setSlug(string $slug)
     {
         $this->slug = $slug;
     }
@@ -133,7 +134,7 @@ final class Album
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -141,7 +142,7 @@ final class Album
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -149,7 +150,7 @@ final class Album
     /**
      * @return string
      */
-    public function getCategory()
+    public function getCategory(): string
     {
         return $this->category;
     }
@@ -157,7 +158,7 @@ final class Album
     /**
      * @param string $category
      */
-    public function setCategory($category)
+    public function setCategory(string $category)
     {
         $this->category = $category;
     }
@@ -165,7 +166,7 @@ final class Album
     /**
      * @return string
      */
-    public function getThumbnail()
+    public function getThumbnail(): string
     {
         return $this->thumbnail;
     }
@@ -173,7 +174,7 @@ final class Album
     /**
      * @param string $thumbnail
      */
-    public function setThumbnail($thumbnail)
+    public function setThumbnail(string $thumbnail)
     {
         $this->thumbnail = $thumbnail;
     }

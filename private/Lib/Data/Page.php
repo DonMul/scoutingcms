@@ -43,12 +43,14 @@ final class Page
 
     /**
      * Page constructor.
-     * @param int $id
+     * @param int|null $id
      * @param string $title
      * @param string $slug
      * @param string $content
+     * @param string $header
+     * @param bool $isHomepage
      */
-    public function __construct($id, $title, $slug, $content, $header, $isHomepage)
+    public function __construct(?int $id, string $title, string $slug, string $content, string $header, bool $isHomepage)
     {
         $this->setId($id);
         $this->setTitle($title);
@@ -61,7 +63,7 @@ final class Page
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -69,7 +71,7 @@ final class Page
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
@@ -77,7 +79,7 @@ final class Page
     /**
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -85,7 +87,7 @@ final class Page
     /**
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -93,7 +95,7 @@ final class Page
     /**
      * @return string
      */
-    public function getSlug()
+    public function getSlug(): string
     {
         return $this->slug;
     }
@@ -101,7 +103,7 @@ final class Page
     /**
      * @param string $slug
      */
-    public function setSlug($slug)
+    public function setSlug(string $slug)
     {
         $this->slug = $slug;
     }
@@ -109,7 +111,7 @@ final class Page
     /**
      * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -117,7 +119,7 @@ final class Page
     /**
      * @param string $content
      */
-    public function setContent($content)
+    public function setContent(string $content)
     {
         $this->content = $content;
     }
@@ -125,7 +127,7 @@ final class Page
     /**
      * @return string
      */
-    public function getHeader()
+    public function getHeader(): string
     {
         return $this->header;
     }
@@ -133,7 +135,7 @@ final class Page
     /**
      * @param string $header
      */
-    public function setHeader($header)
+    public function setHeader(string $header)
     {
         $this->header = $header;
     }
@@ -141,7 +143,7 @@ final class Page
     /**
      * @return bool
      */
-    public function isHomepage()
+    public function isHomepage(): bool
     {
         return $this->isHomepage;
     }
@@ -149,7 +151,7 @@ final class Page
     /**
      * @param bool $isHomepage
      */
-    public function setIsHomepage($isHomepage)
+    public function setIsHomepage(bool $isHomepage)
     {
         $this->isHomepage = $isHomepage;
     }

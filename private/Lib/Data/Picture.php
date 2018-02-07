@@ -37,7 +37,7 @@ final class Picture
      * @param string $location
      * @param string $title
      */
-    public function __construct($id, $albumId, $location, $title)
+    public function __construct(?int $id, int $albumId, string $location, string $title)
     {
         $this->setId($id);
         $this->setAlbumId($albumId);
@@ -48,7 +48,7 @@ final class Picture
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -56,7 +56,7 @@ final class Picture
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
@@ -64,7 +64,7 @@ final class Picture
     /**
      * @return int
      */
-    public function getAlbumId()
+    public function getAlbumId(): int
     {
         return $this->albumId;
     }
@@ -72,7 +72,7 @@ final class Picture
     /**
      * @param int $albumId
      */
-    public function setAlbumId($albumId)
+    public function setAlbumId(int $albumId)
     {
         $this->albumId = $albumId;
     }
@@ -80,7 +80,7 @@ final class Picture
     /**
      * @return string
      */
-    public function getLocation()
+    public function getLocation(): string
     {
         return $this->location;
     }
@@ -88,7 +88,7 @@ final class Picture
     /**
      * @param string $location
      */
-    public function setLocation($location)
+    public function setLocation(string $location)
     {
         $this->location = $location;
     }
@@ -96,7 +96,7 @@ final class Picture
     /**
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -104,7 +104,7 @@ final class Picture
     /**
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }

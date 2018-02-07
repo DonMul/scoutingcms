@@ -53,7 +53,7 @@ final class Agenda
      * @param string $slug
      * @param string $category
      */
-    public function __construct($id, $name, $startDate, $endDate, $description, $slug, $category)
+    public function __construct(?int $id, string $name, string $startDate, string $endDate, string $description, string $slug, string $category)
     {
         $this->setId($id);
         $this->setName($name);
@@ -67,7 +67,7 @@ final class Agenda
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -75,7 +75,7 @@ final class Agenda
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
@@ -83,7 +83,7 @@ final class Agenda
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -91,7 +91,7 @@ final class Agenda
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -99,7 +99,7 @@ final class Agenda
     /**
      * @return string
      */
-    public function getStartDate()
+    public function getStartDate(): string
     {
         return $this->startDate;
     }
@@ -107,7 +107,7 @@ final class Agenda
     /**
      * @param string $startDate
      */
-    public function setStartDate($startDate)
+    public function setStartDate(string $startDate)
     {
         $this->startDate = $startDate;
     }
@@ -115,7 +115,7 @@ final class Agenda
     /**
      * @return string
      */
-    public function getEndDate()
+    public function getEndDate(): string
     {
         return $this->endDate;
     }
@@ -123,7 +123,7 @@ final class Agenda
     /**
      * @param string $endDate
      */
-    public function setEndDate($endDate)
+    public function setEndDate(string $endDate)
     {
         $this->endDate = $endDate;
     }
@@ -131,7 +131,7 @@ final class Agenda
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -139,7 +139,7 @@ final class Agenda
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
@@ -147,7 +147,7 @@ final class Agenda
     /**
      * @return string
      */
-    public function getSlug()
+    public function getSlug(): string
     {
         return $this->slug;
     }
@@ -155,7 +155,7 @@ final class Agenda
     /**
      * @param string $slug
      */
-    public function setSlug($slug)
+    public function setSlug(string $slug)
     {
         $this->slug = $slug;
     }
@@ -163,7 +163,7 @@ final class Agenda
     /**
      * @return string
      */
-    public function getCategory()
+    public function getCategory(): string
     {
         return $this->category;
     }
@@ -171,7 +171,7 @@ final class Agenda
     /**
      * @param string $category
      */
-    public function setCategory($category)
+    public function setCategory(string $category)
     {
         $this->category = $category;
     }

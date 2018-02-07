@@ -58,11 +58,13 @@ final class Menu
     /**
      * Menu constructor.
      * @param int $id
+     * @param int $parentId
      * @param string $name
      * @param string $type
      * @param string $value
+     * @param int $position
      */
-    public function __construct($id, $parentId, $name, $type, $value, $position)
+    public function __construct(?int $id, int $parentId, string $name, string $type, $value, int $position)
     {
         $this->id = $id;
         $this->parentId = $parentId;
@@ -75,7 +77,7 @@ final class Menu
     /**
      * @return int
      */
-    public function getId()
+    public function getId() : ?int
     {
         return $this->id;
     }
@@ -83,7 +85,7 @@ final class Menu
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
@@ -91,7 +93,7 @@ final class Menu
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -107,7 +109,7 @@ final class Menu
     /**
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -123,7 +125,7 @@ final class Menu
     /**
      * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -139,7 +141,7 @@ final class Menu
     /**
      * @return int
      */
-    public function getPosition()
+    public function getPosition(): int
     {
         return $this->position;
     }
@@ -155,7 +157,7 @@ final class Menu
     /**
      * @return int
      */
-    public function getParentId()
+    public function getParentId(): int
     {
         return $this->parentId;
     }
@@ -179,7 +181,7 @@ final class Menu
     /**
      * @return Menu[]
      */
-    public function getSubItems()
+    public function getSubItems(): array
     {
         return $this->subItems;
     }

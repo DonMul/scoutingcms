@@ -1,6 +1,7 @@
 <?php
 
 namespace Lib\Data;
+
 use Lib\Core\Database;
 use Lib\Core\Util;
 
@@ -29,8 +30,9 @@ final class AgendaCategory
      * AgendaCategory constructor.
      * @param int $id
      * @param string $name
+     * @param string $color
      */
-    public function __construct($id, $name, $color)
+    public function __construct(?int $id, string $name, string $color)
     {
         $this->setId($id);
         $this->setName($name);
@@ -40,7 +42,7 @@ final class AgendaCategory
     /**
      * @return string
      */
-    public function getColor()
+    public function getColor(): string
     {
         return $this->color;
     }
@@ -48,7 +50,7 @@ final class AgendaCategory
     /**
      * @param string $color
      */
-    public function setColor($color)
+    public function setColor(string $color)
     {
         $this->color = $color;
     }
@@ -56,7 +58,7 @@ final class AgendaCategory
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -64,7 +66,7 @@ final class AgendaCategory
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
@@ -72,7 +74,7 @@ final class AgendaCategory
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -80,7 +82,7 @@ final class AgendaCategory
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }

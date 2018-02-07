@@ -1,5 +1,7 @@
 <?php
 
+namespace Unit\Data;
+
 /**
  * Class AgendaTest
  */
@@ -11,11 +13,11 @@ class AgendaTest extends \PHPUnit\Framework\TestCase
     public function testCreateAgenda()
     {
         $id = rand(0, 1000);
-        $name = 'AGENDA NAME';
+        $name = 'Test agenda name';
         $startDate = '2017-01-01';
         $endDate = '2018-01-02';
-        $description = 'AGENDA DESCRIPTION';
-        $slug = 'AGENDA SLUG';
+        $description = 'Test agenda description';
+        $slug = 'test-agenda-slug';
         $category = rand(0, 1000);
         $agenda = new \Lib\Data\Agenda($id, $name, $startDate, $endDate, $description, $slug, $category);
 

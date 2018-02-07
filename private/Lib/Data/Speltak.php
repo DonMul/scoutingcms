@@ -33,12 +33,12 @@ final class Speltak
 
     /**
      * Speltak constructor.
-     * @param int    $id
+     * @param int $id
      * @param string $name
      * @param string $picture
      * @param string $description
      */
-    public function __construct($id, $name, $picture, $description)
+    public function __construct(?int $id, string $name, string $picture, string $description)
     {
         $this->setId($id);
         $this->setName($name);
@@ -49,7 +49,7 @@ final class Speltak
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -57,7 +57,7 @@ final class Speltak
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
@@ -65,7 +65,7 @@ final class Speltak
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -73,7 +73,7 @@ final class Speltak
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -81,7 +81,7 @@ final class Speltak
     /**
      * @return string
      */
-    public function getPicture()
+    public function getPicture(): string
     {
         return $this->picture;
     }
@@ -89,7 +89,7 @@ final class Speltak
     /**
      * @param string $picture
      */
-    public function setPicture($picture)
+    public function setPicture(string $picture)
     {
         $this->picture = $picture;
     }
@@ -97,7 +97,7 @@ final class Speltak
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -105,7 +105,7 @@ final class Speltak
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }

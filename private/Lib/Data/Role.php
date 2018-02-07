@@ -31,7 +31,7 @@ final class Role
      * @param string    $name
      * @param bool      $isAdmin
      */
-    public function __construct($id, $name, $isAdmin)
+    public function __construct(?int $id, string $name, bool $isAdmin)
     {
         $this->setId($id);
         $this->setName($name);
@@ -39,17 +39,17 @@ final class Role
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getIsAdmin()
+    public function getIsAdmin(): bool
     {
         return $this->isAdmin;
     }
 
     /**
-     * @param string $isAdmin
+     * @param bool $isAdmin
      */
-    public function setIsAdmin($isAdmin)
+    public function setIsAdmin(bool $isAdmin)
     {
         $this->isAdmin = $isAdmin;
     }
@@ -57,7 +57,7 @@ final class Role
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -65,7 +65,7 @@ final class Role
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
@@ -73,7 +73,7 @@ final class Role
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -81,7 +81,7 @@ final class Role
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }

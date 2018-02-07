@@ -47,7 +47,7 @@ final class News
      * @param string $published
      * @param string $status
      */
-    public function __construct($id, $title, $content, $published, $status)
+    public function __construct(?int $id, string $title, string $content, string $published, string $status)
     {
         $this->setId($id);
         $this->setTitle($title);
@@ -59,7 +59,7 @@ final class News
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -67,7 +67,7 @@ final class News
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
@@ -75,7 +75,7 @@ final class News
     /**
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -83,7 +83,7 @@ final class News
     /**
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -91,7 +91,7 @@ final class News
     /**
      * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -99,7 +99,7 @@ final class News
     /**
      * @param string $content
      */
-    public function setContent($content)
+    public function setContent(string $content)
     {
         $this->content = $content;
     }
@@ -107,7 +107,7 @@ final class News
     /**
      * @return string
      */
-    public function getPublished()
+    public function getPublished(): string
     {
         return $this->published;
     }
@@ -115,7 +115,7 @@ final class News
     /**
      * @param string $published
      */
-    public function setPublished($published)
+    public function setPublished(string $published)
     {
         $this->published = $published;
     }
@@ -123,7 +123,7 @@ final class News
     /**
      * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
@@ -131,7 +131,7 @@ final class News
     /**
      * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }

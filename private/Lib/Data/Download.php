@@ -41,7 +41,7 @@ final class Download
      * @param string $type
      * @param string $filename
      */
-    public function __construct($id, $name, $type, $filename)
+    public function __construct(?int $id, string $name, string $type, string $filename)
     {
         $this->setId($id);
         $this->setName($name);
@@ -52,7 +52,7 @@ final class Download
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -60,7 +60,7 @@ final class Download
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -68,7 +68,7 @@ final class Download
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -76,7 +76,7 @@ final class Download
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -84,7 +84,7 @@ final class Download
     /**
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -92,7 +92,7 @@ final class Download
     /**
      * @param string $type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
     }
@@ -100,7 +100,7 @@ final class Download
     /**
      * @return string
      */
-    public function getFilename()
+    public function getFilename(): string
     {
         return $this->filename;
     }
@@ -108,7 +108,7 @@ final class Download
     /**
      * @param string $filename
      */
-    public function setFilename($filename)
+    public function setFilename(string $filename)
     {
         $this->filename = $filename;
     }

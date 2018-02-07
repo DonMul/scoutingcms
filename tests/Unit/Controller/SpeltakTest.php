@@ -1,5 +1,7 @@
 <?php
 
+namespace Unit\Controller;
+
 /**
  * Class SpeltakTest
  */
