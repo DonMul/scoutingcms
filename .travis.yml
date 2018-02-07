@@ -21,7 +21,6 @@ before_script:
 
 script:
   - phpunit --coverage-clover build/logs/clover.xml
-  - ./php-cs-fixer fix -v --dry-run --using-cache=no private
 
 after_success:
  - travis_retry php coveralls.phar -v
