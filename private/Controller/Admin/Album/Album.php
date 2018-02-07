@@ -29,7 +29,8 @@ final class Album extends Admin
             );
         } else {
             $this->ensurePermission(
-                'album.' . $this->getAlbumCategoryRepository()->getById($album->getCategory())->getName() . '.view');
+                'album.' . $this->getAlbumCategoryRepository()->getById($album->getCategory())->getName() . '.view'
+            );
         }
 
         return [

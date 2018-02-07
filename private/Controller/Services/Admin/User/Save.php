@@ -1,6 +1,7 @@
 <?php
 
 namespace Controller\Services\Admin\User;
+
 use Lib\Core\Translation;
 use Lib\Core\Util;
 use Lib\Data\Page;

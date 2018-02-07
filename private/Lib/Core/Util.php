@@ -55,4 +55,4 @@ class Util
 
         return $text;
     }
-} 
+}

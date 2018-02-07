@@ -28,4 +28,4 @@ interface IDatabase
      * @return mixed
      */
     public function fetchAll($query, $params = [], $types = '');
-} 
+}

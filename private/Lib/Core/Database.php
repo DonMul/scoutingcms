@@ -170,6 +170,5 @@ class Database extends \Lib\Core\Singleton
             $this->prefix = Util::arrayGet($dbSettings, 'prefix', '');
             $this->connectionLoaded = true;
         }
-
     }
-} 
+}

@@ -26,7 +26,10 @@ class Sitemap extends \Lib\Core\Singleton
         $dir = new \DirectoryIterator(CONFROOT . "/Sitemaps");
         foreach ($dir as $fileinfo) {
             if (!$fileinfo->isDot()) {
-                $sitemaps[substr($fileinfo->getFileName(), 0, strlen($fileinfo->getFileName()) - 5)] = \Symfony\Component\Yaml\Yaml::parse(file_get_contents($fileinfo->getPathName()));
+                $sitemaps[substr($fileinfo->getFileName(), 0, strlen($fileinfo->getFileName()) - 5)] =
+                    \Symfony\Component\Yaml\Yaml::parse(
+                        file_get_contents($fileinfo->getPathName())
+                    );
             }
         }
 
@@ -79,7 +82,7 @@ class Sitemap extends \Lib\Core\Singleton
             foreach ($explodedRoute as $index => $routePart) {
                 if (strpos($routePart, '{') === 0) {
                     continue;
-                } else if ($routePart !== $explodedUrl[$index]){
+                } elseif ($routePart !== $explodedUrl[$index]) {
                     $isMatch = false;
                 }
             }
@@ -120,4 +123,4 @@ class Sitemap extends \Lib\Core\Singleton
     {
         return $this->sitemaps;
     }
-} 
+}

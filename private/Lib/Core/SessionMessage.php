@@ -2,7 +2,6 @@
 
 namespace Lib\Core;
 
-
 class SessionMessage
 {
     const TYPE_SUCCESS = 'success';

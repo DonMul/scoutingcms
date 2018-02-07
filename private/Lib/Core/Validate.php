@@ -64,6 +64,6 @@ class Validate extends \Lib\Core\Singleton
 
     public function isValidEmailAddress($variable)
     {
-        return !filter_var($variable, FILTER_VALIDATE_EMAIL) === FALSE;
+        return !filter_var($variable, FILTER_VALIDATE_EMAIL) === false;
     }
-} 
+}

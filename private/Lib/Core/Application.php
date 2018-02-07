@@ -30,4 +30,4 @@ class Application extends \Lib\Core\Singleton
     {
         \Lib\Core\Dispatcher::getInstance()->dispatchUrl($this->requestUrl);
     }
-} 
+}

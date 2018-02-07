@@ -59,7 +59,6 @@ abstract class BaseController extends RepositoryContainer
      */
     protected function validate()
     {
-
     }
 
     /**
@@ -69,7 +68,7 @@ abstract class BaseController extends RepositoryContainer
      * @param array  $params
      * @return bool
      */
-    protected final function addError($message, $params = [])
+    final protected function addError($message, $params = [])
     {
         if (empty($message)) {
             return false;
@@ -244,7 +243,7 @@ abstract class BaseController extends RepositoryContainer
     {
         $path = '';
         $cdn = Settings::getInstance()->get('cdn');
-        switch($type) {
+        switch ($type) {
             case 'image':
                 $image = $this->getPictureRepository()->getById($id);
                 $album = $this->getAlbumRepository()->getById($image->getAlbumId());
@@ -290,7 +289,7 @@ abstract class BaseController extends RepositoryContainer
     /**
      * @return array
      */
-    public abstract function getArray();
+    abstract public function getArray();
 
     /**
      * Sanitizes the content recursively
@@ -303,7 +302,7 @@ abstract class BaseController extends RepositoryContainer
         foreach ($context as &$data) {
             if (is_array($data)) {
                 $data = $this->sanitizeContext($data);
-            } else if (is_object($data)) {
+            } elseif (is_object($data)) {
                 if (method_exists($data, 'toArray')) {
                     $data = $data->toArray();
                 }
@@ -328,4 +327,4 @@ abstract class BaseController extends RepositoryContainer
     {
         return '';
     }
-} 
+}

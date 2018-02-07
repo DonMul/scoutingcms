@@ -1,6 +1,7 @@
 <?php
 
 namespace Lib\Core;
+
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -46,7 +47,7 @@ class Translation extends \Lib\Core\Singleton
         $lang = $this->getLanguage();
 
         $this->translations = Yaml::parse(file_get_contents(CONFROOT . "Translations/default.yaml"));
-        $this->translations = array_merge(Yaml::parse(file_get_contents(CONFROOT . "Translations/{$lang}.yaml")), $this->translations );
+        $this->translations = array_merge(Yaml::parse(file_get_contents(CONFROOT . "Translations/{$lang}.yaml")), $this->translations);
     }
 
     /**
@@ -59,7 +60,6 @@ class Translation extends \Lib\Core\Singleton
      */
     public function translate($key, $replacements = [])
     {
-
         $this->ensureLoaded();
         $string = \Lib\Core\Util::arrayGet($this->translations, $key, $key);
 
@@ -136,4 +136,4 @@ class Translation extends \Lib\Core\Singleton
 
         return $url;
     }
-} 
+}

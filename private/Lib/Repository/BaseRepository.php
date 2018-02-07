@@ -18,7 +18,8 @@ abstract class BaseRepository
     /**
      * @param Database $database
      */
-    public function setDatabase(Database $database) {
+    public function setDatabase(Database $database)
+    {
         $this->database = $database;
     }
 

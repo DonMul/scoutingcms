@@ -62,4 +62,4 @@ class Session extends Singleton
     {
         return $this->isLoggedIn() ? $_SESSION[self::SESSION_USER_KEY] : null;
     }
-} 
+}

@@ -26,7 +26,7 @@ abstract class Facebook extends \Lib\Core\BaseController\Cron
     /**
      * @return \Facebook\Facebook
      */
-    protected final function getFbClient()
+    final protected function getFbClient()
     {
         $fbSettings = Settings::getInstance()->get('facebook', []);
         $fb = new \Facebook\Facebook([
@@ -42,7 +42,7 @@ abstract class Facebook extends \Lib\Core\BaseController\Cron
     /**
      * @return int
      */
-    protected final function getPageId()
+    final protected function getPageId()
     {
         return Settings::getInstance()->get(['facebook', 'page'], 0);
     }

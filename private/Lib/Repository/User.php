@@ -154,7 +154,8 @@ final class User extends BaseRepository
      */
     public function clearRoles(Data\User $user)
     {
-        $this->getDatabase()->query("DELETE FROM `flg_userRole` WHERE Data\UserId = ?",
+        $this->getDatabase()->query(
+            "DELETE FROM `flg_userRole` WHERE Data\UserId = ?",
             [$user->getId()],
             'i'
         );
@@ -166,7 +167,8 @@ final class User extends BaseRepository
      */
     public function addRole(Data\User $user, Data\Role $role)
     {
-        $this->getDatabase()->query("INSERT INTO `flg_userRole` (`userId`, `roleId`) VALUES ( ?, ? )",
+        $this->getDatabase()->query(
+            "INSERT INTO `flg_userRole` (`userId`, `roleId`) VALUES ( ?, ? )",
             [$user->getId(), $role->getId()],
             'ii'
         );

@@ -7,4 +7,3 @@ define('TEMPLATEROOT', ROOT . 'twig/');
 
 require_once LIBROOT . 'Core/Autoloader.php';
 require_once ROOT . '/../vendor/autoload.php';
-

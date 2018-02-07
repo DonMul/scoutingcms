@@ -60,4 +60,4 @@ abstract class Ajax extends \Lib\Core\BaseController
     {
         return \Lib\Core\Util::arrayGet($_POST, $value);
     }
-} 
+}

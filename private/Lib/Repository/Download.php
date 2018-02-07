@@ -134,5 +134,4 @@ final class Download extends BaseRepository
         $result = $this->getDatabase()->fetchOne("SELECT count(1) AS cnt FROM `" . $this->getTableName() . "`");
         return Util::arrayGet($result, 'cnt', 0);
     }
-    
 }

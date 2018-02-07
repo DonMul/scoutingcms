@@ -3,3 +3,5 @@ public/downloads/*
 public/upload/*
 /vendor/
 /build/
+php-cs-fixer
+.php_cs.cache

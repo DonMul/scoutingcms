@@ -2,7 +2,6 @@
 
 namespace Controller\Admin\Agenda;
 
-
 /**
  * Class Overview
  * @package Controller\Admin\Agenda

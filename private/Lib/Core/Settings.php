@@ -85,4 +85,4 @@ class Settings extends \Lib\Core\Singleton
 
         return $string;
     }
-} 
+}

@@ -2,7 +2,6 @@
 
 namespace Lib\Core;
 
-
 class Cache extends Singleton
 {
     /**

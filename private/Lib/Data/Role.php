@@ -1,6 +1,7 @@
 <?php
 
 namespace Lib\Data;
+
 use Lib\Core\Database;
 use Lib\Core\Util;
 

@@ -27,4 +27,4 @@ class Dispatcher extends \Lib\Core\Singleton
         $class = new $urlData['controller'];
         $class->execute();
     }
-} 
+}

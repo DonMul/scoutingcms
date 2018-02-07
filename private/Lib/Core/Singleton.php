@@ -30,4 +30,4 @@ class Singleton
 
         return self::$instances[$class];
     }
-} 
+}

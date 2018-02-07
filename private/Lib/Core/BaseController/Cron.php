@@ -15,7 +15,7 @@ abstract class Cron
     /**
      *
      */
-    public final function execute()
+    final public function execute()
     {
         $shouldExecute = $this->shouldExecute();
 
@@ -38,5 +38,5 @@ abstract class Cron
     /**
      * @return mixed
      */
-    protected abstract function runCron();
+    abstract protected function runCron();
 }

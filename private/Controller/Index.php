@@ -26,4 +26,4 @@ final class Index extends \Lib\Core\BaseController
     {
         return \Lib\Core\Translation::getInstance()->translate("title.index");
     }
-} 
+}

@@ -8,5 +8,4 @@ namespace Lib\Exception;
  */
 class PageNotFound extends \Exception
 {
-
 }

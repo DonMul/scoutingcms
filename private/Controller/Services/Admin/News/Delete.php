@@ -1,6 +1,7 @@
 <?php
 
 namespace Controller\Services\Admin\News;
+
 use Lib\Core\Translation;
 use Lib\Data\News;
 

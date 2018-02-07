@@ -1,6 +1,7 @@
 <?php
 
 namespace Controller\Services;
+
 use Lib\Core\Translation;
 
 /**
