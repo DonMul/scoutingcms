@@ -26,4 +26,21 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($user->getNickname(), $nickName);
         $this->assertEquals($user->getEmail(), $email);
     }
+
+    /**
+     *
+     */
+    public function testPasswordHashing()
+    {
+        $id = rand(0, 1000);
+        $username = 'TestUsername';
+        $password = 'T3stP@ssword';
+        $nickName = 'Test Nick';
+        $email = 'test@example.com';
+
+        $user = new \Lib\Data\User($id, $username, $password, $nickName, $email);
+
+        $user->setPassword($password, true);
+        $this->assertTrue($user->verifyPassword($password));
+    }
 }

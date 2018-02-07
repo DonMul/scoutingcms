@@ -24,6 +24,7 @@ class AgendaTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($agenda->getId(), $id);
         $this->assertEquals($agenda->getName(), $name);
         $this->assertEquals($agenda->getEndDate(), $endDate);
+        $this->assertEquals($agenda->getEndDate(), $endDate);
         $this->assertEquals($agenda->getDescription(), $description);
         $this->assertEquals($agenda->getSlug(), $slug);
         $this->assertEquals($agenda->getCategory(), $category);

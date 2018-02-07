@@ -66,12 +66,12 @@ final class Menu
      */
     public function __construct(?int $id, int $parentId, string $name, string $type, $value, int $position)
     {
-        $this->id = $id;
-        $this->parentId = $parentId;
-        $this->name = $name;
-        $this->type = $type;
-        $this->value = $value;
-        $this->position = $position;
+        $this->setId($id);
+        $this->setParentId($parentId);
+        $this->setName($name);
+        $this->setType($type);
+        $this->setValue($value);
+        $this->setPosition($position);
     }
 
     /**
