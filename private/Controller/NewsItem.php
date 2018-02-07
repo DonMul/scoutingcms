@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+use Lib\Exception\PageNotFound;
+
 /**
  * Class NewsItem
  * @package Controller
@@ -14,8 +16,14 @@ final class NewsItem extends \Lib\Core\BaseController
      */
     public function getArray()
     {
+        $newsItem = $this->getNewsRepository()->getById($this->getVariable('id', 0));
+
+        if (!($newsItem instanceof \Lib\Data\News)) {
+            throw new PageNotFound();
+        }
+
         return [
-            'article' => $this->getNewsRepository()->getById($this->getVariable('id', 0)),
+            'article' => $newsItem,
         ];
     }
 }

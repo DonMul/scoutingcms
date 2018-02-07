@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+use Lib\Exception\PageNotFound;
+
 /**
  * Class Page
  * @package Controller
@@ -11,16 +13,14 @@ final class Page extends \Lib\Core\BaseController
 {
     /**
      * @return array
+     * @throws PageNotFound
      */
     public function getArray()
     {
         $page = $this->getPageRepository()->getBySlug($this->getVariable('slug', ''));
 
-        if (!$page) {
-            header("HTTP/1.1 404 Not Found");
-            $controller = new FourOFour();
-            $controller->execute();
-            exit;
+        if (!($page instanceof \Lib\Data\Page)) {
+            throw new PageNotFound();
         }
 
         return [

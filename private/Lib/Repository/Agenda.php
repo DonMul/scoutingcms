@@ -11,7 +11,7 @@ use \Lib\Data;
  */
 final class Agenda extends BaseRepository
 {
-    private const TABLENAME = 'agenda';
+    const TABLENAME = 'agenda';
 
     /**
      * @return string

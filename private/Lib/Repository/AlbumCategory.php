@@ -11,7 +11,7 @@ use \Lib\Data;
  */
 final class AlbumCategory extends BaseRepository
 {
-    private const TABLENAME = 'albumCategory';
+    const TABLENAME = 'albumCategory';
 
     /**
      * @return string

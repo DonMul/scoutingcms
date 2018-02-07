@@ -11,7 +11,7 @@ use \Lib\Data;
  */
 final class Download extends BaseRepository
 {
-    private const TABLENAME = 'download';
+    const TABLENAME = 'download';
 
     /**
      * @return string

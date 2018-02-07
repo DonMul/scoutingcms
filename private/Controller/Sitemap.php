@@ -16,7 +16,9 @@ final class Sitemap extends \Lib\Core\BaseController
      */
     public function getArray()
     {
-        header("Content-type: text/xml");
+        if (!headers_sent()) {
+            header("Content-type: text/xml");
+        }
 
         return [
             'pages' => $this->getPageRepository()->getAll(),
