@@ -10,7 +10,7 @@ Scouting CMS is a CMS which is ment for Scouting Groups in order to manage their
 * Information / page per subgroup
 * News items
 * Agenda
-* A admin panel to manage it all
+* An admin panel to manage it all
 * Custom downloads
 
 ## How to install
