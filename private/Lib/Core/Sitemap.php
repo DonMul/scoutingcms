@@ -43,7 +43,7 @@ class Sitemap extends \Lib\Core\Singleton
      * @param string $url
      * @return array
      */
-    public function getDataForUrl(string $url) : array
+    public function getDataForUrl(string $url) : ?array
     {
         if ($this->sitemap) {
             return $this->getDataForUrlBySitemap($url, $this->sitemap);
@@ -58,6 +58,8 @@ class Sitemap extends \Lib\Core\Singleton
                 }
             }
         }
+
+        return null;
     }
 
     /**

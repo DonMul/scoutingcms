@@ -6,7 +6,7 @@ namespace Lib\Ftp;
  * Class Client
  * @package Lib\Core\Ftp
  */
-final class Client
+class Client
 {
     /**
      * @var string

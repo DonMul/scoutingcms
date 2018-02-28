@@ -2,12 +2,44 @@
 
 namespace Lib\Core;
 
+use Lib\Ftp\Client;
+
 /**
  * Class Uploader
  * @package Lib\Core
  */
 final class Imager
 {
+    /**
+     * @var Client
+     */
+    private $ftp;
+
+    /**
+     * @param Client $client
+     */
+    public function setFtpClient(Client $client)
+    {
+        $this->ftp = $client;
+    }
+
+    /**
+     * @return Client
+     */
+    public function getFtpClient()
+    {
+        if (!($this->ftp instanceof Client)) {
+            $cdnData = Settings::getInstance()->get('cdn');
+
+            $this->setFtpClient(new \Lib\Ftp\Client(
+                $cdnData['host'],
+                $cdnData['username'],
+                $cdnData['password']
+            ));
+        }
+
+        return $this->ftp;
+    }
     /**
      * @param string $tmpName
      * @param string $destination
@@ -30,13 +62,12 @@ final class Imager
             return;
         }
 
-        $ftp = new \Lib\Ftp\Client(
-            $cdnData['host'],
-            $cdnData['username'],
-            $cdnData['password']
+        $this->getFtpClient()->upload(
+            realpath($destination),
+            str_replace('/subdomains/scoutingflg/public/images/',
+                '',
+                realpath($destination))
         );
-
-        $ftp->upload(realpath($destination), str_replace('/subdomains/scoutingflg/public/images/', '', realpath($destination)));
     }
 
     /**
@@ -45,10 +76,12 @@ final class Imager
     private function ensureDestinationPath($destination)
     {
         $exploded = explode(DIRECTORY_SEPARATOR, $destination);
+
         array_pop($exploded);
-        $path = '';
+        $path = array_shift($exploded);
         foreach ($exploded as $part) {
             $path .= DIRECTORY_SEPARATOR . $part;
+
             if (!file_exists($path)) {
                 mkdir($path);
             }
@@ -71,9 +104,9 @@ final class Imager
         $newLocation = realpath($location);
         list($width, $height) = getimagesize($location);
         if ($fileType == 'png') {
-            $location = imagecreatefrompng($newLocation);
+            $location = \imagecreatefrompng($newLocation);
         } elseif ($fileType == 'jpg' || $fileType == 'jpeg') {
-            $location = imagecreatefromjpeg($newLocation);
+            $location = \imagecreatefromjpeg($newLocation);
         } else {
             return false;
         }
@@ -93,11 +126,9 @@ final class Imager
         imagecopyresampled($newImage, $location, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
         if ($fileType == 'png') {
             return imagepng($newImage, $newLocation);
-        } elseif ($fileType == 'jpg' || $fileType == 'jpeg') {
+        } else {
             return imagejpeg($newImage, $newLocation);
         }
-
-        return false;
     }
 
     /**

@@ -26,6 +26,17 @@ class SitemapTest extends \PHPUnit\Framework\TestCase
             'controller' => '\Controller\Page',
             'hash' => 'page',
         ]);
+
+
+    }
+
+    /**
+     *
+     */
+    public function testGetDataForUrlDataNotFound()
+    {
+        $sitemap = new \Lib\Core\Sitemap();
+        $this->assertEquals($sitemap->getDataForUrl('/non/existing/page'), null);
     }
 
     /**
