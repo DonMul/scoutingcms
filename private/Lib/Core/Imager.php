@@ -78,12 +78,12 @@ final class Imager
         $exploded = explode(DIRECTORY_SEPARATOR, $destination);
 
         array_pop($exploded);
-        $path = array_shift($exploded);
+        $path = '';
         foreach ($exploded as $part) {
             $path .= DIRECTORY_SEPARATOR . $part;
 
             if (!file_exists($path)) {
-                mkdir($path);
+                @mkdir($path);
             }
         }
     }
