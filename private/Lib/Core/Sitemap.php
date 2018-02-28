@@ -19,6 +19,9 @@ class Sitemap extends \Lib\Core\Singleton
      */
     private $sitemaps = [];
 
+    /**
+     * Sitemap constructor.
+     */
     public function __construct()
     {
         $sitemaps = [];
@@ -40,7 +43,7 @@ class Sitemap extends \Lib\Core\Singleton
      * @param string $url
      * @return array
      */
-    public function getDataForUrl($url)
+    public function getDataForUrl(string $url) : array
     {
         if ($this->sitemap) {
             return $this->getDataForUrlBySitemap($url, $this->sitemap);
@@ -57,7 +60,12 @@ class Sitemap extends \Lib\Core\Singleton
         }
     }
 
-    public function getDataForUrlBySitemap($url, $sitemap)
+    /**
+     * @param string $url
+     * @param array $sitemap
+     * @return array
+     */
+    public function getDataForUrlBySitemap(string $url, array $sitemap) : ?array
     {
         $url = strlen($url) > 1 ? rtrim($url, '/') : '/';
 
@@ -105,7 +113,7 @@ class Sitemap extends \Lib\Core\Singleton
      * @param string $hash
      * @return string
      */
-    public function getLinkByHash($hash)
+    public function getLinkByHash(string $hash) : string
     {
         foreach ($this->sitemap as $link => $settings) {
             if ($settings['hash'] == $hash) {
@@ -119,7 +127,7 @@ class Sitemap extends \Lib\Core\Singleton
     /**
      * @return array
      */
-    public function getSitemaps()
+    public function getSitemaps() : array
     {
         return $this->sitemaps;
     }

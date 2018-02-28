@@ -31,7 +31,7 @@ class NewsTest extends \PHPUnit\Framework\TestCase
             ]
         ]));
 
-        $newsDatabase->method('fetchOne')->with($this->equalTo("SELECT count(1) AS cnt FROM `" . \Lib\Repository\News::TABLENAME  . "`"))->will($this->returnValue(['cnt' => 1]));
+        $newsDatabase->method('fetchOne')->with($this->equalTo("SELECT COUNT(1) AS cnt FROM `" . \Lib\Repository\News::TABLENAME  . "`"))->will($this->returnValue(['cnt' => 1]));
         $newsRepo->setDatabase($newsDatabase);
         $controller = new \Controller\News();
         $controller->setNewsRepository($newsRepo);

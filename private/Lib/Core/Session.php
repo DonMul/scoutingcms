@@ -40,7 +40,7 @@ class Session extends Singleton
     public function logIn($userKey)
     {
         $_SESSION[self::SESSION_USER_KEY] = $userKey;
-        setcookie(self::SESSION_COOKIE_NAME, $userKey, time()+10800, '/', '.posd.io');
+        setcookie(self::SESSION_COOKIE_NAME, $userKey, time()+10800, '/', '.scoutingflg.nl');
     }
 
     /**
@@ -49,8 +49,10 @@ class Session extends Singleton
     public function logOut()
     {
         unset($_SESSION[self::SESSION_USER_KEY]);
-        session_destroy();
-        setcookie(self::SESSION_COOKIE_NAME, null, time()+10800, '/', '.posd.io');
+        if (!headers_sent()) {
+            session_destroy();
+            setcookie(self::SESSION_COOKIE_NAME, null, time()+10800, '/', '.scoutingflg.nl');
+        }
     }
 
     /**

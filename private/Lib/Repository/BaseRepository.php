@@ -13,7 +13,7 @@ abstract class BaseRepository
     /**
      * @var Database
      */
-    private $database;
+    protected $database;
 
     /**
      * @param Database $database

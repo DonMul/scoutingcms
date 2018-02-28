@@ -18,6 +18,9 @@ final class Logout extends BaseController
     public function getArray()
     {
         Session::getInstance()->logOut();
-        header('Location: /');
+
+        if (!headers_sent()) {
+            header('Location: /');
+        }
     }
 }

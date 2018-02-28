@@ -103,7 +103,7 @@ final class Picture extends BaseRepository
      */
     public function getTotalAmount(): int
     {
-        $result = $this->getDatabase()->fetchOne("SELECT count(1) AS cnt FROM `" . $this->getTableName() . "`");
+        $result = $this->getDatabase()->fetchOne("SELECT COUNT(1) AS cnt FROM `" . $this->getTableName() . "`");
         return Util::arrayGet($result, 'cnt', 0);
     }
 

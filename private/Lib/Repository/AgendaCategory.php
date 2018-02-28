@@ -11,7 +11,7 @@ use \Lib\Data;
  */
 final class AgendaCategory extends BaseRepository
 {
-    private const TABLENAME = 'agendaCategory';
+    const TABLENAME = 'agendaCategory';
 
     /**
      * @return string
@@ -44,7 +44,7 @@ final class AgendaCategory extends BaseRepository
      */
     public function getById(int $id): ?Data\AgendaCategory
     {
-        $data = $this->getDatabase()->getInstance()->fetchOne(
+        $data = $this->getDatabase()->fetchOne(
             "SELECT * FROM `" . $this->getTableName() . "` WHERE id = ?",
             [$id],
             'i'

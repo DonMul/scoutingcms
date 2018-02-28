@@ -116,7 +116,7 @@ class RepositoryContainer
      */
     public function getAgendaCategoryRepository(): AgendaCategory
     {
-        if (!($this->agendaCategoryRepository instanceof Agenda)) {
+        if (!($this->agendaCategoryRepository instanceof AgendaCategory)) {
             $this->setAgendaCategoryRepository(new AgendaCategory());
         }
 
