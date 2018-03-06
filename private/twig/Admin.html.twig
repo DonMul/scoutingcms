@@ -1,36 +1,59 @@
-{% extends 'global.html.twig' %}
-
 {% import 'macros.html.twig' as macros %}
+<!DOCTYPE html>
 
-{% block template %}
-    {{ macros.wysiwyg() }}
-    <div class="row admin__container">
-        <div class="col-sm-2">
-            {{ macros.adminSidebar(permissions, context.active) }}
-        </div>
-        <div class="col-sm-10">
-            {{ block('adminTemplate') }}
-        </div>
+<html lang="{{ language }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="">
+    <meta name="description" content="{{ t('index.description', {'groupName': s('groupName')}) }}"/>
+    <title>{{ context.title is defined ? context.title : t('index.title', {'groupName': s('groupName')}) }}</title>
+
+    {% set gaCode = s('google-analytics') %}
+    {% set gtmCode = s('google-tagmanager') %}
+    {% if (gtmCode is not null) %}
+        {{ macros.googleTagManager(gtmCode) }}
+    {% elseif (gaCode is not null) %}
+        {{ macros.googleAnalytics(gaCode) }}
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/compiled.php" />
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/app.js"></script>
+</head>
+
+<body>
+{{ macros.wysiwyg() }}
+<div class="row admin__container">
+    <div class="col-sm-2">
+        {{ macros.adminSidebar(permissions, context.active) }}
     </div>
-{% endblock %}
+    <div class="col-sm-10 fade-in">
+        {% block adminTemplate %}
+            <h1 class="text-center">{{ s('groupName') }} Admin</h1>
 
-{% block adminTemplate %}
-    <h1 class="text-center">{{ s('groupName') }} Admin</h1>
+            {% set i = 0 %}
+            {% for name,amount in context.totals %}
+                {% if (i == 0 or i % 4 == 0) %}
+                    <div class="row">
+                {% endif %}
+                <div class="col-sm-3">
+                    <div class="statsblock statsblock--{{ name }}">
+                        <h3 class="statsblock__header">{{ t('stats.' ~ name) }}</h3>
+                        <div class="statsblock__amount">{{ amount }}</div>
+                    </div>
+                </div>
+                {% if (i % 4 == 3) %}
+                    </div>
+                {% endif %}
+                {% set i = i + 1 %}
+            {% endfor %}
+        {% endblock %}
 
-    {% set i = 0 %}
-    {% for name,amount in context.totals %}
-        {% if (i == 0 or i % 4 == 0) %}
-            <div class="row">
-        {% endif %}
-        <div class="col-sm-3">
-            <div class="statsblock statsblock--{{ name }}">
-                <h3 class="statsblock__header">{{ t('stats.' ~ name) }}</h3>
-                <div class="statsblock__amount">{{ amount }}</div>
-            </div>
-        </div>
-        {% if (i % 4 == 3) %}
-            </div>
-        {% endif %}
-        {% set i = i + 1 %}
-    {% endfor %}
-{% endblock %}
+    </div>
+</div>
+</body>
+</html>

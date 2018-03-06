@@ -151,6 +151,7 @@ error.noPermssion: Permission denied
 error.user.usernameAlreadyExists: The chosen username is already in use
 error.user.passwordsDoNotMatch: The given passwords do not match
 error.general: Something went wrong!
+error.passwordNotStrongEnough: Your password must contain at least 1 capital, lower case charracter, a number and must be at least 8 characters long
 
 success.user.registration: Registration completed
 

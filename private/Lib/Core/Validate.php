@@ -58,6 +58,7 @@ class Validate extends \Lib\Core\Singleton
         $matches = preg_match('@[A-Z]@', $variable);
         $matches &= preg_match('@[a-z]@', $variable);
         $matches &= preg_match('@[0-9]@', $variable);
+        $matches &= strlen($variable) > 8;
 
         return !!$matches;
     }

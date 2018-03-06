@@ -129,7 +129,7 @@ class BaseControllerTest extends \PHPUnit\Framework\TestCase
             'languages' => \Lib\Core\Translation::getInstance()->getAllLanguages(),
             'request' => [],
             'loggedIn' => false,
-            'language' => 'en',
+            'language' => 'nl',
             'menu' => [
                 $mockMenu->getPosition() => [
                     'name' => $mockMenu->getName(),

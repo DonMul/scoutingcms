@@ -5,7 +5,9 @@ namespace Controller\Services\Admin\Account;
 use Controller\Services\Admin;
 use Lib\Core\Session;
 use Lib\Core\Translation;
+use Lib\Core\Validate;
 use Lib\Data\User;
+use Lib\Exception\InvalidPassword;
 
 /**
  * Class Save
@@ -31,7 +33,11 @@ final class Save extends Admin
             if ($password != $repeatPassword) {
                 throw new \Exception(Translation::getInstance()->translate('error.user.passwordsDoNotMatch'));
             }
-            $user->setPassword($password, true);
+            if (Validate::getInstance()->isValidPassword($password) === true) {
+                $user->setPassword($password, true);
+            } else {
+                throw new InvalidPassword();
+            }
         }
         $user->setNickname($this->getPostValue('nickname'));
         $user->setEmail($this->getPostValue('email'));

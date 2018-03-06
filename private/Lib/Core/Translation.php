@@ -106,10 +106,10 @@ class Translation extends \Lib\Core\Singleton
                 if (isset($_COOKIE['language'])) {
                     unset($_COOKIE['language']);
                 }
+                setcookie('language', $lang);
             };
 
             $this->lang = $lang;
-            setcookie('language', $lang);
         }
 
         return $this->lang;

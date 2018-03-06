@@ -4,7 +4,9 @@ namespace Controller\Services\User;
 
 use Lib\Core\BaseController\Ajax;
 use Lib\Core\Translation;
+use Lib\Core\Validate;
 use Lib\Data\User;
+use Lib\Exception\InvalidPassword;
 
 /**
  * Class Register
@@ -37,6 +39,10 @@ final class Register extends Ajax
             $nickName,
             $email
         );
+
+        if (!Validate::getInstance()->isValidPassword($password)) {
+            throw new InvalidPassword();
+        }
 
         $user->setPassword($password, true);
         $user->save();

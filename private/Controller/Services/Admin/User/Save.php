@@ -4,9 +4,11 @@ namespace Controller\Services\Admin\User;
 
 use Lib\Core\Translation;
 use Lib\Core\Util;
+use Lib\Core\Validate;
 use Lib\Data\Page;
 use Lib\Data\Role;
 use Lib\Data\User;
+use Lib\Exception\InvalidPassword;
 
 /**
  * Class Login
@@ -44,7 +46,11 @@ final class Save extends \Controller\Services\Admin
 
         $newPassword = $this->getPostValue('password');
         if (!empty($newPassword)) {
-            $user->setPassword($newPassword, true);
+            if (Validate::getInstance()->isValidPassword($newPassword) === true) {
+                $user->setPassword($newPassword, true);
+            } else {
+                throw new InvalidPassword();
+            }
         }
 
         $this->getUserRepository()->save($user);
