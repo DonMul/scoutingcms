@@ -153,6 +153,112 @@ class BaseControllerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($controller->templateLocation, "User/Login.html.twig");
         $this->assertEquals($controller->context, []);
     }
+
+    public function testUploadPath()
+    {
+        $settings =  \Lib\Core\Settings::getInstance()->getAll();
+        \Lib\Core\Settings::getInstance()->overrideSettings([
+            'cdn' => [
+                'enabled' => false,
+            ],
+        ]);
+
+        $mockDownload = new \Lib\Data\Download(1, 'Mock', \Lib\Data\Download::TYPE_REPORT, 'test.pdf');
+        $mockAlbumCategory = new \Lib\Data\AlbumCategory(1, 'testCat');
+        $mockAlbum = new \Lib\Data\Album(1, 'test', 'test','desctiption', $mockAlbumCategory->getId(), 'thumb.png', false);
+        $mockImage = new \Lib\Data\Picture(1, $mockAlbum->getId(), 'test.png', 'Test');
+
+        $downloadRepo = new \Lib\Repository\Download();
+        $downloadDatabase = $this->createMock(\Lib\Core\Database::CLASS);
+        $downloadDatabase->method('getFullTableName')->with($this->equalTo(\Lib\Repository\Download::TABLENAME))->will($this->returnValue(\Lib\Repository\Download::TABLENAME));
+        $downloadDatabase->method('fetchOne')->with($this->equalTo('SELECT * FROM `' . \Lib\Repository\Download::TABLENAME . '` WHERE id = ?'), $this->equalTo([$mockDownload->getId()]), $this->equalTo('i'))->will($this->returnValue([
+            'id' => $mockDownload->getId(),
+            'name' => $mockDownload->getName(),
+            'type' => $mockDownload->getType(),
+            'filename' => $mockDownload->getFilename()
+        ]));
+        $downloadRepo->setDatabase($downloadDatabase);
+
+        $albumRepo = new \Lib\Repository\Album();
+        $albumDatabase = $this->createMock(\Lib\Core\Database::CLASS);
+        $albumDatabase->method('getFullTableName')->with($this->equalTo(\Lib\Repository\Album::TABLENAME))->will($this->returnValue(\Lib\Repository\Album::TABLENAME));
+        $albumDatabase->method('fetchOne')->with($this->equalTo('SELECT * FROM `' . \Lib\Repository\Album::TABLENAME . '` WHERE id = ?'), $this->equalTo([$mockAlbum->getId()]), $this->equalTo('i'))->will($this->returnValue([
+            'id' => $mockAlbum->getId(),
+            'name' => $mockAlbum->getName(),
+            'slug' => $mockAlbum->getSlug(),
+            'description' => $mockAlbum->getDescription(),
+            'category' => $mockAlbum->getCategory(),
+            'thumbnail' => $mockAlbum->getThumbnail(),
+            'private' => intval($mockAlbum->isPrivate())
+        ]));
+        $albumRepo->setDatabase($albumDatabase);
+
+        $albumCategoryRepo = new \Lib\Repository\AlbumCategory();
+        $albumCategoryDatabase = $this->createMock(\Lib\Core\Database::CLASS);
+        $albumCategoryDatabase->method('getFullTableName')->with($this->equalTo(\Lib\Repository\AlbumCategory::TABLENAME))->will($this->returnValue(\Lib\Repository\AlbumCategory::TABLENAME));
+        $albumCategoryDatabase->method('fetchOne')->with($this->equalTo('SELECT * FROM `' . \Lib\Repository\AlbumCategory::TABLENAME . '` WHERE id = ?'), $this->equalTo([$mockAlbumCategory->getId()]), $this->equalTo('i'))->will($this->returnValue([
+            'id' => $mockAlbumCategory->getId(),
+            'name' => $mockAlbumCategory->getName(),
+        ]));
+        $albumCategoryRepo->setDatabase($albumCategoryDatabase);
+
+        $pictureRepo = new \Lib\Repository\Picture();
+        $pictureDatabase = $this->createMock(\Lib\Core\Database::CLASS);
+        $pictureDatabase->method('getFullTableName')->with($this->equalTo(\Lib\Repository\Picture::TABLENAME))->will($this->returnValue(\Lib\Repository\Picture::TABLENAME));
+        $pictureDatabase->method('fetchOne')->with($this->equalTo('SELECT * FROM `' . \Lib\Repository\Picture::TABLENAME . '` WHERE id = ?'), $this->equalTo([$mockImage->getId()]), $this->equalTo('i'))->will($this->returnValue([
+            'id' => $mockImage->getId(),
+            'albumId' => $mockImage->getAlbumId(),
+            'location' => $mockImage->getLocation(),
+            'title' => $mockImage->getTitle(),
+        ]));
+        $pictureRepo->setDatabase($pictureDatabase);
+
+        $controller = new mockController();
+        $controller->setDownloadRepository($downloadRepo);
+        $controller->setAlbumRepository($albumRepo);
+        $controller->setAlbumCategoryRepository($albumCategoryRepo);
+        $controller->setPictureRepository($pictureRepo);
+
+        $this->assertEquals($controller->uploadPath($mockDownload->getId(), 'download'), '/downloads/report/test.pdf');
+        $this->assertEquals($controller->uploadPath($mockAlbum->getId(), 'albumThumb'), '/upload/' . $mockAlbumCategory->getName() . '/' . $mockAlbum->getThumbnail());
+        $this->assertEquals($controller->uploadPath($mockImage->getId(), 'image'), '/upload/' . $mockAlbumCategory->getName() . '/' . md5($mockAlbum->getId()) . '/' . $mockImage->getLocation());
+
+        \Lib\Core\Settings::getInstance()->overrideSettings($settings);
+    }
+
+    public function testMd5()
+    {
+        $controller = new mockController();
+        $this->assertEquals($controller->md5('test'), md5('test'));
+    }
+
+    public function testGetTitle()
+    {
+        $this->assertEquals((new rawMock())->getTitle(), '');
+    }
+
+    public function testGetDescription()
+    {
+        $this->assertEquals((new rawMock())->getDescription(), '');
+    }
+}
+
+class rawMock extends \Lib\Core\BaseController
+{
+    public function getTitle()
+    {
+        return parent::getTitle();
+    }
+
+    public function getDescription()
+    {
+        return parent::getDescription();
+    }
+
+    public function getArray()
+    {
+       return [];
+    }
 }
 
 class mockController extends \Lib\Core\BaseController
