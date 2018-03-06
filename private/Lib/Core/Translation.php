@@ -61,7 +61,7 @@ class Translation extends \Lib\Core\Singleton
     public function translate($key, $replacements = [])
     {
         $this->ensureLoaded();
-        $string = \Lib\Core\Util::arrayGet($this->translations, $key, $key);
+        $string = \Lib\Core\Util::arrayGet($this->translations, [$key], $key);
 
         foreach ($replacements as $key => $value) {
             $string = str_replace("{\$$key}", $value, $string);
@@ -95,7 +95,8 @@ class Translation extends \Lib\Core\Singleton
     public function getLanguage()
     {
         if (!isset($this->lang)) {
-            $lang = 'en';
+            $lang = Settings::getInstance()->get('defaultLanguage');
+
             if (isset($_COOKIE['language'])) {
                 $lang = $_COOKIE['language'];
             }
@@ -105,10 +106,10 @@ class Translation extends \Lib\Core\Singleton
                 if (isset($_COOKIE['language'])) {
                     unset($_COOKIE['language']);
                 }
-                setcookie('language', $lang);
             };
 
             $this->lang = $lang;
+            setcookie('language', $lang);
         }
 
         return $this->lang;

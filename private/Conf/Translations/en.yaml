@@ -1,1 +1,201 @@
-song.choose: "Kies nummer"
+month.01: Januari
+month.02: Februari
+month.03: March
+month.04: April
+month.05: May
+month.06: June
+month.07: Juli
+month.08: August
+month.09: September
+month.10: Oktober
+month.11: November
+month.12: December
+
+header.404: <strong>Whoops!</strong> This page has not been found
+header.register: Register
+
+calender.what: What
+calender.when: When
+calender.untill: untill
+calender.type: Tpy of activity
+calender.description: Description
+
+calenderCategory.edit: Edit calender category
+calenderCategory.name: Name
+calenderCategory.color: Color
+calenderCategory.admin: calender category
+calenderCategory.new: New calender category
+calenderCategory.noItems: No calender categories have been made yet
+
+agenda.admin: Calender items
+agenda.name: Name
+agenda.startDate: Start date
+agenda.endDate: End date
+agenda.description: Descriptoin
+agenda.category: Category
+agenda.noItems: No calender items have been made yet
+agenda.new: New calender item
+agenda.edit: Edit calender item
+
+album.edit: Edit photo album
+album.new: New photo album
+album.name: Name
+album.category: Category
+album.description: Description
+album.thumbnail: Image
+album.admin: Photo albums
+album.noItems: No photo albums have been made yet
+album.private: Private photo album
+album.categories: Categories
+
+albumCategory.admin: Photo album categories
+albumCategory.new: New photo album categorie
+albumCategory.name: Name
+albumCategory.edit: Edit photo album category
+albumCategory.noItems: No photo album categories have been made yet
+
+picture.name: Name
+picture.thumb: Thumbnail
+
+download.new: Create new download
+download.name: Name
+download.type: Type
+download.edit: Edit download
+download.file: File
+download.admin: Downloads
+download.noItems: No downloads have been added yet
+download.type.report: Report
+download.type.newsletter: Newsletter
+
+news.admin: News item
+news.title: Title
+news.published: Publication date
+news.status: Status
+news.noItems: No news items have been created yet
+news.new: Create new news item
+news.type: Type
+news.content: Contents
+news.edit: Edit news item
+news.type.draft: Draft
+news.type.published: Published
+news.readMore: Read more
+
+page.admin: Pages
+page.title: Title
+page.slug: URL
+page.isHomepage: Is index
+page.new: Create new page
+page.noItems: No pages have been created yet
+page.edit: Edit page
+page.content: Content
+page.header: Header image
+
+group.admin: Groups
+group.name: Name
+group.noItems: No groups have been made yet
+group.picture: Header image
+group.description: Description
+group.edit: Edit group
+
+user.username: Username
+user.password: Password
+user.password.repeat: Repeat password
+user.nickname: Real name / nickname
+user.email: Emailaddress
+user.admin: Users
+user.noItems: No users have been created yet
+user.edit: Edit user
+user.new: Create new user
+user.role: Roles
+user.roles: Roles
+user.role.noRoles: You don't have any roles yet
+
+role.admin: Roles
+role.new: New role
+role.name: Name
+role.noItems: No roles have been created yet
+role.edit: Edit role
+role.isAdmin: Is administrator
+role.permissions: Permissions
+role.permission: Permission
+role.permission.general: General
+role.permission.albums: Photo album
+role.permission.album.category: category
+role.permission.groups: Groups
+role.permission.group.category: Group
+role.permission.downloads: Downloads
+role.permission.download.category: Download category
+role.permission.view: View
+role.permission.edit: Edit
+role.permission.delete: Delete
+role.permission.editUsers: Edit users
+role.permission.editRoles: Edit roles
+role.permission.editCalender: Edit calender
+role.permission.editPages: Edit pages
+role.permission.editNews: Edit news articles
+role.permission.editMenu: Edit menu
+
+error.user.invalidUsernameOrPassword: Username and/or password is incorrect
+error.item.notFound: Calender item dows not exist
+error.album.notFound: Photo album does not exist
+error.download.notFound: Download does not exist
+error.news.notFound: News article does not exist
+error.page.notFound: Page does not exist
+error.group.notFound: Group does not exist
+error.user.notFound: User does not exist
+error.role.notFound: Role does not exist
+error.picture.notFound: Picture does not exist
+error.albumCategory.notFound: Album category does not exist
+error.calenderCategory.notFound: Calender category does not exist
+error.noPermssion: Permission denied
+error.user.usernameAlreadyExists: The chosen username is already in use
+error.user.passwordsDoNotMatch: The given passwords do not match
+error.general: Something went wrong!
+
+success.user.registration: Registration completed
+
+admin.nav.users: Users
+admin.nav.roles: Roles
+admin.nav.news: News articles
+admin.nav.groups: Groups
+admin.nav.calender: Calender
+admin.nav.albums: Pictures
+admin.nav.downloads: Downloads
+admin.nav.pages: Pages
+admin.nav.menu: Menu
+admin.nav.logout: Log out
+admin.nav.myAccount: My account
+
+nav.downloads: Downloads
+nav.general: General
+nav.groups: Groups
+nav.photos: Photos
+nav.albums: Photo albums
+
+menu.admin: Edit menu
+menu.admin.name: Name
+menu.admin.type: Type
+menu.admin.value: Value
+menu.type.url: URL
+menu.type.page: Page
+menu.type.group: Group
+menu.type.album: Album
+menu.type.download: Download
+
+common.login: Login
+common.register: Register
+common.save: Save
+common.yes: yes
+common.no: No
+
+stats.agenda: Calender items
+stats.album: Photo albums
+stats.download: Downloads
+stats.news: News articles
+stats.page: Pages
+stats.picture: Pictures
+stats.speltak: Groups
+stats.user: Users
+
+index.title: "Scouting {$groupName}"
+index.description: "Scouting {$groupName} | For everyone who loves cool activities from the age of 5 years and up!"

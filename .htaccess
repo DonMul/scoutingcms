@@ -2,6 +2,9 @@ RewriteEngine On
 
 AddType text/css .less
 
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
 RewriteCond %{DOCUMENT_ROOT}/install/install.php -f
 RewriteRule ^/install/(.*)$ install/install.php?_url=$1  [NC,L,QSA]
 

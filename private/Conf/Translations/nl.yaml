@@ -12,6 +12,7 @@ month.11: November
 month.12: December
 
 header.404: <strong>Oeps!</strong> Deze pagina is niet gevonden!
+header.register: Registreren
 
 calender.what: Wat
 calender.when: Wanneer
@@ -77,6 +78,7 @@ news.content: Inhoud
 news.edit: Nieuwsbericht aanpassen
 news.type.draft: Ongepubliceerd
 news.type.published: Gepubliceerd
+news.readMore: Lees verder
 
 page.admin: Pagina's
 page.title: Titel
@@ -148,6 +150,7 @@ error.calenderCategory.notFound: Agenda categorie bestaat niet
 error.noPermssion: Geen toegang
 error.user.usernameAlreadyExists: De gekozen gebruikersnaam bestaat al!
 error.user.passwordsDoNotMatch: De opgegeven wachtwoorden komen niet overeen
+error.general: Er is iets fout gegaan!
 
 success.user.registration: Registratie voltooid!
 
@@ -163,10 +166,21 @@ admin.nav.menu: Menu
 admin.nav.logout: Uitloggen
 admin.nav.myAccount: Mijn gegevens
 
+nav.downloads: Downloads
+nav.general: Algemeen
+nav.groups: Speltakken
+nav.photos: Foto's
+nav.albums: Fotoalbums
+
 menu.admin: Menu beheren
 menu.admin.name: Naam
 menu.admin.type: Type
 menu.admin.value: Waarde
+menu.type.url: URL
+menu.type.page: Pagina
+menu.type.group: Speltak
+menu.type.album: Albums
+menu.type.download: Download
 
 common.login: Login
 common.register: Registreer
@@ -182,3 +196,6 @@ stats.page: Pagina's
 stats.picture: Afbeeldingen
 stats.speltak: Speltakken
 stats.user: Gebruikers
+
+index.title: "Scouting {$groupName}"
+index.description: "Scouting {$groupName} | Voor iedereen vanaf 5 jaar die van toffe activiteiten houd"

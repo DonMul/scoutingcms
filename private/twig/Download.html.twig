@@ -6,13 +6,13 @@
     {{ macros.nav(menu) }}
     <div class="hero__image hero__image--main">
         <div class="hero__text">
-            <h1>Franciscus Lodewijk Groep</h1>
+            <h1>{{ s('groupName') }}</h1>
         </div>
     </div>
     <section id="info">
         <div class="section-contents">
             <div class="container">
-                <h2>Downloads</h2>
+                <h2>{{ t('nav.downloads') }}</h2>
                 {% for download in context.downloads %}
                     <ul>
                         <li>

@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="">
+    <meta name="description" content="{{ t('index.description', {'groupName': s('groupName')}) }}"/>
+    <title>{{ context.title is defined ? context.title : t('index.title', {'groupName': s('groupName')}) }}</title>
 
     {% set gaCode = s('google-analytics') %}
     {% set gtmCode = s('google-tagmanager') %}
@@ -30,7 +32,7 @@
         <div class="section-contents">
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <h3>Algemeen</h3>
+                    <h3>{{ t('nav.general') }}</h3>
                     <ul class="sitemap__list">
                         {% for page in pages %}
                             <li class="sitemap__item">
@@ -40,7 +42,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4 text-center">
-                    <h3>Speltakken</h3>
+                    <h3>{{ t('nav.groups') }}</h3>
                     <ul class="sitemap__list">
                         {% for group in groups %}
                             <li class="sitemap__item">
@@ -50,7 +52,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4 text-center">
-                    <h3>Foto's</h3>
+                    <h3>{{ t('nav.photos') }}</h3>
                     <ul class="sitemap__list">
                         {% for category in albumCategories %}
                             <li class="sitemap__item">

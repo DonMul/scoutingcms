@@ -6,7 +6,7 @@
     {{ macros.nav(menu) }}
     <div class="hero__image hero__image--main">
         <div class="hero__text">
-            <h1>Franciscus Lodewijk Groep</h1>
+            <h1>{{ s('groupName') }}</h1>
         </div>
     </div>
     <section id="info">
@@ -18,7 +18,7 @@
                         {{ (article.content|length > 360 ? article.content|slice(0, 360) ~ '...' : article.content)|raw  }}
                     </div>
                     <div class="newsoverview__readmore">
-                        <a href="/news-item/{{ article.id }}" class="btn btn-success">Lees meer</a>
+                        <a href="/news-item/{{ article.id }}" class="btn btn-success">{{ t('news.readMore') }}Lees meer</a>
                     </div>
                 </div>
                 <hr/>

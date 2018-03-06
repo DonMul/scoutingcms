@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block adminTemplate %}
-    <h1 class="text-center">FLG Admin</h1>
+    <h1 class="text-center">{{ s('groupName') }} Admin</h1>
 
     {% set i = 0 %}
     {% for name,amount in context.totals %}
