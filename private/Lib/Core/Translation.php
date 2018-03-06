@@ -113,7 +113,7 @@ class Translation extends \Lib\Core\Singleton
         }
 
         if (empty($this->lang)) {
-            $this->lang = Settings::getInstance()->get('defaultLanguage');
+            $this->lang = 'nl';
         }
 
         return $this->lang;

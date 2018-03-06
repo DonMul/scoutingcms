@@ -15,23 +15,6 @@ class ImagerTest extends \PHPUnit\Framework\TestCase
         return $ftpClient;
     }
 
-    /**
-     *
-     */
-    public function testUploadImageToCdn()
-    {
-        $imager = new \Lib\Core\Imager();
-        $this->assertInstanceOf(\Lib\Ftp\Client::class, $imager->getFtpClient());
-
-        $client = $this->getMockFtpClient();
-        $client->method('upload')->will($this->returnValue(null));
-
-        $imager->setFtpClient($client);
-        $imager->uploadImage('/tmp/test.png', '/public/upload/images/test.png');
-
-        $this->assertTrue(true);
-    }
-
     public function testUploadImageWithoutCdn()
     {
         $imager = new \Lib\Core\Imager();
