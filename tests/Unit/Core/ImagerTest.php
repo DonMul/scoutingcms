@@ -35,6 +35,7 @@ class ImagerTest extends \PHPUnit\Framework\TestCase
     public function testUploadImageWithoutCdn()
     {
         $imager = new \Lib\Core\Imager();
+        $settings = \Lib\Core\Settings::getInstance()->getAll();
         \Lib\Core\Settings::getInstance()->overrideSettings(['cdn' => ['enabled' => false]]);
 
         $imager->uploadImage(
@@ -42,6 +43,7 @@ class ImagerTest extends \PHPUnit\Framework\TestCase
             sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'test.png'
         );
 
+        \Lib\Core\Settings::getInstance()->overrideSettings($settings);
         $this->assertTrue(true);
     }
 
