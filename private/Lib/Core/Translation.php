@@ -112,6 +112,10 @@ class Translation extends \Lib\Core\Singleton
             $this->lang = $lang;
         }
 
+        if (empty($this->lang)) {
+            $this->lang = Settings::getInstance()->get('defaultLanguage');
+        }
+
         return $this->lang;
     }
 
