@@ -14,7 +14,7 @@ use Twig\Loader\FilesystemLoader;
 /**
  * Class BaseController
  * @package Lib\Core
- * @author  Joost Mul <jmul@posd.io>
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 abstract class BaseController extends RepositoryContainer
 {

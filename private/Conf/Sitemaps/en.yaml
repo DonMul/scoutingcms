@@ -2,6 +2,266 @@
 # MAINSITE LINKS
 ###
 
-/en/:
+/:
   controller: \Controller\Index
   hash: index
+
+/group/{name}:
+  controller: \Controller\Speltak
+  hash: speltak
+
+/calender:
+  controller: \Controller\Agenda
+  hash: calender
+
+/calender/{slug}:
+  controller: \Controller\Agenda\Item
+  hash: calenderItem
+
+/{slug}:
+  controller: \Controller\Page
+  hash: page
+
+/photos/{category}:
+  controller: \Controller\Albums
+  hash: albums
+
+/photos/{category}/{album}:
+  controller: \Controller\Album
+  hash: album
+
+/news:
+  controller: \Controller\News
+  hash: news
+
+/news/{offset}:
+  controller: \Controller\News
+  hash: newsWithOffset
+
+/news-item/{id}:
+  controller: \Controller\NewsItem
+  hash: newsItem
+
+/download/{type}:
+  controller: \Controller\Download
+  hash: download
+
+/register:
+  controller: \Controller\User\Register
+  hash: register
+
+/sitemap.xml:
+  controller: \Controller\Sitemap
+  hash: sitemap
+
+###
+# ADMIN LINKS
+###
+
+/admin:
+  controller: \Controller\Admin
+  hash: admin
+
+/admin/calender:
+  controller: \Controller\Admin\Agenda\Overview
+  hash: adminCalender
+
+/admin/calender/{id}:
+  controller: \Controller\Admin\Agenda\AgendaItem
+  hash: adminCalenderItem
+
+/admin/calender-categories:
+  controller: \Controller\Admin\AgendaCategory\Overview
+  hash: adminCalenderCategories
+
+/admin/calender-category/{id}:
+  controller: \Controller\Admin\AgendaCategory\CalenderCategory
+  hash: adminCalenderCategory
+
+/admin/album-categories:
+  controller: \Controller\Admin\AlbumCategory\Overview
+  hash: adminAlbumCategories
+
+/admin/album-category/{id}:
+  controller: \Controller\Admin\AlbumCategory\AlbumCategory
+  hash: adminAlbumCategory
+
+/admin/albums:
+  controller: \Controller\Admin\Album\Overview
+  hash: adminAlbums
+
+/admin/album/{id}:
+  controller: \Controller\Admin\Album\Album
+  hash: adminAlbum
+
+/admin/downloads:
+  controller: \Controller\Admin\Download\Overview
+  hash: adminDownloads
+
+/admin/download/{id}:
+  controller: \Controller\Admin\Download\Download
+  hash: adminDownload
+
+/admin/groups:
+  controller: \Controller\Admin\Group\Overview
+  hash: adminGroups
+
+/admin/group/{id}:
+  controller: \Controller\Admin\Group\Group
+  hash: adminGroup
+
+/admin/news:
+  controller: \Controller\Admin\News\Overview
+  hash: adminNews
+
+/admin/news-item/{id}:
+  controller: \Controller\Admin\News\NewsItem
+  hash: adminNewsItem
+
+/admin/pages:
+  controller: \Controller\Admin\Page\Overview
+  hash: adminPages
+
+/admin/page/{id}:
+  controller: \Controller\Admin\Page\Page
+  hash: adminPage
+
+/admin/users:
+  controller: \Controller\Admin\User\Overview
+  hash: adminUsers
+
+/admin/user/{id}:
+  controller: \Controller\Admin\User\User
+  hash: adminUser
+
+/admin/roles:
+  controller: \Controller\Admin\Role\Overview
+  hash: adminRoles
+
+/admin/role/{id}:
+  controller: \Controller\Admin\Role\Role
+  hash: adminRole
+
+/admin/menu:
+  controller: \Controller\Admin\Menu
+  hash: adminMenu
+
+/admin/logout:
+  controller: \Controller\User\Logout
+  hash: adminLogout
+
+/admin/my-account:
+  controller: \Controller\Admin\MyAccount
+  hash: adminMyAccount
+
+###
+# SERVICES
+###
+
+/services/user/login:
+  controller: \Controller\Services\User\Login
+  hash: serviceLogin
+
+/services/user/register:
+  controller: \Controller\Services\User\Register
+  hash: serviceRegister
+
+/services/admin/speltak/save:
+  controller: \Controller\Services\Admin\Speltak\Save
+  hash: serviceGroupSave
+
+/services/admin/agenda/save:
+  controller: \Controller\Services\Admin\Agenda\Save
+  hash: serviceCalenderSave
+
+/services/admin/agenda/delete:
+  controller: \Controller\Services\Admin\Agenda\Delete
+  hash: serviceCalenderDelete
+
+/services/admin/calender-category/save:
+  controller: \Controller\Services\Admin\CalenderCategory\Save
+  hash: serviceCalenderCategorySave
+
+/services/admin/calender-category/delete:
+  controller: \Controller\Services\Admin\CalenderCategory\Delete
+  hash: serviceCalenderCategoryDelete
+
+/services/admin/album-category/save:
+  controller: \Controller\Services\Admin\AlbumCategory\Save
+  hash: serviceAlbumCategorySave
+
+/services/admin/album-category/delete:
+  controller: \Controller\Services\Admin\AlbumCategory\Delete
+  hash: serviceAlbumCategoryDelete
+
+/services/admin/album/save:
+  controller: \Controller\Services\Admin\Album\Save
+  hash: serviceAlbumSave
+
+/services/admin/album/delete:
+  controller: \Controller\Services\Admin\Album\Delete
+  hash: serviceAlbumDelete
+
+/services/admin/album/upload/{id}:
+  controller: \Controller\Services\Admin\Album\Upload
+  hash: serviceAlbumUpload
+
+/services/admin/news/save:
+  controller: \Controller\Services\Admin\News\Save
+  hash: serviceNewsSave
+
+/services/admin/news/delete:
+  controller: \Controller\Services\Admin\News\Delete
+  hash: serviceNewsDelete
+
+/services/admin/download/save:
+  controller: \Controller\Services\Admin\Download\Save
+  hash: serviceDownloadSave
+
+/services/admin/download/delete:
+  controller: \Controller\Services\Admin\Download\Delete
+  hash: serviceDownloadDelete
+
+/services/admin/page/save:
+  controller: \Controller\Services\Admin\Page\Save
+  hash: servicePageSave
+
+/services/admin/page/delete:
+  controller: \Controller\Services\Admin\Page\Delete
+  hash: servicePageDelete
+
+/services/admin/user/save:
+  controller: \Controller\Services\Admin\User\Save
+  hash: serviceUserSave
+
+/services/admin/user/delete:
+  controller: \Controller\Services\Admin\User\Delete
+  hash: serviceUserDelete
+
+/services/admin/role/save:
+  controller: \Controller\Services\Admin\Role\Save
+  hash: serviceRoleSave
+
+/services/admin/role/delete:
+  controller: \Controller\Services\Admin\Role\Delete
+  hash: serviceRoleDelete
+
+/services/admin/picture/delete:
+  controller: \Controller\Services\Admin\Picture\Delete
+  hash: servicePictureDelete
+
+/services/admin/menu/save:
+  controller: \Controller\Services\Admin\Menu\Save
+  hash: serviceMenuSave
+
+/service/admin/account/save:
+  controller: \Controller\Services\Admin\Account\Save
+  hash: serviceAccountSave
+
+###
+# CRONJOBS
+###
+
+/cronjob/import/fb/events:
+  controller: \Controller\CronJob\Import\Facebook\Events
+  hash: cronImportFbEvents

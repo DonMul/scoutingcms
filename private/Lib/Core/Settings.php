@@ -7,7 +7,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Class Settings
  * @package Lib\Core
- * @author  Joost Mul <jmul@posd.io>
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Settings extends \Lib\Core\Singleton
 {

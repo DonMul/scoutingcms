@@ -2,6 +2,11 @@
 
 namespace Lib\Core;
 
+/**
+ * Class Cache
+ * @package Lib\Core
+ * @author Joost Mul <scoutingcms@jmul.net>
+ */
 class Cache extends Singleton
 {
     /**

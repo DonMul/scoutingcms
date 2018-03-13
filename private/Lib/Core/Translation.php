@@ -7,7 +7,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Class Translation
  * @package Lib\Core
- * @author  Joost Mul <jmul@posd.io>
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Translation extends \Lib\Core\Singleton
 {

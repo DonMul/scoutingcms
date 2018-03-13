@@ -5,7 +5,7 @@ namespace Lib\Core;
 /**
  * Class Database
  * @package Lib\Core
- * @author  Joost Mul <jmul@posd.io>
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Database extends \Lib\Core\Singleton
 {

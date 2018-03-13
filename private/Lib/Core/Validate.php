@@ -5,7 +5,7 @@ namespace Lib\Core;
 /**
  * Class Validate
  * @package Lib\Core
- * @author  Joost Mul <jmul@posd.io>
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Validate extends \Lib\Core\Singleton
 {

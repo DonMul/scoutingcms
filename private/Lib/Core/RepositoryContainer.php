@@ -16,6 +16,11 @@ use Lib\Repository\Role;
 use Lib\Repository\Speltak;
 use Lib\Repository\User;
 
+/**
+ * Class RepositoryContainer
+ * @package Lib\Core
+ * @author Joost Mul <scoutingcms@jmul.net>
+ */
 class RepositoryContainer
 {
     /**

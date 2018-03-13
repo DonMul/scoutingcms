@@ -7,6 +7,7 @@ use Lib\Ftp\Client;
 /**
  * Class Uploader
  * @package Lib\Core
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class Imager
 {

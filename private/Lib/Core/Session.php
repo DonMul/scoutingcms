@@ -5,12 +5,12 @@ namespace Lib\Core;
 /**
  * Class Session
  * @package Lib\Core
- * @author  Joost Mul <jmul@posd.io>
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Session extends Singleton
 {
     const SESSION_USER_KEY = '_user_id';
-    const SESSION_COOKIE_NAME = 'POSD_LOGIN';
+    const SESSION_COOKIE_NAME = 'SCMS_LOGIN';
 
     /**
      * @constructor

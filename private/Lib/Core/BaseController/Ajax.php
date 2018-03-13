@@ -5,7 +5,7 @@ namespace Lib\Core\BaseController;
 /**
  * Class Ajax
  * @package Lib\Core\BaseController
- * @author  Joost Mul <jmul@posd.io>
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 abstract class Ajax extends \Lib\Core\BaseController
 {

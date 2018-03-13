@@ -30,15 +30,15 @@
   controller: \Controller\Album
   hash: album
 
-/news:
+/nieuws:
   controller: \Controller\News
   hash: news
 
-/news/{offset}:
+/nieuws/{offset}:
   controller: \Controller\News
   hash: newsWithOffset
 
-/news-item/{id}:
+/nieuwsitem/{id}:
   controller: \Controller\NewsItem
   hash: newsItem
 
@@ -70,19 +70,19 @@
   controller: \Controller\Admin\Agenda\AgendaItem
   hash: adminCalenderItem
 
-/admin/agenda-categories:
+/admin/agenda-categorieen:
   controller: \Controller\Admin\AgendaCategory\Overview
   hash: adminCalenderCategories
 
-/admin/agenda-category/{id}:
+/admin/agenda-categorie/{id}:
   controller: \Controller\Admin\AgendaCategory\CalenderCategory
   hash: adminCalenderCategory
 
-/admin/album-categories:
+/admin/album-categorieen:
   controller: \Controller\Admin\AlbumCategory\Overview
   hash: adminAlbumCategories
 
-/admin/album-category/{id}:
+/admin/album-categorie/{id}:
   controller: \Controller\Admin\AlbumCategory\AlbumCategory
   hash: adminAlbumCategory
 
@@ -126,11 +126,11 @@
   controller: \Controller\Admin\Page\Page
   hash: adminPage
 
-/admin/users:
+/admin/gebruikers:
   controller: \Controller\Admin\User\Overview
   hash: adminUsers
 
-/admin/user/{id}:
+/admin/gebruiker/{id}:
   controller: \Controller\Admin\User\User
   hash: adminUser
 
@@ -146,7 +146,7 @@
   controller: \Controller\Admin\Menu
   hash: adminMenu
 
-/admin/logout:
+/admin/uitloggen:
   controller: \Controller\User\Logout
   hash: adminLogout
 

@@ -5,7 +5,7 @@ namespace Lib\Core;
 /**
  * Class Sitemap
  * @package Lib\Core
- * @author  Joost Mul <jmul@posd.io>
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Sitemap extends \Lib\Core\Singleton
 {
@@ -48,14 +48,30 @@ class Sitemap extends \Lib\Core\Singleton
         if ($this->sitemap) {
             return $this->getDataForUrlBySitemap($url, $this->sitemap);
         } else {
-            foreach ($this->sitemaps as $language => $sitemap) {
-                $result = $this->getDataForUrlBySitemap($url, $sitemap);
-                if ($result) {
-                    \Lib\Core\Translation::getInstance()->setLanguage($language);
-                    $this->sitemap = $sitemap;
-
-                    return $result;
+            $result = null;
+            $foundSitemap = null;
+            $foundLanguage = null;
+            $translationLanguage = Translation::getInstance()->getLanguage();
+            if (isset($this->sitemaps[$translationLanguage])) {
+                $result = $this->getDataForUrlBySitemap($url, $this->sitemaps[$translationLanguage]);
+                $foundSitemap = $this->sitemaps[$translationLanguage];
+                $foundLanguage = $translationLanguage;
+            } else {
+                foreach ($this->sitemaps as $language => $sitemap) {
+                    $result = $this->getDataForUrlBySitemap($url, $sitemap);
+                    if ($result) {
+                        $foundSitemap = $sitemap;
+                        $foundLanguage = $language;
+                        break;
+                    }
                 }
+            }
+
+            if ($result) {
+                \Lib\Core\Translation::getInstance()->setLanguage($foundLanguage);
+                $this->sitemap = $foundSitemap;
+
+                return $result;
             }
         }
 

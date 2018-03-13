@@ -2,6 +2,11 @@
 
 namespace Lib\Core;
 
+/**
+ * Class SessionMessage
+ * @package Lib\Core
+ * @author Joost Mul <scoutingcms@jmul.net>
+ */
 class SessionMessage
 {
     const TYPE_SUCCESS = 'success';

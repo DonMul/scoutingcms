@@ -7,7 +7,7 @@ require_once LIBROOT . 'Core/Singleton.php';
 /**
  * Class Autoloader
  * @package Lib\Core
- * @author  Joost Mul <jmul@posd.io>
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Autoloader extends Singleton
 {
