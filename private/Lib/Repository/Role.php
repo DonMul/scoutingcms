@@ -8,6 +8,7 @@ use \Lib\Data;
 /**
  * Class Data\Role
  * @package Lib\Repository
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class Role extends BaseRepository
 {

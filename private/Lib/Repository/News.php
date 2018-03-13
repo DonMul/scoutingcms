@@ -8,6 +8,7 @@ use \Lib\Data;
 /**
  * Class News
  * @package Lib\Repository
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class News extends BaseRepository
 {

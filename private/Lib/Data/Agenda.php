@@ -5,6 +5,7 @@ namespace Lib\Data;
 /**
  * Class Agenda
  * @package Lib\Data
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class Agenda
 {

@@ -7,6 +7,7 @@ use Lib\Core\Database;
 /**
  * Class BaseRepository
  * @package Lib\Repository
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 abstract class BaseRepository
 {

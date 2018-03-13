@@ -2,12 +2,10 @@
 
 namespace Lib\Data;
 
-use Lib\Core\Database;
-use Lib\Core\Util;
-
 /**
  * Class Download
  * @package Lib\Data
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class Download
 {

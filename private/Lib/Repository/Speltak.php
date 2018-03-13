@@ -8,6 +8,7 @@ use \Lib\Data;
 /**
  * Class Data\Speltak
  * @package Lib\Repository
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class Speltak extends BaseRepository
 {

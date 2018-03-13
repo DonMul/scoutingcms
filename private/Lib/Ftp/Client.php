@@ -5,6 +5,7 @@ namespace Lib\Ftp;
 /**
  * Class Client
  * @package Lib\Core\Ftp
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 class Client
 {

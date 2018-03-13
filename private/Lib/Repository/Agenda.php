@@ -8,6 +8,7 @@ use \Lib\Data;
 /**
  * Class Agenda
  * @package Lib\Repository
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class Agenda extends BaseRepository
 {

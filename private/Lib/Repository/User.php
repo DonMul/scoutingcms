@@ -2,12 +2,13 @@
 
 namespace Lib\Repository;
 
-use \Lib\Core\Util;
-use \Lib\Data;
+use Lib\Core\Util;
+use Lib\Data;
 
 /**
  * Class User
  * @package Lib\Repository
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class User extends BaseRepository
 {

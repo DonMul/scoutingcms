@@ -2,14 +2,10 @@
 
 namespace Lib\Data;
 
-use Lib\Core\Cache;
-use Lib\Core\Database;
-use Lib\Core\Translation;
-use Lib\Core\Util;
-
 /**
  * Class Menu
  * @package Lib\Data
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class Menu
 {

@@ -8,6 +8,7 @@ use \Lib\Data;
 /**
  * Class Data\AlbumCategory
  * @package Lib\Repository
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class AlbumCategory extends BaseRepository
 {

@@ -8,6 +8,7 @@ use \Lib\Data;
 /**
  * Class Download
  * @package Lib\Repository
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class Download extends BaseRepository
 {

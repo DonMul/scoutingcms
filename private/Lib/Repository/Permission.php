@@ -8,6 +8,7 @@ use \Lib\Data;
 /**
  * Class Data\Permission
  * @package Lib\Repository
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class Permission extends BaseRepository
 {

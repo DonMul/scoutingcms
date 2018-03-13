@@ -1,6 +1,7 @@
 private/Conf/settings.yaml
 public/downloads/*
 public/upload/*
+public/img/*
 /vendor/
 /build/
 php-cs-fixer

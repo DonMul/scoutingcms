@@ -8,6 +8,7 @@ use \Lib\Data;
 /**
  * Class Data\Page
  * @package Lib\Repository
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class Page extends BaseRepository
 {

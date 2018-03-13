@@ -8,6 +8,7 @@ use \Lib\Data;
 /**
  * Class Data\Picture
  * @package Lib\Repository
+ * @author Joost Mul <scoutingcms@jmul.net>
  */
 final class Picture extends BaseRepository
 {
