@@ -34,12 +34,14 @@ class ImagerTest extends \PHPUnit\Framework\TestCase
     {
         $imager = new \Lib\Core\Imager();
 
-        $this->assertTrue($imager->resizeImage(ROOT . '/../public/img/logo.png', 1920, 1080));
-        $this->assertTrue($imager->resizeImage(ROOT . '/../public/img/background.jpg', 1920, 1080));
-        $this->assertTrue($imager->resizeImage(ROOT . '/../public/img/background.jpg', 1080, 1920));
-        $this->assertTrue($imager->resizeImage(ROOT . '/../public/img/logo.png', 2, 1));
-        $this->assertTrue($imager->resizeImage(ROOT . '/../public/img/logo.png', 1, 2));
+        $this->assertTrue($imager->resizeImage(ROOT . '/../tests/img/test.png', 1920, 1080));
+        $this->assertTrue($imager->resizeImage(ROOT . '/../tests/img/test.jpg', 1920, 1080));
+        $this->assertTrue($imager->resizeImage(ROOT . '/../tests/img/test.jpg', 1080, 1920));
+        $this->assertTrue($imager->resizeImage(ROOT . '/../tests/img/test.png', 2, 1));
+        $this->assertTrue($imager->resizeImage(ROOT . '/../tests/img/test.png', 1, 2));
+        $this->assertTrue($imager->resizeImage(ROOT . '/../tests/img/test.jpg', 1, 2));
+        $this->assertTrue($imager->resizeImage(ROOT . '/../tests/img/test.jpg', 2, 1));
 
-        $this->assertFalse($imager->resizeImage(ROOT . '/../public/img/spin.svg', 1920, 1080));
+        $this->assertFalse($imager->resizeImage(ROOT . '/../tests/img/test.svg', 1920, 1080));
     }
 }
