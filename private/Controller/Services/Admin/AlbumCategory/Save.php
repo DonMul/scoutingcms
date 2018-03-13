@@ -4,7 +4,6 @@ namespace Controller\Services\Admin\AlbumCategory;
 
 use Controller\Services\Admin;
 use Lib\Core\Translation;
-use Lib\Data\AgendaCategory;
 use Lib\Data\AlbumCategory;
 
 /**

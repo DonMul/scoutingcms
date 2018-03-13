@@ -3,13 +3,7 @@
 namespace Lib\Core;
 
 use Controller\FourOFour;
-use Lib\Data\AlbumCategory;
-use Lib\Data\Menu;
-use Lib\Data\Page;
-use Lib\Data\Permission;
-use Lib\Data\Speltak;
 use Lib\Exception\PageNotFound;
-use Twig\Loader\FilesystemLoader;
 
 /**
  * Class BaseController

@@ -4,8 +4,6 @@ namespace Controller\Services\Admin\Picture;
 
 use Controller\Services\Admin;
 use Lib\Core\Translation;
-use Lib\Data\Album;
-use Lib\Data\Picture;
 
 /**
  * Class Delete

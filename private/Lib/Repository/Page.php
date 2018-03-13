@@ -2,8 +2,8 @@
 
 namespace Lib\Repository;
 
-use \Lib\Core\Util;
-use \Lib\Data;
+use Lib\Core\Util;
+use Lib\Data;
 
 /**
  * Class Data\Page

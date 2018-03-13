@@ -2,10 +2,7 @@
 
 namespace Controller\Services\Admin\Album;
 
-use Lib\Core\BaseController;
 use Lib\Core\Imager;
-use Lib\Data\Album;
-use Lib\Data\AlbumCategory;
 use Lib\Data\Picture;
 
 /**

@@ -4,8 +4,8 @@ namespace Lib\Repository;
 
 use Lib\Core\Cache;
 use Lib\Core\Translation;
-use \Lib\Core\Util;
-use \Lib\Data;
+use Lib\Core\Util;
+use Lib\Data;
 
 /**
  * Class Menu

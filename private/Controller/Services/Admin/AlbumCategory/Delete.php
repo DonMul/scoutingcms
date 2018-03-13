@@ -2,7 +2,6 @@
 
 namespace Controller\Services\Admin\AlbumCategory;
 
-use Controller\Admin\AlbumCategory\AlbumCategory;
 use Controller\Services\Admin;
 use Lib\Core\Translation;
 

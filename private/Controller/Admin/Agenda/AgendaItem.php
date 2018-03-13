@@ -2,8 +2,6 @@
 
 namespace Controller\Admin\Agenda;
 
-use Lib\Data\AgendaCategory;
-
 /**
  * Class AgendaItem
  * @package Controller\Admin\Agenda

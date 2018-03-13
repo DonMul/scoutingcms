@@ -2,7 +2,6 @@
 
 namespace Lib\Core;
 
-use Lib\Repository\Picture;
 use Lib\Repository\Agenda;
 use Lib\Repository\AgendaCategory;
 use Lib\Repository\Album;
@@ -12,6 +11,7 @@ use Lib\Repository\Menu;
 use Lib\Repository\News;
 use Lib\Repository\Page;
 use Lib\Repository\Permission;
+use Lib\Repository\Picture;
 use Lib\Repository\Role;
 use Lib\Repository\Speltak;
 use Lib\Repository\User;

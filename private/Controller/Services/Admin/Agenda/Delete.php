@@ -3,7 +3,6 @@
 namespace Controller\Services\Admin\Agenda;
 
 use Lib\Core\Translation;
-use Lib\Core\Util;
 use Lib\Data\Agenda;
 
 /**
