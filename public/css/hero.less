@@ -17,4 +17,19 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+  animation: 2s ease-out 0s 1 slideInFromLeft;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translate(-40%, -50%);
+    text-shadow: none;
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    opacity: 1;
+  }
 }

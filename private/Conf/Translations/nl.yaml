@@ -152,6 +152,7 @@ error.user.usernameAlreadyExists: De gekozen gebruikersnaam bestaat al!
 error.user.passwordsDoNotMatch: De opgegeven wachtwoorden komen niet overeen
 error.general: Er is iets fout gegaan!
 error.passwordNotStrongEnough: Je wachtwoord moet minstens een hoofdletter, kleine letter, een cijfer bevatten en 8 karakters lang zijn
+error.noAlbums: Er zijn nog geen albums toegevoegd in deze categorie
 
 success.user.registration: Registratie voltooid!
 

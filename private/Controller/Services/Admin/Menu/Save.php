@@ -22,7 +22,7 @@ final class Save extends Admin
         $this->ensurePermission('menu.edit');
 
         foreach ($this->getMenuRepository()->getAll() as $menu) {
-            $menu->delete();
+            $this->getMenuRepository()->delete($menu);
         }
 
         /**
@@ -47,7 +47,7 @@ final class Save extends Admin
 
         foreach ($this->getPostValue(['menu', 'parent']) as $key => $parentId) {
             $menuItems[$key]->setParentId(Util::arrayGet($keyIdMapping, $parentId, 0));
-            $menuItems[$key]->save();
+            $this->getMenuRepository()->save($menuItems[$key]);
         }
 
         Cache::getInstance()->unset('globalMenu');
