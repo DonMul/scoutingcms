@@ -31,7 +31,7 @@
                         </a>
                     </div>
                 {% endfor %}
-                {% if context.albums.length <= 0 %}
+                {% if context.albums is empty %}
                     <div class="col-xs-12 alert alert-danger">
                         {{ t('error.noAlbums') }}
                     </div>

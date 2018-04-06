@@ -18,7 +18,7 @@ final class Save extends \Controller\Services\Admin
      */
     public function getArray()
     {
-        $downloadId = $this->getPostValue('itemId');
+        $downloadId = intval($this->getPostValue('downloadId'));
         $download = $this->getDownloadRepository()->getById($downloadId);
         if (!($download instanceof Download) && intval($downloadId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.download.notFound", ['id' => $downloadId]));

@@ -262,7 +262,7 @@ abstract class BaseController extends RepositoryContainer
                 $download = $this->getDownloadRepository()->getById($id);
                 $path = $download->getType() . '/' . $download->getFilename();
                 if (Util::arrayGet($cdn, 'enabled', false) === true) {
-                    $path = 'http://' . $cdn['host'] . '/Downloads/' . $path;
+                    $path = 'http://' . $cdn['host'] . '/downloads/' . $path;
                 } else {
                     $path = '/downloads/' . $path;
                 }
