@@ -18,7 +18,7 @@ final class Save extends \Controller\Services\Admin
      */
     public function getArray()
     {
-        $speltakId = $this->getPostValue('speltakId');
+        $speltakId = intval($this->getPostValue('speltakId'));
         $speltak = $this->getSpeltakRepository()->getById($speltakId);
         if (!($speltak instanceof Speltak)) {
             throw new \Exception(Translation::getInstance()->translate('error.group.notFound'));

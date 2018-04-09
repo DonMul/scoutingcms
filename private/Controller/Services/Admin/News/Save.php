@@ -19,7 +19,7 @@ final class Save extends \Controller\Services\Admin
     {
         $this->ensurePermission('news.edit');
 
-        $newsId = $this->getPostValue('newsId');
+        $newsId = intval($this->getPostValue('newsId'));
         $news = $this->getNewsRepository()->getById($newsId);
         if (!($news instanceof News) && intval($newsId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.news.notFound", ['id' => $newsId]));

@@ -19,7 +19,7 @@ final class Save extends Admin
      */
     public function getArray()
     {
-        $categoryId = $this->getPostValue('categoryId');
+        $categoryId = intval($this->getPostValue('categoryId'));
         $category = $this->getAlbumCategoryRepository()->getById($categoryId);
         if (!($category instanceof AlbumCategory) && intval($categoryId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.albumCategory.notFound", ['id' => $categoryId]));

@@ -17,10 +17,10 @@ final class Delete extends Admin
      */
     public function getArray()
     {
-        $pictureId = $this->getPostValue('pictureId');
+        $pictureId = intval($this->getPostValue('pictureId'));
         $picture = $this->getPictureRepository()->getById($pictureId);
         if (!$picture) {
-            throw new \Exception(Translation::getInstance()->translate('error.picture.notFOund'));
+            throw new \Exception(Translation::getInstance()->translate('error.picture.notFound'));
         }
 
         $album = $this->getAlbumRepository()->getById($picture->getAlbumId());

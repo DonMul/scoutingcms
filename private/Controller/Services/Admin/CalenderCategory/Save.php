@@ -19,7 +19,7 @@ final class Save extends Admin
      */
     public function getArray()
     {
-        $categoryId = $this->getPostValue('categoryId');
+        $categoryId = intval($this->getPostValue('categoryId'));
         $category = $this->getAgendaCategoryRepository()->getById($categoryId);
         if (!($category instanceof AgendaCategory)) {
             throw new \Exception(Translation::getInstance()->translate("error.calenderCategory.notFound", ['id' => $categoryId]));

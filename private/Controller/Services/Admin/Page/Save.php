@@ -20,7 +20,7 @@ final class Save extends \Controller\Services\Admin
     {
         $this->ensurePermission('pages.edit');
 
-        $pageId = $this->getPostValue('pageId');
+        $pageId = intval($this->getPostValue('pageId'));
         $page = $this->getPageRepository()->getById($pageId);
         if (!($page instanceof Page) && intval($pageId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.page.notFound", ['id' => $pageId]));

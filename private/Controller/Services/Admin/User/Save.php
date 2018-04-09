@@ -21,7 +21,7 @@ final class Save extends \Controller\Services\Admin
     {
         $this->ensurePermission('user.edit');
 
-        $userId = $this->getPostValue('userId');
+        $userId = intval($this->getPostValue('userId'));
         $user =$this->getUserRepository()->getById($userId);
         if (!($user instanceof User) && intval($userId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.user.notFound"));

@@ -21,7 +21,7 @@ final class Save extends Admin
     {
         $this->ensurePermission('role.edit');
 
-        $roleId = $this->getPostValue('roleId');
+        $roleId = intval($this->getPostValue('roleId'));
         $role = $this->getRoleRepository()->getById($roleId);
         if (!($role instanceof Role) && intval($roleId) > 0) {
             throw new \Exception(Translation::getInstance()->translate("error.role.notFound", ['id' => $roleId]));
