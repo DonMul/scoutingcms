@@ -9,7 +9,7 @@ use Lib\Core\Translation;
  * @package Lib\Exception
  * @author Joost Mul <scoutingcms@jmul.net>
  */
-class InvalidPassword extends \Exception
+class InvalidPassword extends UserException
 {
     /**
      * InvalidPassword constructor.

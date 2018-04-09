@@ -7,6 +7,7 @@ use Lib\Core\Translation;
 use Lib\Core\Validate;
 use Lib\Data\User;
 use Lib\Exception\InvalidPassword;
+use Lib\Exception\UserException;
 
 /**
  * Class Register
@@ -20,7 +21,7 @@ final class Register extends Ajax
         $username = $this->getPostValue('username');
         $user = $this->getUserRepository()->getByUsername($username);
         if ($user instanceof User) {
-            throw new \Exception(Translation::getInstance()->translate('error.user.usernameAlreadyExists'));
+            throw new UserException(Translation::getInstance()->translate('error.user.usernameAlreadyExists'));
         }
 
         $password = $this->getPostValue('password');
@@ -29,7 +30,7 @@ final class Register extends Ajax
         $nickName = $this->getPostValue('nick');
 
         if ($password != $repeatPassword) {
-            throw new \Exception(Translation::getInstance()->translate('error.user.passwordsDoNotMatch'));
+            throw new UserException(Translation::getInstance()->translate('error.user.passwordsDoNotMatch'));
         }
 
         $user = new User(
@@ -45,7 +46,7 @@ final class Register extends Ajax
         }
 
         $user->setPassword($password, true);
-        $user->save();
+        $this->getUserRepository()->save($user);
 
         return [
             'message' => Translation::getInstance()->translate('success.user.registration')

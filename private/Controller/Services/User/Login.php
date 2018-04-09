@@ -3,6 +3,7 @@
 namespace Controller\Services\User;
 
 use Lib\Core\Translation;
+use Lib\Exception\UserException;
 
 /**
  * Class Login
@@ -23,7 +24,7 @@ final class Login extends \Lib\Core\BaseController\Ajax
         }
 
         if (!$isValid) {
-            throw new \Exception(Translation::getInstance()->translate('error.user.invalidUsernameOrPassword'));
+            throw new UserException(Translation::getInstance()->translate('error.user.invalidUsernameOrPassword'));
         }
 
         \Lib\Core\Session::getInstance()->logIn($user->getId());

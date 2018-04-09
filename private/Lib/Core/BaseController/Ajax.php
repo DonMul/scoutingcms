@@ -2,6 +2,8 @@
 
 namespace Lib\Core\BaseController;
 
+use Lib\Core\ExceptionHandler\Factory;
+
 /**
  * Class Ajax
  * @package Lib\Core\BaseController
@@ -31,7 +33,8 @@ abstract class Ajax extends \Lib\Core\BaseController
 
             $data = $this->getArray();
             $this->output(true, $data, []);
-        } catch (\Exception $ex) {
+        } catch (\Throwable $ex) {
+            Factory::getExceptionHandler()->handleException($ex);
             $this->output(false, [], [$ex->getMessage()]);
         }
     }

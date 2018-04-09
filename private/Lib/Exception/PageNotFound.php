@@ -7,6 +7,6 @@ namespace Lib\Exception;
  * @package Lib\Exception
  * @author Joost Mul <scoutingcms@jmul.net>
  */
-class PageNotFound extends \Exception
+class PageNotFound extends UserException
 {
 }

@@ -155,7 +155,7 @@ error.general: Er is iets fout gegaan!
 error.passwordNotStrongEnough: Je wachtwoord moet minstens een hoofdletter, kleine letter, een cijfer bevatten en 8 karakters lang zijn
 error.noAlbums: Er zijn nog geen albums toegevoegd in deze categorie
 
-success.user.registration: Registratie voltooid!
+success.user.registration: Registratie voltooid! Je kan nu <a href="/admin">hier</a> inloggen.
 
 admin.nav.users: Gebruikers
 admin.nav.roles: Rollen
