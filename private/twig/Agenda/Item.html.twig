@@ -3,22 +3,14 @@
 {% import 'macros.html.twig' as macros %}
 
 {% block template %}
-    <section id="main">
-        <div class="section-contents overlay">
-            <div class="navigation__container">
-                {{ macros.nav() }}
-            </div>
-            <div class="text-center main-header">
-                <h1>
-                    {{ context.item.name }}
-                </h1>
-                <h2>
-                    {{ s('groupName') }}
-                </h2>
-            </div>
+    {{ macros.nav(menu) }}
+    <div class="hero__image hero__image--main">
+        <div class="hero__text">
+            <h1>{{ context.item.name }}</h1>
+            <h2>{{ s('groupName') }}</h2>
         </div>
-    </section>
-    <section id="info">
+    </div>
+    <section id="info" class="section__padded">
         <div class="section-contents">
             <div class="container">
                 <div class="row">
@@ -54,6 +46,7 @@
                         {{ context.item.description|raw }}
                     </div>
                 </div>
+                <small><a href="{{ tl('calender') }}" class="btn btn-success">< {{ t('common.back') }}</a></small>
             </div>
         </div>
     </section>

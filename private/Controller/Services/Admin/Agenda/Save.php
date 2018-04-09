@@ -21,7 +21,7 @@ final class Save extends \Controller\Services\Admin
     {
         $this->ensurePermission('calender.edit');
 
-        $itemId = $this->getPostValue('itemId');
+        $itemId = intval($this->getPostValue('itemId'));
         $item = $this->getAgendaRepository()->getById($itemId);
 
         if (!($item instanceof Agenda) && intval($itemId) > 0) {

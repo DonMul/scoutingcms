@@ -33,6 +33,7 @@ agenda.startDate: Startdatum
 agenda.endDate: Einddatum
 agenda.description: Beschrijving
 agenda.category: Categorie
+agenda.categories: Categorieën
 agenda.noItems: Er zijn nog geen agendapunten aangemaakt!
 agenda.new: Nieuw agendapunt maken
 agenda.edit: Agendapunt wijzigen
@@ -189,6 +190,7 @@ common.register: Registreer
 common.save: Opslaan
 common.yes: Ja
 common.no: Nee
+common.back: Terug
 
 stats.agenda: Agendapunten
 stats.album: Albums
